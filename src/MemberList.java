@@ -3,12 +3,16 @@ import java.time.Period;
 import java.util.ArrayList;
 
 public class MemberList {
-    private static ArrayList<Member> allMembers = new ArrayList<>();
-    private ArrayList<Member> under18 = new ArrayList<>();
-    private ArrayList<Member> over18 = new ArrayList<>();
+    static ArrayList<Member> allMembers = new ArrayList<>();
+    static ArrayList<Member> under18 = new ArrayList<>();
+    static ArrayList<Member> over18 = new ArrayList<>();
 
+    public static void addMemberToList(String userID, String name, LocalDate birthday){
+        allMembers.add(new Competitive(userID, name, birthday));
+        sortMembersInList();
+    }
 
-    public void sortMembersInList(){
+    public static void sortMembersInList(){
         for(Member m : allMembers){
             if (m.isCompetitive){
                 if(m.calculateAge()<18){
