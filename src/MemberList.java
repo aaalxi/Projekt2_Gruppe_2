@@ -7,7 +7,7 @@ public class MemberList {
     static ArrayList<Member> under18 = new ArrayList<>();
     static ArrayList<Member> over18 = new ArrayList<>();
 
-    public static void addMemberToList(String userID, String name, LocalDate birthday){
+    public static void addCompetitiveMemberToList(String userID, String name, LocalDate birthday){
         allMembers.add(new Competitive(userID, name, birthday));
         sortMembersInList();
     }

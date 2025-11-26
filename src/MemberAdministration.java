@@ -8,7 +8,7 @@ public class MemberAdministration {
         String name = UI.scn.nextLine();
         System.out.println("Hvad er fødselsdato?");
         LocalDate birthday = LocalDate.parse(UI.scn.nextLine());
-        MemberList.allMembers.add(new Competitive(userID, name, birthday));
+        MemberList.addCompetitiveMemberToList(userID, name, birthday);
         System.out.println("Bruger lavet for "+name+": "+birthday);
     }
 
