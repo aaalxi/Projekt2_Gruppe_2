@@ -1,0 +1,112 @@
+import java.util.Scanner;
+
+public class UI {
+    static Scanner scn = new Scanner(System.in);
+
+    public void showMainMenu() {
+        boolean running = true;
+
+        while (running) {
+            System.out.println("=== Hovedmenu ===");
+            System.out.println("1. Træner-menu");
+            System.out.println("2. Formand-menu");
+            System.out.println("3. Kasserer-menu");
+            System.out.println("4. Opret medlem");
+            System.out.println("0. Afslut");
+            System.out.print("Vælg et punkt: ");
+
+            String valg = scn.nextLine();
+
+            switch (valg) {
+                case "1":
+                    showTrainerMenu();
+                    break;
+                case "2":
+                    showChairmanMenu();
+                    break;
+                case "3":
+                    showCashierMenu();
+                    break;
+                case "0":
+                    running = false;
+                    System.out.println("Programmet afsluttes.");
+                    break;
+                default:
+                    System.out.println("Ugyldigt valg, prøv igen.");
+            }
+        }//while running loop
+
+    }
+
+    public void showTrainerMenu() {
+        boolean running = true;
+        while (running) {
+            System.out.println("--- TrænerMenu ---");
+            System.out.println("0. Tilbage til Hovedmenu");
+            System.out.print("Vælg: ");
+            String valg = scn.nextLine();
+
+            switch (valg) {
+                case "0":
+                    running = false;
+                    break;
+
+                default:
+                    System.out.println("Ugyldigt valg, prøv igen.");
+            }
+        }
+    }
+
+    public void showCashierMenu() {
+        boolean running = true;
+        while (running) {
+            System.out.println("--- Kasser Menu ---");
+            System.out.println("0. Tilbage til Hovedmenu");
+            System.out.print("Vælg: ");
+            String valg = scn.nextLine();
+
+            switch (valg) {
+                case "0":
+                    running = false;
+                    break;
+
+                default:
+                    System.out.println("Ugyldigt valg, prøv igen.");
+            }
+        }
+    }
+
+    public void showChairmanMenu() {
+        boolean running = true;
+        while (running) {
+            System.out.println("--- Formand Menu ---");
+            System.out.println("1. Opret Medlem");
+            System.out.println("0. Tilbage til Hovedmenu");
+            System.out.print("Vælg: ");
+            String valg = scn.nextLine();
+
+            switch (valg) {
+                case "1":
+                    createMember();
+                    break;
+                case "0":
+                    running = false;
+                    break;
+
+                default:
+                    System.out.println("Ugyldigt valg, prøv igen.");
+            }
+        }
+    }
+
+    public void createMember() {
+        System.out.println("Medlem er oprettet.");
+        System.out.println();
+        // Her spørger du om navn, fødselsdato osv. og kalder dine utility-metoder
+    }
+
+    public static void main(String[] args) {
+        UI a = new UI();
+        a.showMainMenu();
+    }
+}
