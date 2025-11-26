@@ -25,6 +25,7 @@ public class MemberList {
     }
 
     public static void main(String[] args) {
+        String fil = "Members.txt";
         MemberList e = new MemberList();
         Member m1 = new Casual("m2","Rune",LocalDate.of(1992,12,11));
         Member m2 = new Competitive("m3","Bo",LocalDate.of(2010,12,11));
@@ -39,7 +40,7 @@ public class MemberList {
         allMembers.add(m3);
         allMembers.add(m4);
         allMembers.add(m5);
-
+        MemberFileHandling.saveMembers(allMembers,fil);
         for(Member m : allMembers){
             System.out.println(m.getDateOfBirth());
             System.out.println(m.isCompetitive);

@@ -22,4 +22,16 @@ abstract class Member {
     public LocalDate getDateOfBirth () {
         return dateOfBirth;
     }
+
+    public String getMemberID() {
+        return memberID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean getIsCompetitive(){
+        return isCompetitive;
+    }
 }
