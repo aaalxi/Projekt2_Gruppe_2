@@ -102,7 +102,6 @@ public class UI {
     public void createMember() {
         System.out.println("Medlem er oprettet.");
         System.out.println();
-        // Her spørger du om navn, fødselsdato osv. og kalder dine utility-metoder
     }
 
     public static void main(String[] args) {
