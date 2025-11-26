@@ -1,5 +1,10 @@
 public class MemberAdministration {
-    public void addMember(){
+    public static void addCompetitiveSwimmer(){
+        System.out.println("");
+
+    }
+
+    public static void addCasualSwimmer(){
 
     }
 }
