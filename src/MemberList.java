@@ -3,16 +3,16 @@ import java.time.Period;
 import java.util.ArrayList;
 
 public class MemberList {
-    private ArrayList<Member> allMembers = new ArrayList<>();
+    private static ArrayList<Member> allMembers = new ArrayList<>();
     private ArrayList<Member> under18 = new ArrayList<>();
     private ArrayList<Member> over18 = new ArrayList<>();
-    private final Member member;
+    private final Member member; // reference der lader MemberList
 
     MemberList(Member member){
         this.member = member;
     }
 
-    public int calculateAge(LocalDate birtdate){
+    public int calculateAge(LocalDate birtdate){ // udregner alder ud fra fødselsdato af medlem
         Period currentAge = Period.between(birtdate, LocalDate.now());
         return currentAge.getYears();
     }
