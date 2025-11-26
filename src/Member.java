@@ -10,14 +10,13 @@ abstract class Member {
     boolean isCompetitive;
 
 
-    public Member (String memberID, String name,LocalDate dateBirth, boolean isActive, boolean isArrears,
-                   double totalArrears) {
+    public Member (String memberID, String name,LocalDate dateBirth) {
         this.memberID = memberID;
         this.name=name;
         this.dateOfBirth=dateBirth;
-        this.isActive=isActive;
-        this.isArrears=isArrears;
-        this.totalArrears=totalArrears;
+        this.isActive=true;
+        this.isArrears=false;
+        this.totalArrears=0;
     }
 
     public LocalDate getDateOfBirth () {

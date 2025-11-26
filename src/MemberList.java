@@ -12,7 +12,7 @@ public class MemberList {
         return currentAge.getYears();
     }
 
-    public void sortMembersinList(){
+    public void sortMembersInList(){
         for(Member m : allMembers){
             if (m.isCompetitive){
                 if(calculateAge(m.getDateOfBirth())<18){
@@ -25,6 +25,39 @@ public class MemberList {
     }
 
     public static void main(String[] args) {
+        MemberList e = new MemberList();
+        Member m1 = new Casual("m2","Rune",LocalDate.of(1992,12,11));
+        Member m2 = new Competitive("m3","Bo",LocalDate.of(2010,12,11));
+        Member m3 = new Competitive("m4","Per",LocalDate.of(2010,12,11));
+        Member m4 = new Competitive("m5","Lars",LocalDate.of(2010,12,11));
+        Member m5 = new Competitive("m6","Lis",LocalDate.of(2000,12,11));
 
+        System.out.println(allMembers);
+
+        allMembers.add(m1);
+        allMembers.add(m2);
+        allMembers.add(m3);
+        allMembers.add(m4);
+        allMembers.add(m5);
+
+        for(Member m : allMembers){
+            System.out.println(m.getDateOfBirth());
+            System.out.println(m.isCompetitive);
+        }
+        System.out.println();
+        e.sortMembersInList();
+        System.out.println("Kørt sortMembersInlist metode");
+        System.out.println();
+        System.out.println("Print for comp under 18");
+        for(Member m : e.under18){
+            System.out.println(m.getDateOfBirth());
+            System.out.println(m.isCompetitive);
+        }
+        System.out.println();
+        System.out.println("Print for comp over 18");
+        for(Member m : e.over18){
+            System.out.println(m.getDateOfBirth());
+            System.out.println(m.isCompetitive);
+        }
     }
 }
