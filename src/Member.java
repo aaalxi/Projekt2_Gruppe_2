@@ -19,8 +19,8 @@ abstract class Member {
         this.totalArrears=0;
     }
 
-    public int calculateAge(LocalDate birthdate){ // udregner alder ud fra fødselsdato af medlem
-        Period currentAge = Period.between(birthdate, LocalDate.now());
+    public int calculateAge(){ // udregner alder ud fra fødselsdato af medlem
+        Period currentAge = Period.between(dateOfBirth, LocalDate.now());
         return currentAge.getYears();
     }
 

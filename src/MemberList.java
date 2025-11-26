@@ -11,7 +11,7 @@ public class MemberList {
     public void sortMembersInList(){
         for(Member m : allMembers){
             if (m.isCompetitive){
-                if(m.calculateAge(m.getDateOfBirth())<18){
+                if(m.calculateAge()<18){
                     under18.add(m);
                 } else {
                     over18.add(m);
