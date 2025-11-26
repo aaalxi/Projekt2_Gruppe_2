@@ -4,50 +4,23 @@ abstract class Member {
 
     private final String memberID;
     private String name;
-    private LocalDate dateBirth;
+    private LocalDate dateOfBirth;
     private boolean isActive, isArrears;
     private double totalArrears;
-    private String casualCompetitive;
+    boolean isCompetitive;
 
 
     public Member (String memberID, String name,LocalDate dateBirth, boolean isActive, boolean isArrears,
-                   double totalArrears, String casualCompetitive) {
+                   double totalArrears) {
         this.memberID = memberID;
         this.name=name;
-        this.dateBirth=dateBirth;
+        this.dateOfBirth=dateBirth;
         this.isActive=isActive;
         this.isArrears=isArrears;
         this.totalArrears=totalArrears;
-        this.casualCompetitive=casualCompetitive;
     }
 
-    public String getMemberID () {
-        return memberID;
+    public LocalDate getDateOfBirth () {
+        return dateOfBirth;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public LocalDate getDateBirth () {
-        return dateBirth;
-    }
-
-    public boolean isActive () {
-        return isActive;
-    }
-
-    public boolean isArrears () {
-        return isArrears;
-    }
-
-    public double getTotalArrears () {
-        return totalArrears;
-    }
-
-    public String getCasualCompetitive () {
-        return casualCompetitive;
-    }
-
-
 }
