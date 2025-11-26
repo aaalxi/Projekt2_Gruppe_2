@@ -31,7 +31,7 @@ public class MemberFileHandling {
                 String[] data = linje.split(";");
                 String id = data[0];
                 String name = data[1];
-                LocalDate dateBirth = LocalDate.parse(data[2]); // Format: yyyy-MM-dd
+                LocalDate dateBirth = LocalDate.parse(data[2]);
                 String comp = data[3];
 
                 if (comp.equals("true")) {
