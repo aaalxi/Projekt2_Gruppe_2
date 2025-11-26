@@ -9,8 +9,6 @@ abstract class Member {
     private boolean isActive, isArrears;
     private double totalArrears;
     boolean isCompetitive;
-    private int age;
-
 
     public Member (String memberID, String name,LocalDate dateBirth) {
         this.memberID = memberID;
@@ -19,7 +17,6 @@ abstract class Member {
         this.isActive=true;
         this.isArrears=false;
         this.totalArrears=0;
-        this.age = calculateAge(dateBirth);
     }
 
     public int calculateAge(LocalDate birthdate){ // udregner alder ud fra fødselsdato af medlem
@@ -29,9 +26,5 @@ abstract class Member {
 
     public LocalDate getDateOfBirth () {
         return dateOfBirth;
-    }
-
-    public int getAge(){
-        return age;
     }
 }
