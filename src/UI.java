@@ -11,7 +11,6 @@ public class UI {
             System.out.println("1. Træner-menu");
             System.out.println("2. Formand-menu");
             System.out.println("3. Kasserer-menu");
-            System.out.println("4. Opret medlem");
             System.out.println("0. Afslut");
             System.out.print("Vælg et punkt: ");
 
