@@ -11,7 +11,7 @@ abstract class Member {
     boolean isCompetitive;
     private int currentAge;
     private LocalDate createDate;
-    private AgeStatus ageStatus;
+    private SubscriptionType subscriptionType;
 
     public Member (String memberID, String name,LocalDate dateBirth, double totalArrears) {
         this.memberID = memberID;
@@ -25,13 +25,18 @@ abstract class Member {
     }
 
     public void updateAgeStatus(){
-        if(getCurrentAge() < 18){
-            setAgeStatus(AgeStatus.Under18);
-        } else if (getCurrentAge() < 60) {
-            setAgeStatus(AgeStatus.Over18);
-        } else{
-            setAgeStatus(AgeStatus.Over60);
+        if(isActive){
+            if(getCurrentAge() < 18){
+                setSubscriptionType(SubscriptionType.Under18);
+            } else if (getCurrentAge() < 60) {
+                setSubscriptionType(SubscriptionType.Over18);
+            } else {
+                setSubscriptionType(SubscriptionType.Over60);
+            }
+        } else {
+            setSubscriptionType(SubscriptionType.Passive);
         }
+
     }
 
     public int calculateAge(){ // udregner alder ud fra fødselsdato af medlem
@@ -43,12 +48,12 @@ abstract class Member {
         return currentAge;
     }
 
-    public void setAgeStatus(AgeStatus ageStatus){
-        this.ageStatus=ageStatus;
+    public void setSubscriptionType(SubscriptionType subscriptionType){
+        this.subscriptionType = subscriptionType;
     }
 
-    public AgeStatus getAgeStatus(){
-        return ageStatus;
+    public SubscriptionType getSubscriptionType(){
+        return subscriptionType;
     }
 
     public LocalDate getCreateDate(){
@@ -73,5 +78,9 @@ abstract class Member {
 
     public boolean getIsCompetitive(){
         return isCompetitive;
+    }
+
+    public String toString(){
+        return name + ": " ;
     }
 }
