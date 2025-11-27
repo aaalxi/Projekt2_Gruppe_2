@@ -52,7 +52,7 @@ public class MemberFileHandling {
         }
         return members;
     }
-
+    //Test main. ***HUSK AT FJERNE INDEN FÆRDIGE***
     public static void main(String[] args) {
         String fil = "Members.txt";
         ArrayList<Member> members = new ArrayList<>();

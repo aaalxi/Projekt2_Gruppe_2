@@ -127,7 +127,7 @@ public class UI {
             }
         }
     }
-
+    //Test main. ***HUSK AT FJERNE INDEN FÆRDIGE***
     public static void main(String[] args) {
         UI a = new UI();
         a.showMainMenu();

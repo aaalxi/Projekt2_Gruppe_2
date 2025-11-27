@@ -17,7 +17,7 @@ public class MemberList {
             }
         }
     }
-
+    //Test main. ***HUSK AT FJERNE INDEN FÆRDIGE***
     public static void main(String[] args) {
         String fil = "Members.txt";
         MemberList e = new MemberList();
