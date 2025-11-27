@@ -17,8 +17,8 @@ public class MemberFileHandling {
                     }
                 }
                 if (!exists) {
-                String linje = m.getMemberID() + ";" + m.getName() + ";" + m.getDateOfBirth() + ";" + m.getIsCompetitive() + ";" + m.getTotalArrears();
-                pw.println(linje);
+                    String linje = m.getMemberID() + ";" + m.getName() + ";" + m.getDateOfBirth() + ";" + m.getIsCompetitive() + ";" + m.getTotalArrears();
+                    pw.println(linje);
                 }
             }
         } catch (IOException e) {
@@ -36,8 +36,8 @@ public class MemberFileHandling {
                 String id = data[0];
                 String name = data[1];
                 LocalDate dateBirth = LocalDate.parse(data[2]);
-                double totalArrears = Double.parseDouble(data[4]);
                 String comp = data[3];
+                double totalArrears = Double.parseDouble(data[4]);
 
                 if (comp.equals("true")) {
                     members.add(new Competitive(id, name, dateBirth, totalArrears));
