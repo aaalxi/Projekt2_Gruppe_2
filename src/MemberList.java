@@ -43,9 +43,15 @@ public class MemberList {
 
         allMembers.add(m1);
         allMembers.add(m2);
+        MemberFileHandling.saveMembers(allMembers,fil);
+        allMembers.clear();
         allMembers.add(m3);
         allMembers.add(m4);
         allMembers.add(m5);
+        MemberFileHandling.saveMembers(allMembers,fil);
+        allMembers.clear();
+        allMembers.add(m1);
+        allMembers.add(m2);
         MemberFileHandling.saveMembers(allMembers,fil);
         for(Member m : allMembers){
             System.out.println(m.getDateOfBirth());

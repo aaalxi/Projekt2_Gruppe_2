@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -9,14 +6,23 @@ public class MemberFileHandling {
 
     //Lav metoder så medlemmer kan gemmes og loades lokalt fra fil ved system opstart.
     public static void saveMembers(ArrayList<Member> members, String fileName) {
+        ArrayList<Member> exsistingMembers = loadMembers(fileName);
 
-        try {
-            PrintWriter pw = new PrintWriter(fileName);
+        try (PrintWriter pw = new PrintWriter(new FileWriter(fileName, true))) {
             for (Member m : members) {
-                String linje = m.getMemberID() + ";" + m.getName() + ";" + m.getDateOfBirth() + ";" + m.getIsCompetitive();
-                pw.println(linje);
+                boolean exists = false;
+
+                for (Member ex : exsistingMembers) {
+                    if (ex.getMemberID().equals(m.getMemberID())) {
+                        exists = true;
+                        break;
+                    }
+                }
+                if (!exists) {
+                    String linje = m.getMemberID() + ";" + m.getName() + ";" + m.getDateOfBirth() + ";" + m.getIsCompetitive();
+                    pw.println(linje);
+                }
             }
-            pw.close();
         } catch (IOException e) {
             System.out.println("Fejl ved gemning: " + e.getMessage());
         }
@@ -54,7 +60,7 @@ public class MemberFileHandling {
         System.out.println(members);
         members.addAll(loadMembers(fil));
 
-        for(Member m : members){
+        for (Member m : members) {
             System.out.println(m.getName());
         }
     }
