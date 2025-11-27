@@ -11,33 +11,51 @@ abstract class Member {
     boolean isCompetitive;
     private int currentAge;
     private LocalDate createDate;
-    private AgeStatus ageStatus;
+    private SubscriptionType subscriptionType;
 
-
-    public Member (String memberID, String name,LocalDate dateBirth, int currentAge, LocalDate createDate,
-                   AgeStatus ageStatus) {
+    public Member (String memberID, String name,LocalDate dateBirth, double totalArrears) {
         this.memberID = memberID;
         this.name=name;
         this.dateOfBirth=dateBirth;
         this.isActive=true;
         this.isArrears=false;
-        this.totalArrears=0;
+        this.totalArrears=totalArrears;
+        this.currentAge=calculateAge();
+        updateAgeStatus();
+    }
+
+    public void updateAgeStatus(){
+        if(isActive){
+            if(getCurrentAge() < 18){
+                setSubscriptionType(SubscriptionType.Under18);
+            } else if (getCurrentAge() < 60) {
+                setSubscriptionType(SubscriptionType.Over18);
+            } else {
+                setSubscriptionType(SubscriptionType.Over60);
+            }
+        } else {
+            setSubscriptionType(SubscriptionType.Passive);
+        }
+
     }
 
     public int calculateAge(){ // udregner alder ud fra fødselsdato af medlem
         Period currentAge = Period.between(dateOfBirth, LocalDate.now());
         return currentAge.getYears();
     }
+
     public int getCurrentAge(){
         return currentAge;
     }
-    public void setAgeStatus(AgeStatus ageStatus){
-        this.ageStatus=ageStatus;
-    }
-    public AgeStatus getAgeStatus(){
 
-        return ageStatus;
+    public void setSubscriptionType(SubscriptionType subscriptionType){
+        this.subscriptionType = subscriptionType;
     }
+
+    public SubscriptionType getSubscriptionType(){
+        return subscriptionType;
+    }
+
     public LocalDate getCreateDate(){
         return createDate;
     }
@@ -54,7 +72,15 @@ abstract class Member {
         return name;
     }
 
+    public double getTotalArrears(){
+        return totalArrears;
+    }
+
     public boolean getIsCompetitive(){
         return isCompetitive;
+    }
+
+    public String toString(){
+        return name + ": " ;
     }
 }

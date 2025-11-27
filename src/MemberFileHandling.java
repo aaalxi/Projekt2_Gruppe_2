@@ -10,7 +10,7 @@ public class MemberFileHandling {
         try {
             PrintWriter pw = new PrintWriter(fileName);
             for (Member m : members) {
-                String linje = m.getMemberID() + ";" + m.getName() + ";" + m.getDateOfBirth() + ";" + m.getIsCompetitive();
+                String linje = m.getMemberID() + ";" + m.getName() + ";" + m.getDateOfBirth() + ";" + m.getIsCompetitive() + ";" + m.getTotalArrears();
                 pw.println(linje);
             }
             pw.close();
@@ -29,13 +29,14 @@ public class MemberFileHandling {
                 String id = data[0];
                 String name = data[1];
                 LocalDate dateBirth = LocalDate.parse(data[2]);
+                double totalArrears = Double.parseDouble(data[4]);
                 String comp = data[3];
 
                 if (comp.equals("true")) {
-                    members.add(new Competitive(id, name, dateBirth));
+                    members.add(new Competitive(id, name, dateBirth, totalArrears));
                 }
                 if (comp.equals("false")) {
-                    members.add(new Casual(id, name, dateBirth));
+                    members.add(new Casual(id, name, dateBirth, totalArrears));
                 }
             }
             br.close();
