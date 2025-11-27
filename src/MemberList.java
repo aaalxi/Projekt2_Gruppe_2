@@ -1,5 +1,10 @@
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class MemberList {
     static ArrayList<Member> allMembers = new ArrayList<>();
@@ -17,6 +22,21 @@ public class MemberList {
             }
         }
     }
+
+    //Print arrayliste med u18 og o18 konkurrencemedlemmer ud metoder:
+    public static void printCompetitive (ArrayList <Member> list, String filename) {
+        list.sort(Comparator.comparing(Member::getDateOfBirth));
+
+        try (PrintWriter writer = new PrintWriter("scr/" + filename)) {
+            for (Member m : list) {
+                writer.println(m);
+            }
+            System.out.println(filename + "er skrevet til src!");
+        } catch (FileNotFoundException e) {
+            System.out.println("Fejl ved udskrivning til " + filename);
+        }
+    }
+
 
     public static void main(String[] args) {
         String fil = "Members.txt";
@@ -55,4 +75,4 @@ public class MemberList {
             System.out.println(m.isCompetitive);
         }
     }
-}
+

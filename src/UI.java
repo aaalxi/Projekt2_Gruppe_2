@@ -42,12 +42,20 @@ public class UI {
         boolean running = true;
         while (running) {
             System.out.println("--- TrænerMenu ---");
-            System.out.println("0. Tilbage til Hovedmenu");
+            System.out.println("1. Se liste over konkurrencesvømmere U18\n" +
+                    "2. Se liste over konkurrencesvømmere O18\n" +
+                    "Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
             String valg = scn.nextLine();
 
             switch (valg) {
-                case "0":
+                case "1":
+                    MemberList.printCompetitive(MemberList.under18, "U18");
+
+                case "2" :
+                    MemberList.printCompetitive(MemberList.over18,"O18");
+
+                case "3":
                     running = false;
                     break;
 
