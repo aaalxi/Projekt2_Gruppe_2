@@ -1,6 +1,5 @@
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,6 +21,7 @@ public class MemberList {
             }
         }
     }
+    //Test main. ***HUSK AT FJERNE INDEN FÆRDIGE***
 
     //Print arrayliste med u18 og o18 konkurrencemedlemmer ud metoder:
     public static void printCompetitive (ArrayList <Member> list, String filename) {
@@ -51,9 +51,16 @@ public class MemberList {
 
         allMembers.add(m1);
         allMembers.add(m2);
+        MemberFileHandling.saveMembers(allMembers,fil);
+        allMembers.clear();
         allMembers.add(m3);
         allMembers.add(m4);
         allMembers.add(m5);
+        System.out.println(allMembers);
+        MemberFileHandling.saveMembers(allMembers,fil);
+        allMembers.clear();
+        allMembers.add(m1);
+        allMembers.add(m2);
         MemberFileHandling.saveMembers(allMembers,fil);
         for(Member m : allMembers){
             System.out.println(m.getDateOfBirth());
@@ -75,4 +82,4 @@ public class MemberList {
             System.out.println(m.isCompetitive);
         }
     }
-
+}
