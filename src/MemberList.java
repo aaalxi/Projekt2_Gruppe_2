@@ -21,7 +21,7 @@ public class MemberList {
             }
         }
     }
-    //Test main. ***HUSK AT FJERNE INDEN FÆRDIGE***
+
 
     //Print arrayliste med u18 og o18 konkurrencemedlemmer ud metoder:
     public static void printCompetitive (ArrayList <Member> list, String filename) {
@@ -37,7 +37,7 @@ public class MemberList {
         }
     }
 
-
+    //Test main. ***HUSK AT FJERNE INDEN FÆRDIGE***
     public static void main(String[] args) {
         String fil = "Members.txt";
         MemberList e = new MemberList();
