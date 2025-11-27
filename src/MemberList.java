@@ -22,7 +22,7 @@ public class MemberList {
 
     //Print arrayliste med u18 og o18 konkurrencemedlemmer til konsol:
     public static void printCompetitive (ArrayList <Member> list) {
-        list.sort(Comparator.comparing(Member::getDateOfBirth));
+        list.sort(Comparator.comparing(Member::getDateOfBirth));         //sætter ældst øverst, ellers .reversed
         for (Member m : list) {
             System.out.println(m.toString());
         }
