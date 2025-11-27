@@ -36,6 +36,7 @@ public class MemberList {
         allMembers.add(m3);
         allMembers.add(m4);
         allMembers.add(m5);
+        System.out.println(allMembers);
         MemberFileHandling.saveMembers(allMembers,fil);
         allMembers.clear();
         allMembers.add(m1);
