@@ -19,7 +19,7 @@ abstract class Member {
         this.dateOfBirth=dateBirth;
         this.isActive=true;
         this.isArrears=false;
-        this.totalArrears=0;
+        this.totalArrears=totalArrears;
         this.currentAge=calculateAge();
         updateAgeStatus();
     }
@@ -32,8 +32,6 @@ abstract class Member {
         } else{
             setAgeStatus(AgeStatus.Over60);
         }
-        this.totalArrears=totalArrears;
-        this.currentAge=calculateAge();
     }
 
     public int calculateAge(){ // udregner alder ud fra fødselsdato af medlem
