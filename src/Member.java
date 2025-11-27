@@ -21,6 +21,17 @@ abstract class Member {
         this.isArrears=false;
         this.totalArrears=totalArrears;
         this.currentAge=calculateAge();
+        updateAgeStatus();
+    }
+
+    public void updateAgeStatus(){
+        if(getCurrentAge() < 18){
+            setAgeStatus(AgeStatus.Under18);
+        } else if (getCurrentAge() < 60) {
+            setAgeStatus(AgeStatus.Over18);
+        } else{
+            setAgeStatus(AgeStatus.Over60);
+        }
     }
 
     public int calculateAge(){ // udregner alder ud fra fødselsdato af medlem
