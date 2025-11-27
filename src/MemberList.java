@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
 
 public class MemberList {
@@ -9,10 +8,15 @@ public class MemberList {
 
     public static void addCompetitiveMemberToList(String userID, String name, LocalDate birthday){
         allMembers.add(new Competitive(userID, name, birthday));
-        sortMembersInList();
+        addMembersToTeamList();
     }
 
-    public static void sortMembersInList(){
+    public static void addCasualMemberToList(String userID, String name, LocalDate birthday){
+        allMembers.add(new Casual(userID, name, birthday));
+        addMembersToTeamList();
+    }
+
+    public static void addMembersToTeamList(){
         for(Member m : allMembers){
             if (m.isCompetitive){
                 if(m.calculateAge()<18){
@@ -45,7 +49,7 @@ public class MemberList {
             System.out.println(m.isCompetitive);
         }
         System.out.println();
-        e.sortMembersInList();
+        e.addMembersToTeamList();
         System.out.println("Kørt sortMembersInlist metode");
         System.out.println();
         System.out.println("Print for comp under 18");
