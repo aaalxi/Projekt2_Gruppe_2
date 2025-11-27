@@ -1,27 +1,34 @@
 import java.time.LocalDate;
+import java.time.Period;
 
 abstract class Member {
 
     private final String memberID;
     private String name;
-    private LocalDate dateBirth;
+    private LocalDate dateOfBirth;
     private boolean isActive, isArrears;
     private double totalArrears;
-    private String casualCompetitive;
+    boolean isCompetitive;
 
-
-    public Member (String memberID, String name,LocalDate dateBirth, boolean isActive, boolean isArrears,
-                   double totalArrears, String casualCompetitive) {
+    public Member (String memberID, String name,LocalDate dateBirth) {
         this.memberID = memberID;
         this.name=name;
-        this.dateBirth=dateBirth;
-        this.isActive=isActive;
-        this.isArrears=isArrears;
-        this.totalArrears=totalArrears;
-        this.casualCompetitive=casualCompetitive;
+        this.dateOfBirth=dateBirth;
+        this.isActive=true;
+        this.isArrears=false;
+        this.totalArrears=0;
     }
 
-    public String getMemberID () {
+    public int calculateAge(){ // udregner alder ud fra fødselsdato af medlem
+        Period currentAge = Period.between(dateOfBirth, LocalDate.now());
+        return currentAge.getYears();
+    }
+
+    public LocalDate getDateOfBirth () {
+        return dateOfBirth;
+    }
+
+    public String getMemberID() {
         return memberID;
     }
 
@@ -29,25 +36,7 @@ abstract class Member {
         return name;
     }
 
-    public LocalDate getDateBirth () {
-        return dateBirth;
+    public boolean getIsCompetitive(){
+        return isCompetitive;
     }
-
-    public boolean isActive () {
-        return isActive;
-    }
-
-    public boolean isArrears () {
-        return isArrears;
-    }
-
-    public double getTotalArrears () {
-        return totalArrears;
-    }
-
-    public String getCasualCompetitive () {
-        return casualCompetitive;
-    }
-
-
 }

@@ -1,0 +1,5 @@
+m2;Rune;1992-12-11;false
+m3;Bo;2010-12-11;true
+m4;Per;2010-12-11;true
+m5;Lars;2010-12-11;true
+m6;Lis;2000-12-11;true
