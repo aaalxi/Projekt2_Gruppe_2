@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -21,6 +18,7 @@ public class MemberFileHandling {
             System.out.println("Fejl ved gemning: " + e.getMessage());
         }
     }
+
 
     public static ArrayList<Member> loadMembers(String fileName) {
         ArrayList<Member> members = new ArrayList<>();
@@ -49,6 +47,29 @@ public class MemberFileHandling {
         return members;
     }
 
+
+    public static void printCompetitivemembers () {
+        ArrayList<Member> u18 = MemberList.under18;
+        ArrayList<Member> o18 = MemberList.over18;
+
+//Print arrayliste med u18 konkurrencemedlemmer ud
+        try (PrintWriter writer = new PrintWriter("U18.txt")) {
+            for (Member m : u18) {
+                writer.println(m);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Ikke muligt at udskrive U18 fil");
+        }
+//Print arrayliste med o18 konkurrencemedlemmer ud
+        try (PrintWriter writer = new PrintWriter("O18.txt")) {      //try with resource, lukker writer selv
+            for (Member m : o18) {
+                writer.println(m);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Ikke muligt at udskrive O18 fil");
+        }
+    }
+
     public static void main(String[] args) {
         String fil = "Members.txt";
         ArrayList<Member> members = new ArrayList<>();
@@ -60,4 +81,4 @@ public class MemberFileHandling {
         }
     }
 
-}
+} //memberfilehandling
