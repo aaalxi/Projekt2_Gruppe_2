@@ -42,19 +42,23 @@ public class UI {
     public void showTrainerMenu() {
         boolean running = true;
         while (running) {
-            System.out.println("--- TrænerMenu ---");
-            System.out.println("1. Se liste over konkurrencesvømmere U18\n" +
+            System.out.println("--- TrænerMenu ---\n" +
+                    "1. Se liste over konkurrencesvømmere U18\n" +
                     "2. Se liste over konkurrencesvømmere O18\n" +
-                    "Tilbage til Hovedmenu");
+                    "0. Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
             String valg = scn.nextLine();
 
             switch (valg) {
                 case "1":
-                    MemberList.printCompetitive(MemberList.under18, "U18.txt");
+                    System.out.println("--- Liste med konkurrencemedlemmer under 18 ---");
+                    MemberList.printCompetitive(MemberList.under18);
+                    running=false;
                     break;
                 case "2" :
-                    MemberList.printCompetitive(MemberList.over18,"O18.txt");
+                    System.out.println("--- Liste med konkurrencemedlemmer over 18 ---");
+                    MemberList.printCompetitive(MemberList.over18);
+                    running=false;
                     break;
                 case "3":
                     running = false;

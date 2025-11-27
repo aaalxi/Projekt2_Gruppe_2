@@ -1,8 +1,5 @@
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
 public class MemberList {
@@ -23,20 +20,13 @@ public class MemberList {
     }
 
 
-    //Print arrayliste med u18 og o18 konkurrencemedlemmer ud metoder:
-    public static void printCompetitive (ArrayList <Member> list, String filename) {
+    //Print arrayliste med u18 og o18 konkurrencemedlemmer til konsol:
+    public static void printCompetitive (ArrayList <Member> list) {
         list.sort(Comparator.comparing(Member::getDateOfBirth));
-
-        try (PrintWriter writer = new PrintWriter(filename)) {
-            for (Member m : list) {
-                writer.println(m.toString());
-            }
-            System.out.println(filename + " Filen er skrevet");
-        } catch (FileNotFoundException e) {
-            System.out.println("Fejl ved udskrivning til " + filename);
+        for (Member m : list) {
+            System.out.println(m.toString());
         }
     }
-
     //Test main. ***HUSK AT FJERNE INDEN FÆRDIGE***
     public static void main(String[] args) {
         String fil = "Members.txt";
