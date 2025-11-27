@@ -6,11 +6,11 @@ public class MemberFileHandling {
 
     //Lav metoder så medlemmer kan gemmes og loades lokalt fra fil ved system opstart.
     public static void saveMembers(ArrayList<Member> members, String fileName) {
-        ArrayList<Member> exsistingMembers = loadMembers(fileName); //Liste af medlemmer som allerede er i txt filen.
+        ArrayList<Member> existingMembers = loadMembers(fileName); //Liste af medlemmer som allerede er i txt filen.
         try (PrintWriter pw = new PrintWriter(new FileWriter(fileName, true))) {
             for (Member m : members) {
                 boolean exists = false;
-                for (Member ex : exsistingMembers) {
+                for (Member ex : existingMembers) {
                     if (ex.getMemberID().equals(m.getMemberID())) {
                         exists = true;
                         break;
@@ -19,7 +19,7 @@ public class MemberFileHandling {
                 if (!exists) {
                     String linje = m.getMemberID() + ";" + m.getName() + ";" + m.getDateOfBirth() + ";" + m.getIsCompetitive() + ";" + m.getTotalArrears();
                     pw.println(linje);
-                    exsistingMembers.add(m);
+                    existingMembers.add(m);
                 }
             }
             System.out.println("Filen: ("+fileName+") er gemt.");
@@ -27,7 +27,6 @@ public class MemberFileHandling {
             System.out.println("Fejl ved gemning: " + e.getMessage());
         }
     }
-
 
     public static ArrayList<Member> loadMembers(String fileName) {
         ArrayList<Member> members = new ArrayList<>();
@@ -52,29 +51,6 @@ public class MemberFileHandling {
             System.out.println("Fejl ved læsning: " + e.getMessage());
         }
         return members;
-    }
-
-
-    public static void printCompetitivemembers () {
-        ArrayList<Member> u18 = MemberList.under18;
-        ArrayList<Member> o18 = MemberList.over18;
-
-//Print arrayliste med u18 konkurrencemedlemmer ud
-        try (PrintWriter writer = new PrintWriter("U18.txt")) {
-            for (Member m : u18) {
-                writer.println(m);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("Ikke muligt at udskrive U18 fil");
-        }
-//Print arrayliste med o18 konkurrencemedlemmer ud
-        try (PrintWriter writer = new PrintWriter("O18.txt")) {      //try with resource, lukker writer selv
-            for (Member m : o18) {
-                writer.println(m);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("Ikke muligt at udskrive O18 fil");
-        }
     }
 
     //Test main. ***HUSK AT FJERNE INDEN FÆRDIGE***
