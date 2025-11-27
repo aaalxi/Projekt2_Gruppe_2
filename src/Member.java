@@ -34,7 +34,6 @@ abstract class Member {
         this.ageStatus=ageStatus;
     }
     public AgeStatus getAgeStatus(){
-
         return ageStatus;
     }
     public LocalDate getCreateDate(){

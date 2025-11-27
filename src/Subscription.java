@@ -22,3 +22,9 @@ public class Subscription {
       return 0;
   }
 }
+
+enum AgeStatus {
+    Under18,
+    Over18,
+    Over60
+}
