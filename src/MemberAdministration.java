@@ -10,7 +10,7 @@ public class MemberAdministration {
         LocalDate birthday = LocalDate.parse(UI.scn.nextLine());
         MemberList.allMembers.add(new Competitive(userID, name, birthday, 0));
         MemberList.addMembersToTeamList();
-        MemberFileHandling.saveMembers(MemberList.allMembers, "Members.txt");
+        MemberFileHandling.saveMembers("Members.txt");
         System.out.println("Bruger lavet for "+name+": "+birthday);
     }
 
@@ -23,7 +23,7 @@ public class MemberAdministration {
         LocalDate birthday = LocalDate.parse(UI.scn.nextLine());
         MemberList.allMembers.add(new Casual(userID, name, birthday, 0));
         MemberList.addMembersToTeamList();
-        MemberFileHandling.saveMembers(MemberList.allMembers, "Members.txt");
+        MemberFileHandling.saveMembers("Members.txt");
         System.out.println("Bruger lavet for "+name+": "+birthday);
     }
 

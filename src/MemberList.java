@@ -31,17 +31,17 @@ public class MemberList {
 
         allMembers.add(m1);
         allMembers.add(m2);
-        MemberFileHandling.saveMembers(allMembers,fil);
+        MemberFileHandling.saveMembers(fil);
         allMembers.clear();
         allMembers.add(m3);
         allMembers.add(m4);
         allMembers.add(m5);
         System.out.println(allMembers);
-        MemberFileHandling.saveMembers(allMembers,fil);
+        MemberFileHandling.saveMembers(fil);
         allMembers.clear();
         allMembers.add(m1);
         allMembers.add(m2);
-        MemberFileHandling.saveMembers(allMembers,fil);
+        MemberFileHandling.saveMembers(fil);
         for(Member m : allMembers){
             System.out.println(m.getDateOfBirth());
             System.out.println(m.isCompetitive);
