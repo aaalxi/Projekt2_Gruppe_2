@@ -1,4 +1,7 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -6,23 +9,14 @@ public class MemberFileHandling {
 
     //Lav metoder så medlemmer kan gemmes og loades lokalt fra fil ved system opstart.
     public static void saveMembers(ArrayList<Member> members, String fileName) {
-        ArrayList<Member> exsistingMembers = loadMembers(fileName);
 
-        try (PrintWriter pw = new PrintWriter(new FileWriter(fileName, true))) {
+        try {
+            PrintWriter pw = new PrintWriter(fileName);
             for (Member m : members) {
-                boolean exists = false;
-
-                for (Member ex : exsistingMembers) {
-                    if (ex.getMemberID().equals(m.getMemberID())) {
-                        exists = true;
-                        break;
-                    }
-                }
-                if (!exists) {
-                    String linje = m.getMemberID() + ";" + m.getName() + ";" + m.getDateOfBirth() + ";" + m.getIsCompetitive();
-                    pw.println(linje);
-                }
+                String linje = m.getMemberID() + ";" + m.getName() + ";" + m.getDateOfBirth() + ";" + m.getIsCompetitive() + ";" + m.getTotalArrears();
+                pw.println(linje);
             }
+            pw.close();
         } catch (IOException e) {
             System.out.println("Fejl ved gemning: " + e.getMessage());
         }
@@ -38,13 +32,14 @@ public class MemberFileHandling {
                 String id = data[0];
                 String name = data[1];
                 LocalDate dateBirth = LocalDate.parse(data[2]);
+                double totalArrears = Double.parseDouble(data[4]);
                 String comp = data[3];
 
                 if (comp.equals("true")) {
-                    members.add(new Competitive(id, name, dateBirth));
+                    members.add(new Competitive(id, name, dateBirth, totalArrears));
                 }
                 if (comp.equals("false")) {
-                    members.add(new Casual(id, name, dateBirth));
+                    members.add(new Casual(id, name, dateBirth, totalArrears));
                 }
             }
             br.close();
@@ -60,7 +55,7 @@ public class MemberFileHandling {
         System.out.println(members);
         members.addAll(loadMembers(fil));
 
-        for (Member m : members) {
+        for(Member m : members){
             System.out.println(m.getName());
         }
     }

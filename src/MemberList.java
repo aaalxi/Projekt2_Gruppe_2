@@ -6,18 +6,6 @@ public class MemberList {
     static ArrayList<Member> under18 = new ArrayList<>();
     static ArrayList<Member> over18 = new ArrayList<>();
 
-    public static void addCompetitiveMemberToList(String userID, String name, LocalDate birthday){
-        allMembers.add(new Competitive(userID, name, birthday));
-        addMembersToTeamList();
-    }
-
-
-
-    public static void addCasualMemberToList(String userID, String name, LocalDate birthday){
-        allMembers.add(new Casual(userID, name, birthday));
-        addMembersToTeamList();
-    }
-
     public static void addMembersToTeamList(){
         for(Member m : allMembers){
             if (m.isCompetitive){
@@ -33,11 +21,11 @@ public class MemberList {
     public static void main(String[] args) {
         String fil = "Members.txt";
         MemberList e = new MemberList();
-        Member m1 = new Casual("m2","Rune",LocalDate.of(1992,12,11));
-        Member m2 = new Competitive("m3","Bo",LocalDate.of(2010,12,11));
-        Member m3 = new Competitive("m4","Per",LocalDate.of(2010,12,11));
-        Member m4 = new Competitive("m5","Lars",LocalDate.of(2010,12,11));
-        Member m5 = new Competitive("m6","Lis",LocalDate.of(2000,12,11));
+        Member m1 = new Casual("m2","Rune",LocalDate.of(1992,12,11), 0);
+        Member m2 = new Competitive("m3","Bo",LocalDate.of(2010,12,11), 0);
+        Member m3 = new Competitive("m4","Per",LocalDate.of(2010,12,11), 0);
+        Member m4 = new Competitive("m5","Lars",LocalDate.of(2010,12,11), 0);
+        Member m5 = new Competitive("m6","Lis",LocalDate.of(2000,12,11), 0);
 
         System.out.println(allMembers);
 

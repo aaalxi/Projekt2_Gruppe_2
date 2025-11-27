@@ -9,20 +9,37 @@ abstract class Member {
     private boolean isActive, isArrears;
     private double totalArrears;
     boolean isCompetitive;
+    private int currentAge;
+    private LocalDate createDate;
+    private AgeStatus ageStatus;
 
-    public Member (String memberID, String name,LocalDate dateBirth) {
+    public Member (String memberID, String name,LocalDate dateBirth, double totalArrears) {
         this.memberID = memberID;
         this.name=name;
         this.dateOfBirth=dateBirth;
         this.isActive=true;
         this.isArrears=false;
-        this.totalArrears=0;
+        this.totalArrears=totalArrears;
+        this.currentAge=calculateAge();
     }
 
     public int calculateAge(){ // udregner alder ud fra fødselsdato af medlem
         Period currentAge = Period.between(dateOfBirth, LocalDate.now());
         return currentAge.getYears();
     }
+
+    public int getCurrentAge(){
+        return currentAge;
+    }
+
+    public void setAgeStatus(AgeStatus ageStatus){
+        this.ageStatus=ageStatus;
+    }
+
+    public AgeStatus getAgeStatus(){
+        return ageStatus;
+    }
+
     public LocalDate getCreateDate(){
         return createDate;
     }
@@ -37,6 +54,10 @@ abstract class Member {
 
     public String getName() {
         return name;
+    }
+
+    public double getTotalArrears(){
+        return totalArrears;
     }
 
     public boolean getIsCompetitive(){

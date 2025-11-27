@@ -102,9 +102,30 @@ public class UI {
         }
     }
 
-    public void createMember() {
-        System.out.println("Medlem er oprettet.");
-        System.out.println();
+    public void createMember(){
+        boolean loop = true;
+        while(loop){
+            System.out.println("Er den nye medlem konkurrencesvømmer eller motionist?");
+            System.out.println("1) Konkurrencesvømmer");
+            System.out.println("2) Motionist");
+            System.out.println("3) Gå tilbage");
+            String valg = scn.nextLine();
+            switch(valg){
+                case "1":
+                    loop = false;
+                    MemberAdministration.addCompetitiveSwimmer();
+                    break;
+                case "2":
+                    loop = false;
+                    MemberAdministration.addCasualSwimmer();
+                    break;
+                case "3":
+                    loop = false;
+                    break;
+                default:
+                    System.out.println("Ikke et valg, prøv igen.");
+            }
+        }
     }
 
     public static void main(String[] args) {
