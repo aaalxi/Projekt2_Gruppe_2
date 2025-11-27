@@ -20,6 +20,7 @@ abstract class Member {
         this.isActive=true;
         this.isArrears=false;
         this.totalArrears=totalArrears;
+        this.currentAge=calculateAge();
     }
 
     public int calculateAge(){ // udregner alder ud fra fødselsdato af medlem
@@ -30,12 +31,15 @@ abstract class Member {
     public int getCurrentAge(){
         return currentAge;
     }
+
     public void setAgeStatus(AgeStatus ageStatus){
         this.ageStatus=ageStatus;
     }
+
     public AgeStatus getAgeStatus(){
         return ageStatus;
     }
+
     public LocalDate getCreateDate(){
         return createDate;
     }
