@@ -64,7 +64,7 @@ public class UI {
     public void showCashierMenu() {
         boolean running = true;
         while (running) {
-            System.out.println("--- Kasser Menu ---");
+            System.out.println("--- Kasserer Menu ---");
             System.out.println("0. Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
             String valg = scn.nextLine();

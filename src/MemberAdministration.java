@@ -9,6 +9,7 @@ public class MemberAdministration {
         System.out.println("Hvad er fødselsdatoen?");
         LocalDate birthday = LocalDate.parse(UI.scn.nextLine());
         MemberList.addCompetitiveMemberToList(userID, name, birthday);
+        MemberFileHandling.saveMembers(MemberList.allMembers, "Delfinen");
         System.out.println("Bruger lavet for "+name+": "+birthday);
     }
 
@@ -20,6 +21,7 @@ public class MemberAdministration {
         System.out.println("Hvad er fødselsdatoen?");
         LocalDate birthday = LocalDate.parse(UI.scn.nextLine());
         MemberList.addCasualMemberToList(userID, name, birthday);
+        MemberFileHandling.saveMembers(MemberList.allMembers, "Delfinen");
         System.out.println("Bruger lavet for "+name+": "+birthday);
     }
 
