@@ -24,7 +24,7 @@ public class MemberList {
     public static void printCompetitive (ArrayList <Member> list) {
         list.sort(Comparator.comparing(Member::getDateOfBirth));         //sætter ældst øverst, ellers .reversed
         for (Member m : list) {
-            System.out.println(m.toString());
+            System.out.println("ID: "+ m.getMemberID() +": " + m.getName() + ": " + m.getCurrentAge() +" år");
         }
     }
     //Test main. ***HUSK AT FJERNE INDEN FÆRDIGE***
