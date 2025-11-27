@@ -14,14 +14,25 @@ abstract class Member {
     private AgeStatus ageStatus;
 
 
-    public Member (String memberID, String name,LocalDate dateBirth, int currentAge, LocalDate createDate,
-                   AgeStatus ageStatus) {
+    public Member (String memberID, String name,LocalDate dateBirth) {
         this.memberID = memberID;
         this.name=name;
         this.dateOfBirth=dateBirth;
         this.isActive=true;
         this.isArrears=false;
         this.totalArrears=0;
+        this.currentAge=calculateAge();
+        updateAgeStatus();
+    }
+
+    public void updateAgeStatus(){
+        if(getCurrentAge() < 18){
+            setAgeStatus(AgeStatus.Under18);
+        } else if (getCurrentAge() < 60) {
+            setAgeStatus(AgeStatus.Over18);
+        } else{
+            setAgeStatus(AgeStatus.Over60);
+        }
     }
 
     public int calculateAge(){ // udregner alder ud fra fødselsdato af medlem
@@ -35,7 +46,6 @@ abstract class Member {
         this.ageStatus=ageStatus;
     }
     public AgeStatus getAgeStatus(){
-
         return ageStatus;
     }
     public LocalDate getCreateDate(){
