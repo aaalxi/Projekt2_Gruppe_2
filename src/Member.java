@@ -81,6 +81,6 @@ abstract class Member {
     }
 
     public String toString(){
-        return name + ": " ;
+        return name + " - Status: " + getSubscriptionType().toString();
     }
 }
