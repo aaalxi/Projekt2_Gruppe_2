@@ -19,6 +19,7 @@ public class MemberFileHandling {
         }
     }
 
+
     public static ArrayList<Member> loadMembers(String fileName) {
         ArrayList<Member> members = new ArrayList<>();
         try {
@@ -45,7 +46,8 @@ public class MemberFileHandling {
         }
         return members;
     }
-    //Print all competitive members out to two txt files sorted after age
+
+
     public static void printCompetitivemembers () {
         ArrayList<Member> u18 = MemberList.under18;
         ArrayList<Member> o18 = MemberList.over18;
