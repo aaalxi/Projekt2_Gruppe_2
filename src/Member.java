@@ -23,6 +23,9 @@ abstract class Member {
         Period currentAge = Period.between(dateOfBirth, LocalDate.now());
         return currentAge.getYears();
     }
+    public LocalDate getCreateDate(){
+        return createDate;
+    }
 
     public LocalDate getDateOfBirth () {
         return dateOfBirth;

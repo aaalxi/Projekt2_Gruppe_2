@@ -11,6 +11,8 @@ public class MemberList {
         addMembersToTeamList();
     }
 
+
+
     public static void addCasualMemberToList(String userID, String name, LocalDate birthday){
         allMembers.add(new Casual(userID, name, birthday));
         addMembersToTeamList();
