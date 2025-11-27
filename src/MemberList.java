@@ -27,11 +27,11 @@ public class MemberList {
     public static void printCompetitive (ArrayList <Member> list, String filename) {
         list.sort(Comparator.comparing(Member::getDateOfBirth));
 
-        try (PrintWriter writer = new PrintWriter("scr/" + filename)) {
+        try (PrintWriter writer = new PrintWriter(filename)) {
             for (Member m : list) {
-                writer.println(m);
+                writer.println(m.toString());
             }
-            System.out.println(filename + "er skrevet til src!");
+            System.out.println(filename + " Filen er skrevet");
         } catch (FileNotFoundException e) {
             System.out.println("Fejl ved udskrivning til " + filename);
         }

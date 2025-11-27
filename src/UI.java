@@ -4,6 +4,8 @@ public class UI {
     static Scanner scn = new Scanner(System.in);
 
     public void showMainMenu() {
+        MemberFileHandling.loadMembers("Members.txt");
+        MemberList.addMembersToTeamList();
         boolean running = true;
 
         while (running) {
@@ -49,11 +51,11 @@ public class UI {
 
             switch (valg) {
                 case "1":
-                    MemberList.printCompetitive(MemberList.under18, "U18");
-
+                    MemberList.printCompetitive(MemberList.under18, "U18.txt");
+                    break;
                 case "2" :
-                    MemberList.printCompetitive(MemberList.over18,"O18");
-
+                    MemberList.printCompetitive(MemberList.over18,"O18.txt");
+                    break;
                 case "3":
                     running = false;
                     break;
