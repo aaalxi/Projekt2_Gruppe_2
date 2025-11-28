@@ -7,7 +7,6 @@ public class UI {
         MemberFileHandling.loadMembers("Members.txt");
         MemberList.addMembersToTeamList();
         boolean running = true;
-        MemberList.searchMemberName(MemberList.allMembers);
         while (running) {
             System.out.println("=== Hovedmenu ===");
             System.out.println("1. Træner-menu");
@@ -45,6 +44,7 @@ public class UI {
             System.out.println("--- TrænerMenu ---\n" +
                     "1. Se liste over konkurrencesvømmere U18\n" +
                     "2. Se liste over konkurrencesvømmere O18\n" +
+                    "3. Søg på medlem via navn.\n" +
                     "0. Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
             String valg = scn.nextLine();
@@ -61,6 +61,11 @@ public class UI {
                     running=false;
                     break;
                 case "3":
+                    MemberList.searchMemberName(MemberList.allMembers);
+                    scn.nextLine();
+                    System.out.println();
+                    break;
+                case "4":
                     running = false;
                     break;
 
