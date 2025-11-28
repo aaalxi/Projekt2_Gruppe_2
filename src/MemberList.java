@@ -38,7 +38,7 @@ public class MemberList {
         memberSearch = UI.scn.next();
 
         for ( Member m : liste){
-            if (m.getName().equals(memberSearch)){
+            if (m.getName().equalsIgnoreCase((memberSearch))){
                 foundMembers.add(m);
             }
         }
