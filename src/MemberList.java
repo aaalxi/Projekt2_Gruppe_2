@@ -30,13 +30,26 @@ public class MemberList {
     }
 
     public static void searchMemberName(ArrayList<Member> liste){
-        String memberSearch;
+        boolean running = false;
+        String memberSearch= "";
+        String memberSearchTest;
         ArrayList<Member> foundMembers = new ArrayList<>();
         System.out.println("---Søg på medlems navn---");
         System.out.println();
-        System.out.print("Skriv medlemmets navn: ");
-        memberSearch = UI.scn.next();
 
+        while(!running){
+            System.out.print("Skriv medlemmets navn: ");
+            memberSearchTest = UI.scn.next();
+            if(isName(memberSearchTest)){
+                memberSearch = memberSearchTest;
+                running = true;
+            }
+            else{
+                System.out.println("Ikke et gyldigt navn. prøv igen.");
+                System.out.println();
+            }
+
+        }
         for ( Member m : liste){
             if (m.getName().equalsIgnoreCase((memberSearch))){
                 foundMembers.add(m);
@@ -46,6 +59,10 @@ public class MemberList {
         for(Member fm : foundMembers){
             System.out.println(fm.getName()+" : "+fm.getMemberID());
         }
+    }
+
+    public static boolean isName(String s){
+        return s != null && s.matches("[a-zA-ZæøåÆØÅ\\-]+");
     }
     //Test main. ***HUSK AT FJERNE INDEN FÆRDIGE***
     public static void main(String[] args) {
