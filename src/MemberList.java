@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Scanner;
 
 public class MemberList {
     static ArrayList<Member> allMembers = new ArrayList<>();
@@ -45,8 +46,45 @@ public class MemberList {
             System.out.println("ID: "+ m.getMemberID() +": " + m.getName() + ": " + m.getCurrentAge() +" år");
         }
     }
+
+    public static void searchMemberName(ArrayList<Member> liste){
+        boolean running = false;
+        String memberSearch= "";
+        String memberSearchTest;
+        ArrayList<Member> foundMembers = new ArrayList<>();
+        System.out.println("---Søg på medlems navn---");
+        System.out.println();
+
+        while(!running){
+            System.out.print("Skriv medlemmets navn: ");
+            memberSearchTest = UI.scn.next();
+            if(isName(memberSearchTest)){
+                memberSearch = memberSearchTest;
+                running = true;
+            }
+            else{
+                System.out.println("Ikke et gyldigt navn. prøv igen.");
+                System.out.println();
+            }
+
+        }
+        for ( Member m : liste){
+            if (m.getName().equalsIgnoreCase((memberSearch))){
+                foundMembers.add(m);
+            }
+        }
+        System.out.println("Der er fundet "+ foundMembers.size()+" medlemmer med navnet "+memberSearch);
+        for(Member fm : foundMembers){
+            System.out.println(fm.getName()+" : "+fm.getMemberID());
+        }
+    }
+
+    public static boolean isName(String s){
+        return s != null && s.matches("[a-zA-ZæøåÆØÅ\\-]+");
+    }
     //Test main. ***HUSK AT FJERNE INDEN FÆRDIGE***
     public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
         String fil = "Members.txt";
         MemberList e = new MemberList();
         Member m1 = new Casual("m2","Rune",LocalDate.of(1992,12,11), 0);
