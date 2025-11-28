@@ -79,8 +79,14 @@ public class MemberList {
         }
     }
 
+    /**
+     * Denne metode tjekker om en String er et gyldigt navn.
+     * Ved at se om det indeholder a-z stor og småt samt æøå - og mellemrum og min 1 tegn.
+     * @param s
+     * @return true hvis ikke s er tom og indeholder kravne.
+     */
     public static boolean isName(String s){
-        return s != null && s.matches("[a-zA-ZæøåÆØÅ\\-]+");
+        return s != null && s.matches("[a-zA-ZæøåÆØÅ\\- ]+");
     }
     //Test main. ***HUSK AT FJERNE INDEN FÆRDIGE***
     public static void main(String[] args) {
