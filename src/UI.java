@@ -126,11 +126,11 @@ public class UI {
             switch(valg){
                 case "1":
                     loop = false;
-                    MemberAdministration.addCompetitiveSwimmer();
+                    MemberAdministration.addSwimmer(true);
                     break;
                 case "2":
                     loop = false;
-                    MemberAdministration.addCasualSwimmer();
+                    MemberAdministration.addSwimmer(false);
                     break;
                 case "3":
                     loop = false;
