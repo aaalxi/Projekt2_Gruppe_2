@@ -29,13 +29,13 @@ public class MemberList {
         }
     }
 
-    public static void searchMemberName(java.util.Scanner scn, ArrayList<Member> liste){
+    public static void searchMemberName(ArrayList<Member> liste){
         String memberSearch;
         ArrayList<Member> foundMembers = new ArrayList<>();
         System.out.println("---Søg på medlems navn---");
         System.out.println();
         System.out.print("Skriv medlemmets navn: ");
-        memberSearch = scn.next();
+        memberSearch = UI.scn.next();
 
         for ( Member m : liste){
             if (m.getName().equals(memberSearch)){
