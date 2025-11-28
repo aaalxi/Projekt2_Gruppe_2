@@ -9,10 +9,28 @@ public class MemberList {
 
     public static void addMembersToTeamList(){
         for(Member m : allMembers){
-            if (m.isCompetitive){
-                if(m.calculateAge()<18){
+            if (m.isCompetitive && m.calculateAge() < 18){
+                boolean exists = false;
+                for(Member u : under18){
+                    if(m.getMemberID().equals(u.getMemberID())){
+                        exists = true;
+                        break;
+                    }
+                }
+
+                if (!exists){
                     under18.add(m);
-                } else {
+                }
+            } else if (m.isCompetitive && m.calculateAge() >= 18){
+                boolean exists = false;
+                for(Member u : over18){
+                    if(m.getMemberID().equals(u.getMemberID())){
+                        exists = true;
+                        break;
+                    }
+                }
+
+                if(!exists){
                     over18.add(m);
                 }
             }
@@ -47,29 +65,12 @@ public class MemberList {
         allMembers.add(m4);
         allMembers.add(m5);
         System.out.println(allMembers);
-        MemberFileHandling.saveMembers(fil);
-        allMembers.clear();
-        allMembers.add(m1);
-        allMembers.add(m2);
-        MemberFileHandling.saveMembers(fil);
-        for(Member m : allMembers){
-            System.out.println(m.getDateOfBirth());
-            System.out.println(m.isCompetitive);
-        }
-        System.out.println();
-        e.addMembersToTeamList();
-        System.out.println("Kørt sortMembersInlist metode");
-        System.out.println();
-        System.out.println("Print for comp under 18");
-        for(Member m : e.under18){
-            System.out.println(m.getDateOfBirth());
-            System.out.println(m.isCompetitive);
-        }
-        System.out.println();
-        System.out.println("Print for comp over 18");
-        for(Member m : e.over18){
-            System.out.println(m.getDateOfBirth());
-            System.out.println(m.isCompetitive);
-        }
+
+        addMembersToTeamList();
+        System.out.println(under18);
+        System.out.println(over18);
+        addMembersToTeamList();
+        System.out.println(under18);
+        System.out.println(over18);
     }
 }
