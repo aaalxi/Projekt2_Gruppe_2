@@ -7,7 +7,7 @@ public class UI {
         MemberFileHandling.loadMembers("Members.txt");
         MemberList.addMembersToTeamList();
         boolean running = true;
-
+        MemberList.searchMemberName(scn,MemberList.allMembers);
         while (running) {
             System.out.println("=== Hovedmenu ===");
             System.out.println("1. Træner-menu");

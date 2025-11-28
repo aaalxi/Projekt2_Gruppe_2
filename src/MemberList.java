@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Scanner;
 
 public class MemberList {
     static ArrayList<Member> allMembers = new ArrayList<>();
@@ -27,8 +28,28 @@ public class MemberList {
             System.out.println("ID: "+ m.getMemberID() +": " + m.getName() + ": " + m.getCurrentAge() +" år");
         }
     }
+
+    public static void searchMemberName(java.util.Scanner scn, ArrayList<Member> liste){
+        String memberSearch;
+        ArrayList<Member> foundMembers = new ArrayList<>();
+        System.out.println("---Søg på medlems navn---");
+        System.out.println();
+        System.out.print("Skriv medlemmets navn: ");
+        memberSearch = scn.next();
+
+        for ( Member m : liste){
+            if (m.getName().equals(memberSearch)){
+                foundMembers.add(m);
+            }
+        }
+        System.out.println("Der er fundet "+ foundMembers.size()+" medlemmer med navnet "+memberSearch);
+        for(Member fm : foundMembers){
+            System.out.println(fm.getName()+" : "+fm.getMemberID());
+        }
+    }
     //Test main. ***HUSK AT FJERNE INDEN FÆRDIGE***
     public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
         String fil = "Members.txt";
         MemberList e = new MemberList();
         Member m1 = new Casual("m2","Rune",LocalDate.of(1992,12,11), 0);
