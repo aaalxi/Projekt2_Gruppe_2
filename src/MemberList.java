@@ -8,30 +8,30 @@ public class MemberList {
     static ArrayList<Member> under18 = new ArrayList<>();
     static ArrayList<Member> over18 = new ArrayList<>();
 
-    public static void addMembersToTeamList(){
-        for(Member m : allMembers){
-            if (m.isCompetitive && m.calculateAge() < 18){
+    public static void addMembersToTeamList() {
+        for (Member m : allMembers) {
+            if (m.isCompetitive && m.calculateAge() < 18) {
                 boolean exists = false;
-                for(Member u : under18){
-                    if(m.getMemberID().equals(u.getMemberID())){
+                for (Member u : under18) {
+                    if (m.getMemberID().equals(u.getMemberID())) {
                         exists = true;
                         break;
                     }
                 }
 
-                if (!exists){
+                if (!exists) {
                     under18.add(m);
                 }
-            } else if (m.isCompetitive && m.calculateAge() >= 18){
+            } else if (m.isCompetitive && m.calculateAge() >= 18) {
                 boolean exists = false;
-                for(Member u : over18){
-                    if(m.getMemberID().equals(u.getMemberID())){
+                for (Member u : over18) {
+                    if (m.getMemberID().equals(u.getMemberID())) {
                         exists = true;
                         break;
                     }
                 }
 
-                if(!exists){
+                if (!exists) {
                     over18.add(m);
                 }
             }
