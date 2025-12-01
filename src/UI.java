@@ -65,7 +65,7 @@ public class UI {
                     scn.nextLine();
                     System.out.println();
                     break;
-                case "4":
+                case "0":
                     running = false;
                     break;
 
