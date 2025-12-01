@@ -11,6 +11,12 @@ public class Competitive extends Member {
     }
 
     public void addDiscipline(Discipline discipline){
-        if (!)
+        if (!disciplines.contains(discipline)){
+            disciplines.add(discipline);
+        }
+    }
+
+    public ArrayList<Discipline> getDisciplines(){
+        return new ArrayList<>(disciplines);
     }
 }
