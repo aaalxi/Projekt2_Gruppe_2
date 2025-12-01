@@ -36,7 +36,7 @@ public class MemberAdministration {
         System.out.println("Hvad hedder træneren?");
         String newTrainer = UI.scn.nextLine();
 
-        System.out.println("Vælg aldersgruppe:");
+        System.out.println("Vælg aldersgruppe træneren skal knyttes til:");
         System.out.println("1. Under 18");
         System.out.println("2. Over 18");
         System.out.println("0. Gå tilbage");

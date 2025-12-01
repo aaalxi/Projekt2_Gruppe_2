@@ -9,7 +9,13 @@ public class MemberFileHandling {
 
         try (PrintWriter pw = new PrintWriter(new FileWriter(fileName))) {
             for (Member m : MemberList.allMembers) {
-                String linje = m.getMemberID() + ";" + m.getName() + ";" + m.getDateOfBirth() + ";" + m.getIsCompetitive() + ";" + m.getTotalArrears();
+                String trainer = "";
+                if (m.getIsCompetitive()){
+                    trainer = ((Competitive) m).getTrainer();
+                }
+
+                String linje = m.getMemberID() + ";" + m.getName() + ";" + m.getDateOfBirth() +
+                        ";" + m.getIsCompetitive() + ";" + m.getTotalArrears() + ";" + trainer;
                 pw.println(linje);
 
             }
@@ -34,10 +40,15 @@ public class MemberFileHandling {
                 double totalArrears = Double.parseDouble(data[4]);
 
                 if (comp.equals("true")) {
-                    MemberList.allMembers.add(new Competitive(id, name, dateBirth, totalArrears));
+                    Member m = new Competitive(id, name, dateBirth, totalArrears);
+                    MemberList.allMembers.add(m);
+
+                    String trainer = data.length > 5 ? data[5] : "";
+                    ((Competitive) m).setTrainer(trainer);
                 }
                 if (comp.equals("false")) {
-                    MemberList.allMembers.add(new Casual(id, name, dateBirth, totalArrears));
+                    Member m = new Casual(id, name, dateBirth, totalArrears);
+                    MemberList.allMembers.add(m);
                 }
             }
         } catch (IOException e) {
