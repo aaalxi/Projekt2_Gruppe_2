@@ -145,6 +145,21 @@ public class UI {
             }
         }
     }
+
+    public void addDiscipline(){
+        System.out.print("Skriv medlems ID: ");
+        String id = scn.nextLine();
+
+        System.out.print("Vælg disciplin (BUTTERFLY/BACKSTROKE/BREASTSTROKE/FREESTYLE): ");
+        String d = scn.nextLine().toUpperCase();
+
+        try{
+            Discipline discipline = Discipline.valueOf(d);
+            MemberAdministration.addDisciplineToCompetitive(id,discipline);
+        } catch (IllegalArgumentException e){
+            System.out.println("Ugyldig disciplin.");
+        }
+    }
     //Test main. ***HUSK AT FJERNE INDEN FÆRDIGE***
     public static void main(String[] args) {
         UI a = new UI();

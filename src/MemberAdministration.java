@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.Random;
 
 public class MemberAdministration {
@@ -48,6 +49,32 @@ public class MemberAdministration {
             System.out.println("Kunne ikke laver ID til brugeren.");
             return "";
         }
+    }
+
+    static void addDisciplineToCompetitive(String memberID, Discipline discipline){
+
+        Member fundet = null;
+        for(Member m : MemberList.allMembers){
+            if (m.getMemberID().equals(memberID)){
+                fundet = m;
+                break;
+            }
+        }
+
+        if (fundet == null){
+            System.out.println("Medlem ikke fundet.");
+            return;
+        }
+
+        if (!(fundet instanceof Competitive)){
+            System.out.println("Medlemmet er ikke konkurrencesvømmer.");
+            return;
+        }
+
+        Competitive comp = (Competitive) fundet;
+        comp.addDiscipline(discipline);
+
+        MemberFileHandling.saveMembers("Members.txt");
     }
 
     public static void main(String[] args) {
