@@ -1,4 +1,6 @@
+import java.io.PrintStream;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class MemberAdministration {
@@ -26,6 +28,44 @@ public class MemberAdministration {
         MemberList.addMembersToTeamList();
         MemberFileHandling.saveMembers("Members.txt");
         System.out.println("Bruger lavet for "+name+": "+birthday);
+    }
+
+    public static void addTrainer(){
+        ArrayList<Member> valgtListe = null;
+
+        System.out.println("Hvad hedder træneren?");
+        String newTrainer = UI.scn.nextLine();
+
+        System.out.println("Vælg aldersgruppe træneren skal knyttes til:");
+        System.out.println("1. Under 18");
+        System.out.println("2. Over 18");
+        System.out.println("0. Gå tilbage");
+        String valg = "";
+        boolean running = true;
+        while(running){
+            valg = UI.scn.nextLine();
+            switch (valg){
+                case "1":
+                    valgtListe = MemberList.under18;
+                    running = false;
+                    break;
+                case "2":
+                    valgtListe = MemberList.over18;
+                    running = false;
+                    break;
+                case "0":
+                    return;
+                default:
+                    System.out.println("Prøv og skriv det igen");
+            }
+        }
+
+        for (Member m : valgtListe){
+            Competitive c = (Competitive) m;
+            c.setTrainer(newTrainer);
+        }
+        System.out.println(newTrainer+" er nu tilknyttet alle konkurrencesvømmere i denne aldersgruppe.");
+        MemberFileHandling.saveMembers("Members.txt");
     }
 
     static boolean validateUserID(String id){

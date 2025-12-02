@@ -69,6 +69,7 @@ public class UI {
                 case "4":
                     competitionMenu();
                 case "5":
+                case "0":
                     running = false;
                     break;
 
@@ -137,6 +138,7 @@ public class UI {
         while (running) {
             System.out.println("--- Formand Menu ---");
             System.out.println("1. Opret Medlem");
+            System.out.println("2. Tilknyt ny træner til hold");
             System.out.println("0. Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
             String valg = scn.nextLine();
@@ -144,6 +146,9 @@ public class UI {
             switch (valg) {
                 case "1":
                     createMember();
+                    break;
+                case "2":
+                    trainerChange();
                     break;
                 case "0":
                     running = false;
@@ -179,6 +184,10 @@ public class UI {
                     System.out.println("Ikke et valg, prøv igen.");
             }
         }
+    }
+
+    public void trainerChange(){
+        MemberAdministration.addTrainer();
     }
     //Test main. ***HUSK AT FJERNE INDEN FÆRDIGE***
     public static void main(String[] args) {
