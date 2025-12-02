@@ -10,12 +10,14 @@ public class MemberFileHandling {
         try (PrintWriter pw = new PrintWriter(new FileWriter(fileName))) {
             for (Member m : MemberList.allMembers) {
                 String trainer = "";
-                if (m.getIsCompetitive()){
-                    trainer = ((Competitive) m).getTrainer();
+                String disciplinesString = "";
+                if (m instanceof Competitive comp){
+                    trainer = comp.getTrainer();
+                    disciplinesString = comp.getDisciplines().toString();
                 }
 
                 String linje = m.getMemberID() + ";" + m.getName() + ";" + m.getDateOfBirth() +
-                        ";" + m.getIsCompetitive() + ";" + m.getTotalArrears() + ";" + trainer;
+                        ";" + m.getIsCompetitive() + ";" + m.getTotalArrears() + ";" + trainer + ";" + disciplinesString;
                 pw.println(linje);
 
             }

@@ -1,2 +1,2 @@
-boli2379;Bo Li;2024-10-10;false;0.0;
-jezz3357;Jens;2010-12-25;true;0.0;Ib
+boli2379;Bo Li;2024-10-10;false;0.0;;
+jezz3357;Jens;2010-12-25;true;0.0;Ib;[BUTTERFLY]

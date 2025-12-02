@@ -103,6 +103,7 @@ public class UI {
             System.out.println("--- Formand Menu ---");
             System.out.println("1. Opret Medlem");
             System.out.println("2. Tilknyt ny træner til hold");
+            System.out.println("3. Tilknyt disciplin til en konkurrencesvømmer");
             System.out.println("0. Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
             String valg = scn.nextLine();
@@ -113,6 +114,9 @@ public class UI {
                     break;
                 case "2":
                     trainerChange();
+                    break;
+                case "3":
+                    addDiscipline();
                     break;
                 case "0":
                     running = false;
