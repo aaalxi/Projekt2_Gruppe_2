@@ -1,0 +1,3 @@
+public enum Discipline {
+    BUTTERFLY, BACKSTROKE, BREASTSTROKE, FREESTYLE
+}

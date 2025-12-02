@@ -44,6 +44,9 @@ public class UI {
             System.out.println("--- TrænerMenu ---\n" +
                     "1. Se liste over konkurrencesvømmere U18\n" +
                     "2. Se liste over konkurrencesvømmere O18\n" +
+                    "3. Tilknyt disciplin til en konkurrencesvømmer" +
+                    "4. Søg på medlem via navn.\n" +
+                    "5. Fjern disciplin fra medlem\n"+
                     "3. Søg på medlem via navn.\n" +
                     "4. vis stævnemenu.\n"+
                     "0. Tilbage til Hovedmenu");
@@ -62,6 +65,9 @@ public class UI {
                     running=false;
                     break;
                 case "3":
+                    addDiscipline();
+                    break;
+                case "4":
                     MemberList.searchMemberName(MemberList.allMembers);
                     scn.nextLine();
                     System.out.println();
@@ -69,6 +75,7 @@ public class UI {
                 case "4":
                     competitionMenu();
                 case "5":
+
                 case "0":
                     running = false;
                     break;
@@ -188,6 +195,25 @@ public class UI {
 
     public void trainerChange(){
         MemberAdministration.addTrainer();
+    }
+
+    public void addDiscipline(){
+        System.out.print("Skriv medlems ID: ");
+        String id = scn.nextLine();
+
+        System.out.print("Vælg disciplin (BUTTERFLY/BACKSTROKE/BREASTSTROKE/FREESTYLE): ");
+        String d = scn.nextLine().toUpperCase();
+
+        try{
+            Discipline discipline = Discipline.valueOf(d);
+            MemberAdministration.addDisciplineToCompetitive(id,discipline);
+        } catch (IllegalArgumentException e){
+            System.out.println("Ugyldig disciplin.");
+        }
+    }
+
+    public void removeDiscipline(){
+        MemberAdministration.removeDiscipline();
     }
     //Test main. ***HUSK AT FJERNE INDEN FÆRDIGE***
     public static void main(String[] args) {

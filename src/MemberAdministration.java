@@ -1,4 +1,3 @@
-import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Random;
@@ -88,6 +87,68 @@ public class MemberAdministration {
             System.out.println("Kunne ikke laver ID til brugeren.");
             return "";
         }
+    }
+
+    static void addDisciplineToCompetitive(String memberID, Discipline discipline){
+
+        Member fundet = null;
+        for(Member m : MemberList.allMembers){
+            if (m.getMemberID().equals(memberID)){
+                fundet = m;
+                break;
+            }
+        }
+
+        if (fundet == null){
+            System.out.println("Medlem ikke fundet.");
+            return;
+        }
+
+        if (!(fundet instanceof Competitive)){
+            System.out.println("Medlemmet er ikke konkurrencesvømmer.");
+            return;
+        }
+
+        Competitive comp = (Competitive) fundet;
+        comp.addDiscipline(discipline);
+
+        MemberFileHandling.saveMembers("Members.txt");
+    }
+
+    static void removeDiscipline(){
+        String ID;
+        Discipline discipline;
+        while (true){ // loop of doom and despair
+            System.out.println("Skriv medlems ID:");
+            ID = UI.scn.nextLine();
+
+            System.out.println("Vælg disciplin (BUTTERFLY/BACKSTROKE/BREASTSTROKE/FREESTYLE): ");
+            String d = UI.scn.nextLine().toUpperCase();
+
+            try{
+                discipline = Discipline.valueOf(d);
+                break;
+            } catch (IllegalArgumentException e){
+                System.out.println("Ugyldig disciplin.");
+            }
+        }
+        Member fundet = null;
+        for(Member m : MemberList.allMembers){
+            if (m.getMemberID().equals(ID)){
+                fundet = m;
+                break;
+            }
+        }
+
+        if (fundet == null){
+            System.out.println("Medlem ikke fundet.");
+            return;
+        }
+
+        Competitive comp = (Competitive) fundet;
+        comp.removeDiscipline(discipline);
+
+        MemberFileHandling.saveMembers("Members.txt");
     }
 
     public static void main(String[] args) {
