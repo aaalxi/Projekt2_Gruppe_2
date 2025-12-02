@@ -1,5 +1,5 @@
 package Result;
-class Result {
+class Result {    //klasse til at skabe resultat objekter
     String name;
     String discipline;
     int distance;

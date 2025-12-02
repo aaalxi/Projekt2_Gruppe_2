@@ -7,6 +7,10 @@ import java.util.Scanner;
         private ArrayList<Result> resultater = new ArrayList<>();
         private Scanner scn = new Scanner(System.in);
 
+        /**
+         * denne metode opretter et objekt Resultat
+         * og tilføjer det til en arraylist Resultater.
+         */
         public void addResults(){
             System.out.println("Navn: ");
             String name=scn.nextLine();
@@ -32,7 +36,13 @@ import java.util.Scanner;
             System.out.println("Resultat tilføjet til kategorien: " + kategory);
             }
 
-            public void deleteResults(){
+        /**
+         * Metode til at slette stævneResultater
+         * går ind med et for-loop i resultater Arraylisten,
+         * og leder efter index for et stævne resultat.
+         * fjerner derefter objektet fra arraylisten.
+         */
+        public void deleteResults(){
             if (resultater.isEmpty()){
                 System.out.println("der er ingen resultater at slette!");
                 return;
