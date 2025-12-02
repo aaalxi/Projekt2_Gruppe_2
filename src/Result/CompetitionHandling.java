@@ -1,3 +1,5 @@
+package Result;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -46,5 +48,39 @@ class Result {
             resultater.add(r);
 
             System.out.println("Resultat tilføjet til kategorien: " + kategory);
+            }
+
+            public void deleteResults(){
+            if (resultater.isEmpty()){
+                System.out.println("der er ingen resultater at slette!");
+                return;
+            }
+                System.out.println("hvilket resultat vil du gerne slette?");
+            for(int i = 0; i<resultater.size(); i++){
+                Result r = resultater.get(i);
+
+                System.out.println(i+": "+r.name+", "+r.discipline+": "+r.distance+"M, Tid"+r.time+"S. Placering: "+ r.placement+". Kategori"+r.kategory);
+            }
+                System.out.println("Indtast nummeret på resultatet");
+            String valg = scn.nextLine();
+
+            try{
+                int index = Integer.parseInt(valg);
+
+                if(index<0){
+                    System.out.println("ugyldigt nummer, prøv igen");
+                    return;
+                }
+                if(index>resultater.size()){
+                    System.out.println("ugyldigt nummer, prøv igen");
+                    return;
+                }
+                Result removed = resultater.remove(index);
+                System.out.println("Resultat fjernet for "+removed.name);
+
+
+            } catch (NumberFormatException e){
+                System.out.println("du skal indtaste et tal");
+            }
             }
         }
