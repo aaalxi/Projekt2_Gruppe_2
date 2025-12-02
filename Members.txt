@@ -1,2 +1,4 @@
 boli2379;Bo Li;2024-10-10;false;0.0;;
 jezz3357;Jens;2010-12-25;true;0.0;Ib;[BUTTERFLY, BACKSTROKE]
+jozz8803;Jon;1992-06-06;true;0.0;null;[]
+bozz6515;Bo;1992-05-06;true;0.0;null;[BACKSTROKE]

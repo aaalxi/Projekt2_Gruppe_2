@@ -4,14 +4,13 @@ import java.util.ArrayList;
 
 public class MemberFileHandling {
 
-    //Lav metoder så medlemmer kan gemmes og loades lokalt fra fil ved system opstart.
     public static void saveMembers(String fileName) {
 
         try (PrintWriter pw = new PrintWriter(new FileWriter(fileName))) {
             for (Member m : MemberList.allMembers) {
                 String trainer = "";
                 String disciplinesString = "";
-                if (m instanceof Competitive comp){
+                if (m instanceof Competitive comp) {
                     trainer = comp.getTrainer();
                     disciplinesString = comp.getDisciplines().toString();
                 }
@@ -71,17 +70,4 @@ public class MemberFileHandling {
             System.out.println("Fejl ved læsning: " + e.getMessage());
         }
     }
-
-    //Test main. ***HUSK AT FJERNE INDEN FÆRDIGE***
-    public static void main(String[] args) {
-        String fil = "Members.txt";
-        ArrayList<Member> members = new ArrayList<>();
-        System.out.println(members);
-//        members.addAll(loadMembers(fil));
-
-        for (Member m : members) {
-            System.out.println(m.getName());
-        }
-    }
-
 } //memberfilehandling
