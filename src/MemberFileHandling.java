@@ -42,11 +42,25 @@ public class MemberFileHandling {
                 double totalArrears = Double.parseDouble(data[4]);
 
                 if (comp.equals("true")) {
-                    Member m = new Competitive(id, name, dateBirth, totalArrears);
+                    Competitive m = new Competitive(id, name, dateBirth, totalArrears);
                     MemberList.allMembers.add(m);
 
                     String trainer = data.length > 5 ? data[5] : "";
-                    ((Competitive) m).setTrainer(trainer);
+                    m.setTrainer(trainer);
+
+
+                    String disciplineString = data.length > 6 ? data[6] : "";
+                    disciplineString = disciplineString.replace("[", "").replace("]", "").trim();
+
+                    if (!disciplineString.isEmpty()) {
+                        String[] discipliner = disciplineString.split(", ");
+
+                        for (String d : discipliner) {
+                            if (!d.isEmpty()) {
+                                m.addDiscipline(Discipline.valueOf(d));
+                            }
+                        }
+                    }
                 }
                 if (comp.equals("false")) {
                     Member m = new Casual(id, name, dateBirth, totalArrears);
