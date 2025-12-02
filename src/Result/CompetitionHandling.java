@@ -3,24 +3,6 @@ package Result;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class Result {
-    String name;
-    String discipline;
-    int distance;
-    double time;
-    int placement;
-    String kategory;
-
-    public Result(String name, String discipline, int distance, double time,
-                  int placement, String kategory) {
-        this.name = name;
-        this.discipline = discipline;
-        this.distance = distance;
-        this.time = time;
-        this.placement = placement;
-        this.kategory = kategory;
-    }
-}
     public class CompetitionHandling {
         private ArrayList<Result> resultater = new ArrayList<>();
         private Scanner scn = new Scanner(System.in);
