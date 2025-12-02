@@ -147,6 +147,8 @@ public class MemberAdministration {
 
         Competitive comp = (Competitive) fundet;
         comp.removeDiscipline(discipline);
+
+        MemberFileHandling.saveMembers("Members.txt");
     }
 
     public static void main(String[] args) {
