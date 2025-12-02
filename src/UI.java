@@ -45,6 +45,7 @@ public class UI {
                     "1. Se liste over konkurrencesvømmere U18\n" +
                     "2. Se liste over konkurrencesvømmere O18\n" +
                     "3. Søg på medlem via navn.\n" +
+                    "4. vis stævnemenu.\n"+
                     "0. Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
             String valg = scn.nextLine();
@@ -65,6 +66,9 @@ public class UI {
                     scn.nextLine();
                     System.out.println();
                     break;
+                case "4":
+                    competitionMenu();
+                case "5":
                 case "0":
                     running = false;
                     break;
@@ -72,6 +76,38 @@ public class UI {
                 default:
                     System.out.println("Ugyldigt valg, prøv igen.");
             }
+        }
+    }
+    public void competitionMenu(){
+        CompetitionHandling competitionHandling= new CompetitionHandling();
+        boolean running = true;
+        while (running){
+            System.out.println("--- StævneMenu ---\n"+
+                    "1. Indtast ny stævnedata.\n"+
+                    "2. se stævnedata\n"+
+                    "3. idk man\n"+
+                    "4. maybe funktion, maybe not funktion\n"+
+                    "0. Tilbage til Hovedmenu\n"+
+                    "Vælg: ");
+            String valg = scn.nextLine();
+
+            switch (valg){
+                case "0":
+                    running = false;
+                    break;
+                case "1":
+                    competitionHandling.addResults();
+                    break;
+                case "2":
+                    break;
+                case "3":
+                    break;
+                case "4":
+                    break;
+                default:
+                    System.out.println("Ugyldigt valg");
+            }
+
         }
     }
 
