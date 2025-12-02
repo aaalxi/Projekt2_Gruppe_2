@@ -1,3 +1,5 @@
+import Result.CompetitionHandling;
+
 import java.util.Scanner;
 
 public class UI {
@@ -68,6 +70,7 @@ public class UI {
                     break;
                 case "4":
                     removeDiscipline();
+                    break;
                 case "5":
                     MemberList.searchMemberName(MemberList.allMembers);
                     scn.nextLine();
@@ -82,6 +85,7 @@ public class UI {
                 default:
                     System.out.println("Ugyldigt valg, prøv igen.");
             }
+
         }
     }
 
@@ -140,11 +144,11 @@ public class UI {
         while (running){
             System.out.println("--- StævneMenu ---\n"+
                     "1. Indtast ny stævnedata.\n"+
-                    "2. se stævnedata\n"+
-                    "3. idk man\n"+
+                    "2. Se stævnedata\n"+
+                    "3. Slet stævnedata\n"+
                     "4. maybe funktion, maybe not funktion\n"+
-                    "0. Tilbage til Hovedmenu\n"+
-                    "Vælg: ");
+                    "0. Tilbage til Hovedmenu");
+            System.out.print("Vælg: ");
             String valg = scn.nextLine();
 
             switch (valg){
@@ -157,6 +161,7 @@ public class UI {
                 case "2":
                     break;
                 case "3":
+                    competitionHandling.deleteResults();
                     break;
                 case "4":
                     break;
