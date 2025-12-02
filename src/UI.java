@@ -9,8 +9,8 @@ public class UI {
         boolean running = true;
         while (running) {
             System.out.println("=== Hovedmenu ===");
-            System.out.println("1. Træner-menu");
-            System.out.println("2. Formand-menu");
+            System.out.println("1. Formand-menu");
+            System.out.println("2. Træner-menu");
             System.out.println("3. Kasserer-menu");
             System.out.println("0. Afslut");
             System.out.print("Vælg et punkt: ");
@@ -19,10 +19,10 @@ public class UI {
 
             switch (valg) {
                 case "1":
-                    showTrainerMenu();
+                    showChairmanMenu();
                     break;
                 case "2":
-                    showChairmanMenu();
+                    showTrainerMenu();
                     break;
                 case "3":
                     showCashierMenu();
@@ -45,10 +45,9 @@ public class UI {
                     "1. Se liste over konkurrencesvømmere U18\n" +
                     "2. Se liste over konkurrencesvømmere O18\n" +
                     "3. Tilknyt disciplin til en konkurrencesvømmer" +
-                    "4. Søg på medlem via navn.\n" +
-                    "5. Fjern disciplin fra medlem\n"+
-                    "3. Søg på medlem via navn.\n" +
-                    "4. vis stævnemenu.\n"+
+                    "4. Fjern disciplin fra medlem\n"+
+                    "5. Søg på medlem via navn.\n" +
+                    "6. vis stævnemenu.\n"+
                     "0. Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
             String valg = scn.nextLine();
@@ -68,18 +67,18 @@ public class UI {
                     addDiscipline();
                     break;
                 case "4":
+                    removeDiscipline();
+                case "5":
                     MemberList.searchMemberName(MemberList.allMembers);
                     scn.nextLine();
                     System.out.println();
                     break;
-                case "4":
+                case "6":
                     competitionMenu();
-                case "5":
-
+                    break;
                 case "0":
                     running = false;
                     break;
-
                 default:
                     System.out.println("Ugyldigt valg, prøv igen.");
             }
