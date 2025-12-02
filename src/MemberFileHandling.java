@@ -1,6 +1,5 @@
 import java.io.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class MemberFileHandling {
 
@@ -10,11 +9,11 @@ public class MemberFileHandling {
             for (Member m : MemberList.allMembers) {
                 String trainer = "";
                 String disciplinesString = "";
-                if (m instanceof Competitive comp) {
+                if (m instanceof Competitive comp) { // hvis m er Competitive, castes den automatisk til comp så man ikke behøver skrive (Competitive)m
                     trainer = comp.getTrainer();
                     disciplinesString = comp.getDisciplines().toString();
                 }
-
+// Her laves der en string som er en samling af de relevante data fra m og printet ind i en textfil
                 String linje = m.getMemberID() + ";" + m.getName() + ";" + m.getDateOfBirth() +
                         ";" + m.getIsCompetitive() + ";" + m.getTotalArrears() + ";" + trainer + ";" + disciplinesString;
                 pw.println(linje);
@@ -27,7 +26,7 @@ public class MemberFileHandling {
     }
 
     public static void loadMembers(String fileName) {
-        MemberList.allMembers.clear();
+        MemberList.allMembers.clear(); //clear for at være sikker på der ikke bliver gemt dups og at arraylisten allMembers er tom.
 
 
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
@@ -48,7 +47,7 @@ public class MemberFileHandling {
                     m.setTrainer(trainer);
 
 
-                    String disciplineString = data.length > 6 ? data[6] : "";
+                    String disciplineString = data.length > 6 ? data[6] : ""; //Da træner og discipline er "valgfrit" tjekker vi om det data findes og hvis det ikke gør så skrives der ""
                     disciplineString = disciplineString.replace("[", "").replace("]", "").trim();
 
                     if (!disciplineString.isEmpty()) {
