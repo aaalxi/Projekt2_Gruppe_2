@@ -44,8 +44,9 @@ public class UI {
             System.out.println("--- TrænerMenu ---\n" +
                     "1. Se liste over konkurrencesvømmere U18\n" +
                     "2. Se liste over konkurrencesvømmere O18\n" +
-                    "3. Søg på medlem via navn.\n" +
-                    "4. Fjern disciplin fra medlem\n"+
+                    "3. Tilknyt disciplin til en konkurrencesvømmer" +
+                    "4. Søg på medlem via navn.\n" +
+                    "5. Fjern disciplin fra medlem\n"+
                     "0. Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
             String valg = scn.nextLine();
@@ -62,11 +63,13 @@ public class UI {
                     running=false;
                     break;
                 case "3":
+                    addDiscipline();
+                    break;
+                case "4":
                     MemberList.searchMemberName(MemberList.allMembers);
                     scn.nextLine();
                     System.out.println();
                     break;
-                case "4":
 
                 case "0":
                     running = false;
@@ -106,7 +109,6 @@ public class UI {
             System.out.println("--- Formand Menu ---");
             System.out.println("1. Opret Medlem");
             System.out.println("2. Tilknyt ny træner til hold");
-            System.out.println("3. Tilknyt disciplin til en konkurrencesvømmer");
             System.out.println("0. Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
             String valg = scn.nextLine();
@@ -117,9 +119,6 @@ public class UI {
                     break;
                 case "2":
                     trainerChange();
-                    break;
-                case "3":
-                    addDiscipline();
                     break;
                 case "0":
                     running = false;
