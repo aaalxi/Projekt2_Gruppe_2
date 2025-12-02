@@ -1,7 +1,5 @@
-import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 public class MemberAdministration {
@@ -115,6 +113,40 @@ public class MemberAdministration {
         comp.addDiscipline(discipline);
 
         MemberFileHandling.saveMembers("Members.txt");
+    }
+
+    static void removeDiscipline(){
+        String ID;
+        Discipline discipline;
+        while (true){ // loop of doom and despair
+            System.out.println("Skriv medlems ID:");
+            ID = UI.scn.nextLine();
+
+            System.out.println("Vælg disciplin (BUTTERFLY/BACKSTROKE/BREASTSTROKE/FREESTYLE): ");
+            String d = UI.scn.nextLine().toUpperCase();
+
+            try{
+                discipline = Discipline.valueOf(d);
+                break;
+            } catch (IllegalArgumentException e){
+                System.out.println("Ugyldig disciplin.");
+            }
+        }
+        Member fundet = null;
+        for(Member m : MemberList.allMembers){
+            if (m.getMemberID().equals(ID)){
+                fundet = m;
+                break;
+            }
+        }
+
+        if (fundet == null){
+            System.out.println("Medlem ikke fundet.");
+            return;
+        }
+
+        Competitive comp = (Competitive) fundet;
+        comp.removeDiscipline(discipline);
     }
 
     public static void main(String[] args) {

@@ -25,6 +25,12 @@ public class Competitive extends Member {
         }
     }
 
+    public void removeDiscipline(Discipline discipline){
+        if (disciplines.contains((discipline))){
+            disciplines.remove(discipline);
+        }
+    }
+
     public ArrayList<Discipline> getDisciplines(){
         return new ArrayList<>(disciplines);
     }

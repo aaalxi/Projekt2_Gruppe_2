@@ -45,6 +45,7 @@ public class UI {
                     "1. Se liste over konkurrencesvømmere U18\n" +
                     "2. Se liste over konkurrencesvømmere O18\n" +
                     "3. Søg på medlem via navn.\n" +
+                    "4. Fjern disciplin fra medlem\n"+
                     "0. Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
             String valg = scn.nextLine();
@@ -65,6 +66,8 @@ public class UI {
                     scn.nextLine();
                     System.out.println();
                     break;
+                case "4":
+
                 case "0":
                     running = false;
                     break;
@@ -167,6 +170,10 @@ public class UI {
         } catch (IllegalArgumentException e){
             System.out.println("Ugyldig disciplin.");
         }
+    }
+
+    public void removeDiscipline(){
+        MemberAdministration.removeDiscipline();
     }
     //Test main. ***HUSK AT FJERNE INDEN FÆRDIGE***
     public static void main(String[] args) {
