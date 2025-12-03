@@ -20,6 +20,7 @@ abstract class Member {
         this.isActive=true;
         this.isArrears=false;
         this.totalArrears=totalArrears;
+        this.createDate=LocalDate.now();
         this.currentAge=calculateAge();
         updateAgeStatus();
     }
@@ -63,6 +64,10 @@ abstract class Member {
         return createDate;
     }
 
+    public void setCreateDate (LocalDate createDate) {
+        this.createDate=createDate;
+    }
+
     public LocalDate getDateOfBirth () {
         return dateOfBirth;
     }
@@ -75,8 +80,20 @@ abstract class Member {
         return name;
     }
 
+    public boolean getIsArrears () {
+        return isArrears;
+    }
+
+    public void setIsArrears (boolean isArrears) {
+        this.isArrears=isArrears;
+    }
+
     public double getTotalArrears(){
         return totalArrears;
+    }
+
+    public void setTotalArrears (double totalArrears) {
+        this.totalArrears=totalArrears;
     }
 
     public boolean getIsCompetitive(){
@@ -85,5 +102,9 @@ abstract class Member {
 
     public String toString(){
         return name + " - Status: " + getSubscriptionType().toString();
+    }
+
+    public String printArrears () {
+        return createDate + ": " + name + " --- MemberID: " + memberID + " --- Restance: " + totalArrears + " kr.";
     }
 }

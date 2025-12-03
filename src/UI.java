@@ -92,6 +92,7 @@ public class UI {
     public void showCashierMenu() {
         boolean running = true;
         while (running) {
+            Arrears.addArrears();
             System.out.println("--- Kasser Menu ---\n" +
                     "1. Oversigt over medlemmer i restance\n" +
                     "2. Ændring af restance\n" +
@@ -101,6 +102,14 @@ public class UI {
             String valg = scn.nextLine();
 
             switch (valg) {
+                case "1":
+                    Arrears.printArrears();
+                    break;
+                case "2":
+                    Arrears.addPayment();
+                    break;
+                case "3":
+                    Arrears.sumArrears();
                 case "0":
                     running = false;
                     break;
