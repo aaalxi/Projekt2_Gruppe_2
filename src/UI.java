@@ -8,6 +8,7 @@ public class UI {
     public void showMainMenu() {
         MemberFileHandling.loadMembers("Members.txt");
         MemberList.addMembersToTeamList();
+        arrears.updateArrears();
 
         boolean running = true;
         while (running) {
@@ -109,11 +110,13 @@ public class UI {
                     break;
                 case "2":
                     arrears.printMember();
+                    break;
                 case "3":
                     arrears.addPayment();
                     break;
                 case "4":
                     arrears.sumArrears();
+                    break;
                 case "0":
                     running = false;
                     break;

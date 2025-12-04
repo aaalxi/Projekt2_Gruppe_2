@@ -2,47 +2,48 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Arrears {
-    private  LocalDate today = LocalDate.now();
-    private  ArrayList <Member> members;
-    private  ArrayList <Member> membersArrears;
+    private LocalDate today = LocalDate.now();
+    private ArrayList<Member> members;
+    private ArrayList<Member> membersArrears;
 
 
-    public Arrears (ArrayList<Member> members) {
-        this.members=members;
+    public Arrears(ArrayList<Member> members) {
+        this.members = members;
         this.membersArrears = new ArrayList<>();
     }
 
 
-
-    public void updateArrears () {
+    public void updateArrears() {
         for (Member m : members) {
 
-    //hvis paymentDate ligger i fortiden (er overskredet)
-            while (!today.isBefore(m.getNextPayment())) {
-            double yearlyFee = Subscription.getYearlyQuota(m);
-            m.setTotalArrears(m.getTotalArrears()+yearlyFee);
-            m.setIsArrears(true);
-            m.setNextPayment(m.getNextPayment().plusYears(1));
+            //hvis paymentDate ligger i fortiden (er overskredet)
+            if (today.isAfter(m.getNextPayment())) {
+                double yearlyFee = Subscription.getYearlyQuota(m);
+                m.setTotalArrears(m.getTotalArrears() + yearlyFee);
+                m.setIsArrears(true);
+                m.setNextPayment(m.getNextPayment().plusYears(1));
 
-            if(membersArrears.contains(m)) continue;
-
-            membersArrears.add(m);
-            System.out.println(membersArrears.size());
+                if (!membersArrears.contains(m)) {
+                    membersArrears.add(m);
+                }
             }
-        }MemberFileHandling.saveMembers("Members.txt");
+            if (!membersArrears.contains(m) && m.getTotalArrears() > 0) {
+                membersArrears.add(m);
+            }
+        }
+        MemberFileHandling.saveMembers("Members.txt");
     }
 
 
-
-    public void addPayment () {
+    public void addPayment() {
         System.out.println("Medlemmets fulde navn: ");
         String name = UI.scn.nextLine();
         Member member = null;
 
-        for (Member m : members) {
+        for (Member m : membersArrears) {
 
             if (m.getName().equalsIgnoreCase(name)) {
-                member=m;
+                member = m;
                 break;
             }
         }
@@ -52,13 +53,15 @@ public class Arrears {
             return;
         }
 
-        System.out.println("Indbetalte beløb: ");
+        System.out.println(name + ", Restance: " + member.getTotalArrears() + " kr");
+
+        System.out.println("Indtast det indbetalte beløb: ");
         double payment = UI.scn.nextDouble();
         UI.scn.nextLine();
 
         member.setTotalArrears(member.getTotalArrears() - payment);
 
-        if (member.getTotalArrears() == 0) {
+        if (member.getTotalArrears() <= 0) {
             member.setTotalArrears(0);
             member.setIsArrears(false);
             membersArrears.remove(member);
@@ -68,38 +71,34 @@ public class Arrears {
     }
 
 
-
-    public void sumArrears () {
+    public void sumArrears() {
         updateArrears();
-        double sum=0;
+        double sum = 0;
 
         for (Member m : membersArrears) {
-                sum += m.getTotalArrears();
-            }
-        System.out.println("Samlede restance d. " + LocalDate.now() + " = " + sum + " kr");
+            sum += m.getTotalArrears();
         }
+        System.out.println("Samlede restance d. " + LocalDate.now() + " = " + sum + " kr");
+    }
 
 
-
-    public void printAll () {
+    public void printAll() {
         updateArrears();
         System.out.println("--- RESTANCER ---");
         for (Member m : membersArrears) {
-            System.out.println("Heeeeej");
             System.out.println(m.printArrears());
         }
     }
 
 
-
-    public void printMember () {
+    public void printMember() {
         System.out.println("Medlemmets fulde navn: ");
         String name = UI.scn.nextLine();
         boolean found = false;
 
         for (Member m : membersArrears) {
             if (m.getName().equalsIgnoreCase(name)) {
-                System.out.println(name + ": " + m.getTotalArrears() + " kr");
+                System.out.println(name + ", Beløbet: " + m.getTotalArrears() + " kr");
                 found = true;
                 break;
             }
