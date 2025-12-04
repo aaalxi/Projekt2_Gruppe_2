@@ -8,6 +8,7 @@ abstract class Member {
     private LocalDate dateOfBirth;
     private boolean isActive, isArrears;
     private double totalArrears;
+    private LocalDate nextPayment;
     boolean isCompetitive;
     private int currentAge;
     private LocalDate createDate;
@@ -21,6 +22,7 @@ abstract class Member {
         this.isArrears=false;
         this.totalArrears=totalArrears;
         this.createDate=LocalDate.now();
+        this.nextPayment=createDate.plusYears(1);
         this.currentAge=calculateAge();
         updateAgeStatus();
     }
@@ -63,7 +65,6 @@ abstract class Member {
     public LocalDate getCreateDate(){
         return createDate;
     }
-
     public void setCreateDate (LocalDate createDate) {
         this.createDate=createDate;
     }
@@ -94,6 +95,14 @@ abstract class Member {
 
     public void setTotalArrears (double totalArrears) {
         this.totalArrears=totalArrears;
+    }
+
+    public LocalDate getNextPayment () {
+        return nextPayment;
+    }
+
+    public void setNextPayment (LocalDate nextDate) {
+        this.nextPayment=nextDate;
     }
 
     public boolean getIsCompetitive(){

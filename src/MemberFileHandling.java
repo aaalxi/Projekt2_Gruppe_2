@@ -15,7 +15,8 @@ public class MemberFileHandling {
                 }
 // Her laves der en string som er en samling af de relevante data fra m og printet ind i en textfil
                 String linje = m.getMemberID() + ";" + m.getName() + ";" + m.getDateOfBirth() +
-                        ";" + m.getIsCompetitive() + ";" + m.getTotalArrears() + ";" + trainer + ";" + disciplinesString;
+                        ";" + m.getIsCompetitive() + ";" + m.getTotalArrears() + ";" + trainer + ";"
+                        + disciplinesString + ";" + m.getCreateDate() + ";" + m.getNextPayment();
                 pw.println(linje);
 
             }
@@ -38,6 +39,8 @@ public class MemberFileHandling {
                 LocalDate dateBirth = LocalDate.parse(data[2]);
                 String comp = data[3];
                 double totalArrears = Double.parseDouble(data[4]);
+                LocalDate createDate = LocalDate.parse(data[7]);
+                LocalDate nextPayment = LocalDate.parse(data[8]);
 
                 if (comp.equals("true")) {
                     Competitive m = new Competitive(id, name, dateBirth, totalArrears);
@@ -58,10 +61,13 @@ public class MemberFileHandling {
                                 m.addDiscipline(Discipline.valueOf(d));
                             }
                         }
-                    }
+                    } m.setCreateDate(createDate);
+                    m.setNextPayment(nextPayment);
                 }
                 if (comp.equals("false")) {
                     Member m = new Casual(id, name, dateBirth, totalArrears);
+                    m.setCreateDate(createDate);
+                    m.setNextPayment(nextPayment);
                     MemberList.allMembers.add(m);
                 }
             }

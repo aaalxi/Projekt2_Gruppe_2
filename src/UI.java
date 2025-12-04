@@ -1,21 +1,23 @@
 import Result.CompetitionHandling;
-
 import java.util.Scanner;
 
 public class UI {
     static Scanner scn = new Scanner(System.in);
+    Arrears arrears = new Arrears(MemberList.allMembers);
 
     public void showMainMenu() {
         MemberFileHandling.loadMembers("Members.txt");
         MemberList.addMembersToTeamList();
+        arrears.updateArrears();
+
         boolean running = true;
         while (running) {
-            System.out.println("=== Hovedmenu ===");
-            System.out.println("1. Formand-menu");
-            System.out.println("2. Træner-menu");
-            System.out.println("3. Kasserer-menu");
-            System.out.println("0. Afslut");
-            System.out.print("Vælg et punkt: ");
+            System.out.println("=== Hovedmenu ===\n"+
+            "1. Formand-menu\n"+
+            "2. Træner-menu\n"+
+            "3. Kasserer-menu\n"+
+            "0. Afslut\n"+
+            "Vælg et punkt: ");
 
             String valg = scn.nextLine();
 
@@ -90,26 +92,31 @@ public class UI {
     }
 
     public void showCashierMenu() {
+
         boolean running = true;
         while (running) {
-            Arrears.addArrears();
             System.out.println("--- Kasser Menu ---\n" +
                     "1. Oversigt over medlemmer i restance\n" +
-                    "2. Ændring af restance\n" +
-                    "3. Total restance\n" +
+                    "2. Søg efter en medlem i restance\n" +
+                    "3. Ændring af restance\n" +
+                    "4. Total restance\n" +
                     "0. Tilbage til Hovedmenu\n"+
                     "Vælg: ");
             String valg = scn.nextLine();
 
             switch (valg) {
                 case "1":
-                    Arrears.printArrears();
+                    arrears.printAll();
                     break;
                 case "2":
-                    Arrears.addPayment();
+                    arrears.printMember();
                     break;
                 case "3":
-                    Arrears.sumArrears();
+                    arrears.addPayment();
+                    break;
+                case "4":
+                    arrears.sumArrears();
+                    break;
                 case "0":
                     running = false;
                     break;
@@ -123,11 +130,11 @@ public class UI {
     public void showChairmanMenu() {
         boolean running = true;
         while (running) {
-            System.out.println("--- Formand Menu ---");
-            System.out.println("1. Opret Medlem");
-            System.out.println("2. Tilknyt ny træner til hold");
-            System.out.println("0. Tilbage til Hovedmenu");
-            System.out.print("Vælg: ");
+            System.out.println("--- Formand Menu ---\n"+
+            "1. Opret Medlem\n"+
+            "2. Tilknyt ny træner til hold\n"+
+            "0. Tilbage til Hovedmenu\n"+
+            "Vælg: ");
             String valg = scn.nextLine();
 
             switch (valg) {
@@ -188,10 +195,10 @@ public class UI {
     public void createMember(){
         boolean loop = true;
         while(loop){
-            System.out.println("Er den nye medlem konkurrencesvømmer eller motionist?");
-            System.out.println("1) Konkurrencesvømmer");
-            System.out.println("2) Motionist");
-            System.out.println("3) Gå tilbage");
+            System.out.println("Er den nye medlem konkurrencesvømmer eller motionist?\n"+
+            "1) Konkurrencesvømmer\n"+
+            "2) Motionist\n"+
+            "3) Gå tilbage");
             String valg = scn.nextLine();
             switch(valg){
                 case "1":
