@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 import java.time.Period;
 
-abstract class Member {
+public abstract class Member {
 
     private final String memberID;
     private String name;
