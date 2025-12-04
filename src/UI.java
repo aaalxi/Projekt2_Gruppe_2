@@ -147,6 +147,10 @@ public class UI {
         }
     }
 
+    /**
+     * UI Menu-metode der håndtere stævneInformation
+     * lader træner oprette og slette stævnedata
+     */
     public void competitionMenu(){
         CompetitionHandling competitionHandling = new CompetitionHandling();
         boolean running = true;
