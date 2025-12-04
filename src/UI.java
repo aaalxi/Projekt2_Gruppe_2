@@ -240,9 +240,4 @@ public class UI {
     public void removeDiscipline(){
         MemberAdministration.removeDiscipline();
     }
-    //Test main. ***HUSK AT FJERNE INDEN FÆRDIGE***
-    public static void main(String[] args) {
-        UI a = new UI();
-        a.showMainMenu();
-    }
 }

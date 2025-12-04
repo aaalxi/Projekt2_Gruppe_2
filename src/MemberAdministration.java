@@ -150,10 +150,4 @@ public class MemberAdministration {
 
         MemberFileHandling.saveMembers("Members.txt");
     }
-
-    public static void main(String[] args) {
-        addSwimmer(true);
-        System.out.println(MemberList.over18);
-        System.out.println(MemberList.allMembers);
-    }
 }
