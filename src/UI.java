@@ -14,8 +14,8 @@ public class UI {
         MemberFileHandling.loadMembers(membersFilnavn);
         MemberList.addMembersToTeamList();
         arrears.updateArrears();
-
         boolean running = true;
+        AsciiArt.printDelfin1();
         while (running) {
             System.out.println("=== Hovedmenu ===\n" +
                     "1. Formand-menu\n" +
