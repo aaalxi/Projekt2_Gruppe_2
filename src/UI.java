@@ -211,9 +211,9 @@ public class UI {
         boolean loop = true;
         while(loop){
             System.out.println("Er den nye medlem konkurrencesvømmer eller motionist?\n"+
-            "1) Konkurrencesvømmer\n"+
-            "2) Motionist\n"+
-            "3) Gå tilbage");
+            "1. Konkurrencesvømmer\n"+
+            "2. Motionist\n"+
+            "0. Gå tilbage");
             String valg = scn.nextLine();
             switch(valg){
                 case "1":
@@ -226,7 +226,7 @@ public class UI {
                     MemberAdministration.addSwimmer(false);
                     MemberFileHandling.saveMembers("Members.txt");
                     break;
-                case "3":
+                case "0":
                     loop = false;
                     break;
                 default:
