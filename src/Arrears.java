@@ -12,13 +12,12 @@ public class Arrears {
         this.membersArrears = new ArrayList<>();
     }
 
-
     public void updateArrears() {
         for (Member m : members) {
 
             //hvis paymentDate ligger i fortiden (er overskredet)
             if (today.isAfter(m.getNextPayment())) {
-                double yearlyFee = Subscription.getYearlyQuota(m);
+                double yearlyFee = getYearlyQuota(m);
                 m.setTotalArrears(m.getTotalArrears() + yearlyFee);
                 m.setIsArrears(true);
                 m.setNextPayment(m.getNextPayment().plusYears(1));
@@ -106,5 +105,16 @@ public class Arrears {
         if (!found) {
             System.out.println("Kunne ikke finde medlemmet i restance!");
         }
+    }
+
+    public double getYearlyQuota(Member member){
+        switch (member.getSubscriptionType()){
+            case Under18: return 1000;
+            case Over18: return 1600;
+            case Over60: return 1200;
+            case Passive: return 500;
+            default:
+        }
+        return 0;
     }
 }
