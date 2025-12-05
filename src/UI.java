@@ -66,7 +66,6 @@ public class UI {
     }
 
     public void showTrainerMenu() {
-        UiService.trainerPass();
         boolean running = true;
         while (running) {
             System.out.println("--- TrænerMenu ---\n" +
@@ -118,7 +117,6 @@ public class UI {
     }
 
     public void showCashierMenu() {
-        UiService.cashierPass();
         boolean running = true;
         while (running) {
             System.out.println("--- Kasser Menu ---\n" +
@@ -155,7 +153,6 @@ public class UI {
     }
 
     public void showChairmanMenu() {
-        UiService.chairmanPass();
         boolean running = true;
         while (running) {
             System.out.println("""
