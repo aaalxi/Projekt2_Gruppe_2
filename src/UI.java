@@ -48,7 +48,7 @@ public class UI {
             System.out.println("--- TrænerMenu ---\n" +
                     "1. Se liste over konkurrencesvømmere U18\n" +
                     "2. Se liste over konkurrencesvømmere O18\n" +
-                    "3. Tilknyt disciplin til en konkurrencesvømmer" +
+                    "3. Tilknyt disciplin til en konkurrencesvømmer\n" +
                     "4. Fjern disciplin fra medlem\n"+
                     "5. Søg på medlem via navn.\n" +
                     "6. vis stævnemenu.\n"+
