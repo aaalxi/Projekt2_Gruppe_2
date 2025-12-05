@@ -69,9 +69,11 @@ public class UI {
                     break;
                 case "3":
                     addDiscipline();
+                    MemberFileHandling.saveMembers("Members.txt");
                     break;
                 case "4":
                     removeDiscipline();
+                    MemberFileHandling.saveMembers("Members.txt");
                     break;
                 case "5":
                     MemberList.searchMemberName(MemberList.allMembers);
@@ -113,6 +115,7 @@ public class UI {
                     break;
                 case "3":
                     arrears.addPayment();
+                    MemberFileHandling.saveMembers("Members.txt");
                     break;
                 case "4":
                     arrears.sumArrears();
@@ -204,10 +207,12 @@ public class UI {
                 case "1":
                     loop = false;
                     MemberAdministration.addSwimmer(true);
+                    MemberFileHandling.saveMembers("Members.txt");
                     break;
                 case "2":
                     loop = false;
                     MemberAdministration.addSwimmer(false);
+                    MemberFileHandling.saveMembers("Members.txt");
                     break;
                 case "3":
                     loop = false;

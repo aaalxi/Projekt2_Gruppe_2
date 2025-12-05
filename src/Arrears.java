@@ -30,7 +30,6 @@ public class Arrears {
                 membersArrears.add(m);
             }
         }
-        MemberFileHandling.saveMembers("Members.txt");
     }
 
 
@@ -66,7 +65,6 @@ public class Arrears {
             membersArrears.remove(member);
         }
         System.out.println("Indbetalingen er registreret!");
-        MemberFileHandling.saveMembers("Members.txt");
     }
 
 

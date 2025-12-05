@@ -25,7 +25,6 @@ public class MemberAdministration {
         }
 
         MemberList.addMembersToTeamList();
-        MemberFileHandling.saveMembers("Members.txt");
         System.out.println("Bruger lavet for "+name+": "+birthday);
     }
 
@@ -110,8 +109,6 @@ public class MemberAdministration {
 
         Competitive comp = (Competitive) fundet;
         comp.addDiscipline(discipline);
-
-        MemberFileHandling.saveMembers("Members.txt");
     }
 
     static void removeDiscipline(){
@@ -146,7 +143,5 @@ public class MemberAdministration {
 
         Competitive comp = (Competitive) fundet;
         comp.removeDiscipline(discipline);
-
-        MemberFileHandling.saveMembers("Members.txt");
     }
 }
