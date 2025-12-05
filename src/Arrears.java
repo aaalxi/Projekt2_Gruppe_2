@@ -32,7 +32,6 @@ public class Arrears {
         }
     }
 
-
     public void addPayment() {
         System.out.println("Medlemmets fulde navn: ");
         String name = UI.scn.nextLine();
@@ -67,7 +66,6 @@ public class Arrears {
         System.out.println("Indbetalingen er registreret!");
     }
 
-
     public void sumArrears() {
         updateArrears();
         double sum = 0;
@@ -86,7 +84,6 @@ public class Arrears {
             System.out.println(m.printArrears());
         }
     }
-
 
     public void printMember() {
         System.out.println("Medlemmets fulde navn: ");
