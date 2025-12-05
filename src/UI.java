@@ -5,6 +5,7 @@ public class UI {
     static Scanner scn = new Scanner(System.in);
     Arrears arrears = new Arrears(MemberList.allMembers);
 
+
     public void showMainMenu() {
         MemberFileHandling.loadMembers("Members.txt");
         MemberList.addMembersToTeamList();
@@ -43,6 +44,7 @@ public class UI {
     }
 
     public void showTrainerMenu() {
+        UiService.trainerPass();
         boolean running = true;
         while (running) {
             System.out.println("--- TrænerMenu ---\n" +
@@ -94,7 +96,7 @@ public class UI {
     }
 
     public void showCashierMenu() {
-
+        UiService.cashierPass();
         boolean running = true;
         while (running) {
             System.out.println("--- Kasser Menu ---\n" +
@@ -131,6 +133,7 @@ public class UI {
     }
 
     public void showChairmanMenu() {
+        UiService.chairmanPass();
         boolean running = true;
         while (running) {
             System.out.println("--- Formand Menu ---\n"+
