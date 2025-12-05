@@ -4,10 +4,11 @@ import java.util.Scanner;
 public class UI {
     static Scanner scn = new Scanner(System.in);
     Arrears arrears = new Arrears(MemberList.allMembers);
+    String membersFilnavn = "src//Database//Members.txt";
 
 
     public void showMainMenu() {
-        MemberFileHandling.loadMembers("Members.txt");
+        MemberFileHandling.loadMembers(membersFilnavn);
         MemberList.addMembersToTeamList();
         arrears.updateArrears();
 
@@ -71,11 +72,11 @@ public class UI {
                     break;
                 case "3":
                     addDiscipline();
-                    MemberFileHandling.saveMembers("Members.txt");
+                    MemberFileHandling.saveMembers(membersFilnavn);
                     break;
                 case "4":
                     removeDiscipline();
-                    MemberFileHandling.saveMembers("Members.txt");
+                    MemberFileHandling.saveMembers(membersFilnavn);
                     break;
                 case "5":
                     MemberList.searchMemberName(MemberList.allMembers);
@@ -117,7 +118,7 @@ public class UI {
                     break;
                 case "3":
                     arrears.addPayment();
-                    MemberFileHandling.saveMembers("Members.txt");
+                    MemberFileHandling.saveMembers(membersFilnavn);
                     break;
                 case "4":
                     arrears.sumArrears();
@@ -154,7 +155,7 @@ public class UI {
                     System.out.println("Hvad er medlemmens ID?");
                     String ID = UI.scn.nextLine();
                     if(MemberAdministration.disintegrateSwimmer(ID)){
-                        MemberFileHandling.removeMember("Members.txt", ID);
+                        MemberFileHandling.removeMember(membersFilnavn, ID);
                     }
                     break;
                 case "3":
@@ -162,7 +163,7 @@ public class UI {
                     break;
                 case "4":
                     MemberAdministration.editMemberName();
-                    MemberFileHandling.saveMembers("Members.txt");
+                    MemberFileHandling.saveMembers(membersFilnavn);
                     break;
                 case "0":
                     running = false;
@@ -224,12 +225,12 @@ public class UI {
                 case "1":
                     loop = false;
                     MemberAdministration.addSwimmer(true);
-                    MemberFileHandling.saveMembers("Members.txt");
+                    MemberFileHandling.saveMembers(membersFilnavn);
                     break;
                 case "2":
                     loop = false;
                     MemberAdministration.addSwimmer(false);
-                    MemberFileHandling.saveMembers("Members.txt");
+                    MemberFileHandling.saveMembers(membersFilnavn);
                     break;
                 case "0":
                     loop = false;
@@ -242,7 +243,7 @@ public class UI {
 
     public void trainerChange() {
         MemberAdministration.addTrainer();
-        MemberFileHandling.saveMembers("Members.txt");
+        MemberFileHandling.saveMembers(membersFilnavn);
     }
 
     public void addDiscipline() {
