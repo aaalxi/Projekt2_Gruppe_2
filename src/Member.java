@@ -81,6 +81,10 @@ public abstract class Member {
         return name;
     }
 
+    public void setName(String name){
+        this.name = name;
+    }
+
     public boolean getIsArrears () {
         return isArrears;
     }
