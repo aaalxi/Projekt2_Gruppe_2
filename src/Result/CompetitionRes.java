@@ -30,34 +30,4 @@ public class CompetitionRes extends Result{
     public void setTournament (String tournament) {
         this.tournament = tournament;
     }
-    public String toString () {
-        return name +
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public static void main(String[] args) {
-
-    }
 }

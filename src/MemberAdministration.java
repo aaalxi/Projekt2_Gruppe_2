@@ -14,6 +14,7 @@ public class MemberAdministration {
             System.out.println("Der blev ikke lavet et id til brugeren. Prøv igen.");
             return;
         }
+
         System.out.println("Hvad er fødselsdatoen?");
         LocalDate birthday = LocalDate.parse(UI.scn.nextLine());
 
@@ -50,7 +51,6 @@ public class MemberAdministration {
         }
         return removedFromAll || removedFromOver || removedFromUnder;
     }
-
 
     public static void addTrainer(){
         ArrayList<Member> valgtListe = null;
@@ -93,7 +93,6 @@ public class MemberAdministration {
         return id.matches("^[a-z]{4}[0-9]{4}$");
     }
 
-
     static String createUserID(String name){
         int space = name.indexOf(" ");
         String firstTwo = name.substring(0, 2).toLowerCase();
@@ -111,7 +110,6 @@ public class MemberAdministration {
             return "";
         }
     }
-
 
     static void editMemberName() {
         boolean setName = true;
@@ -139,6 +137,34 @@ public class MemberAdministration {
                     }
                 }
                 else break;
+            }
+        }
+    }
+
+    public static void createMember() {
+        boolean loop = true;
+        while(loop){
+            System.out.println("Er den nye medlem konkurrencesvømmer eller motionist?\n"+
+                    "1. Konkurrencesvømmer\n"+
+                    "2. Motionist\n"+
+                    "0. Gå tilbage");
+            String valg = UI.scn.nextLine();
+            switch (valg) {
+                case "1":
+                    loop = false;
+                    addSwimmer(true);
+                    MemberFileHandling.saveMembers("src//Database//Members.txt");
+                    break;
+                case "2":
+                    loop = false;
+                    addSwimmer(false);
+                    MemberFileHandling.saveMembers("src//Database//Members.txt");
+                    break;
+                case "0":
+                    loop = false;
+                    break;
+                default:
+                    System.out.println("Ikke et valg, prøv igen.");
             }
         }
     }

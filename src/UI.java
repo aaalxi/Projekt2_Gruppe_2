@@ -149,7 +149,7 @@ public class UI {
 
             switch (valg) {
                 case "1":
-                    createMember();
+                    MemberAdministration.createMember();
                     break;
                 case "2":
                     System.out.println("Hvad er medlemmens ID?");
@@ -213,34 +213,4 @@ public class UI {
 
         }
     }
-
-
-    public void createMember() {
-        boolean loop = true;
-        while(loop){
-            System.out.println("Er den nye medlem konkurrencesvømmer eller motionist?\n"+
-            "1. Konkurrencesvømmer\n"+
-            "2. Motionist\n"+
-            "0. Gå tilbage");
-            String valg = scn.nextLine();
-            switch (valg) {
-                case "1":
-                    loop = false;
-                    MemberAdministration.addSwimmer(true);
-                    MemberFileHandling.saveMembers(membersFilnavn);
-                    break;
-                case "2":
-                    loop = false;
-                    MemberAdministration.addSwimmer(false);
-                    MemberFileHandling.saveMembers(membersFilnavn);
-                    break;
-                case "0":
-                    loop = false;
-                    break;
-                default:
-                    System.out.println("Ikke et valg, prøv igen.");
-            }
-        }
-    }
-
 }

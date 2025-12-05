@@ -1,6 +1,4 @@
 public class TrainerAdmin {
-
-
     public static void addDiscipline() {
         System.out.print("Skriv medlems ID: ");
         String id = UI.scn.nextLine();
@@ -15,7 +13,6 @@ public class TrainerAdmin {
             System.out.println("Ugyldig disciplin.");
         }
     }
-
 
     static void addDisciplineToCompetitive(String memberID, Discipline discipline){
 
@@ -40,7 +37,6 @@ public class TrainerAdmin {
         Competitive comp = (Competitive) fundet;
         comp.addDiscipline(discipline);
     }
-
 
     static void removeDiscipline(){
         String ID;
