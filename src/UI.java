@@ -5,6 +5,9 @@ public class UI {
     static Scanner scn = new Scanner(System.in);
     Arrears arrears = new Arrears(MemberList.allMembers);
     String membersFilnavn = "src//Database//Members.txt";
+    static boolean chairmanPass = false;
+    static boolean trainerPass = false;
+    static boolean cashierPass = false;
 
 
     public void showMainMenu() {
