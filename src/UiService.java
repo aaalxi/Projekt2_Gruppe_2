@@ -12,30 +12,32 @@ public class UiService {
             return true;
         }
     }
-    public static void cashierPass(){
-    boolean deniedPass = true;
-        while (deniedPass) {
-        System.out.println("indtast Password: ");
+
+    public static boolean cashierPass() {
+        System.out.print("indtast Password: ");
         String login = UI.scn.nextLine();
         if (!login.equalsIgnoreCase("kasser")) {
-            System.out.println("forkert Password.\n Prøv venligst igen.");
+            System.out.println("");
+            System.out.println("Hej kasser!\nDu har skrevet et forkert password!.\nPrøv venligst igen.");
+            return false;
         } else {
             System.out.println("du er logget ind.");
-            deniedPass=false;
+            UI.cashierPass = true;
+            return true;
         }
     }
-}
-    public static void trainerPass(){
-    boolean deniedPass = true;
-        while (deniedPass) {
-        System.out.println("indtast Password: ");
+
+    public static boolean trainerPass() {
+        System.out.print("indtast Password: ");
         String login = UI.scn.nextLine();
         if (!login.equalsIgnoreCase("træner")) {
-            System.out.println("forkert Password.\n Prøv venligst igen.");
+            System.out.println("");
+            System.out.println("Hej træner!\nDu har skrevet et forkert password.\nPrøv venligst igen.");
+            return false;
         } else {
             System.out.println("du er logget ind.");
-            deniedPass=false;
+            UI.trainerPass = true;
+            return true;
         }
     }
-}
 }
