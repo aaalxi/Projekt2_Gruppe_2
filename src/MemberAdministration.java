@@ -114,10 +114,9 @@ public class MemberAdministration {
     static void removeDiscipline(){
         String ID;
         Discipline discipline;
+        System.out.println("Skriv medlems ID:");
+        ID = UI.scn.nextLine();
         while (true){ // loop of doom and despair
-            System.out.println("Skriv medlems ID:");
-            ID = UI.scn.nextLine();
-
             System.out.println("Vælg disciplin (BUTTERFLY/BACKSTROKE/BREASTSTROKE/FREESTYLE): ");
             String d = UI.scn.nextLine().toUpperCase();
 
@@ -126,6 +125,7 @@ public class MemberAdministration {
                 break;
             } catch (IllegalArgumentException e){
                 System.out.println("Ugyldig disciplin.");
+                return;
             }
         }
         Member fundet = null;
