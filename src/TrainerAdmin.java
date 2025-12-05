@@ -1,4 +1,5 @@
 public class TrainerAdmin {
+
     public static void addDiscipline() {
         System.out.print("Skriv medlems ID: ");
         String id = UI.scn.nextLine();

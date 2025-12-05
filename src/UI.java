@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class UI {
     static Scanner scn = new Scanner(System.in);
     Arrears arrears = new Arrears(MemberList.allMembers);
+    Administration trainerAdmin = new Administration();
     String membersFilnavn = "src//Database//Members.txt";
 
 
@@ -54,7 +55,7 @@ public class UI {
                     "3. Tilknyt disciplin til en konkurrencesvømmer\n" +
                     "4. Fjern disciplin fra medlem\n" +
                     "5. Søg på medlem via navn.\n" +
-                    "6. Vis stævnemenu.\n" +
+                    "6. Vis stævnemenu\n" +
                     "0. Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
             String valg = scn.nextLine();
@@ -185,10 +186,11 @@ public class UI {
         boolean running = true;
         while (running) {
             System.out.println("--- StævneMenu ---\n" +
-                    "1. Indtast ny stævnedata.\n" +
-                    "2. Se stævnedata\n" +
-                    "3. Slet stævnedata\n" +
-                    "4. maybe funktion, maybe not funktion\n" +
+                    "1. Indtast nye træningsresultater\n" +
+                    "2. Indtast nye stævneresultater\n" +
+                    "3. Overblik over alle stævnedata\n" +
+                    "4. Slet stævnedata\n" +
+                    "5. Se liste over top 5 i kategorier\n"+
                     "0. Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
             String valg = scn.nextLine();
@@ -198,19 +200,20 @@ public class UI {
                     running = false;
                     break;
                 case "1":
-              //      competitionHandling.addResults();
+                    trainerAdmin.addTrainingResult();
                     break;
                 case "2":
+                    trainerAdmin.addCompetitionResult();
                     break;
                 case "3":
-                    competitionHandling.deleteResults();
+
                     break;
                 case "4":
+                    trainerAdmin.deleteResults();
                     break;
                 default:
                     System.out.println("Ugyldigt valg");
             }
-
         }
     }
 }

@@ -1,4 +1,3 @@
-
 package Result;
 
 import java.util.ArrayList;
@@ -12,13 +11,35 @@ public class Administration {
      * Metode opretter et objekt Resultat
      * og tilføjer det til en arraylist Resultater.
      */
-    public void addResult() {
-        System.out.println("Konkurrence eller træningsresultater: ");
-        int choose = scn.nextInt();
-
-        System.out.println("Stævne: ");
+    public void addCompetitionResult() {
+        System.out.println("Stævne navn: ");
         String tournament = scn.nextLine();
 
+        System.out.println("Fulde navn på medlem: ");
+        String name = scn.nextLine();
+
+        System.out.println("Kategori (U18, O18): ");
+        String category = scn.nextLine();
+
+        System.out.println("Vælg disciplin (BUTTERFLY/BACKSTROKE/BREASTSTROKE/FREESTYLE): ");
+        String discipline = scn.nextLine();
+
+        System.out.println("Distance: ");       //bestemmer selv
+        int distance = Integer.parseInt(scn.nextLine());
+
+        System.out.println("Tid: ");
+        double time = Double.parseDouble(scn.nextLine());
+
+        System.out.println("Placering: ");
+        int placement = Integer.parseInt(scn.nextLine());
+
+        CompetitionRes r = new CompetitionRes(tournament, name, category, discipline, distance, time, placement);
+        resultater.add(r);
+        System.out.println("Resultat tilføjet til kategorien: " + category + "!");
+    }
+
+
+    public void addTrainingResult () {
         System.out.println("Navn: ");
         String name = scn.nextLine();
 
@@ -34,12 +55,8 @@ public class Administration {
         System.out.println("Tid: ");
         double time = Double.parseDouble(scn.nextLine());
 
-        System.out.println("Placering: ");
-        int placement = Integer.parseInt(scn.nextLine());
-
-        CompetitionRes r = new CompetitionRes(tournament, name, category, discipline, distance, time, placement);
+        TrainingRes r = new TrainingRes(name, category, discipline, distance, time);
         resultater.add(r);
-
         System.out.println("Resultat tilføjet til kategorien: " + category + "!");
     }
 
