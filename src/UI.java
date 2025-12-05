@@ -138,7 +138,7 @@ public class UI {
             System.out.println("--- Formand Menu ---\n" +
                     "1. Opret Medlem\n" +
                     "2. Tilknyt ny træner til hold\n" +
-                    "3. Rediger medlemsdata\n" +
+                    "3. Rediger medlems navn\n" +
                     "0. Tilbage til Hovedmenu\n" +
                     "Vælg: ");
             String valg = scn.nextLine();
@@ -151,7 +151,7 @@ public class UI {
                     trainerChange();
                     break;
                 case "3":
-                    editMember();
+                    editMemberName();
                     MemberFileHandling.saveMembers("Members.txt");
                     break;
                 case "0":
@@ -230,7 +230,7 @@ public class UI {
         }
     }
 
-    public void editMember() {
+    public void editMemberName() {
         boolean setName = true;
         String svar, nytNavn;
         System.out.print("Skriv medlems ID: ");
