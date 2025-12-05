@@ -144,4 +144,34 @@ public class MemberAdministration {
         Competitive comp = (Competitive) fundet;
         comp.removeDiscipline(discipline);
     }
+
+    static void editMemberName() {
+        boolean setName = true;
+        String svar, nytNavn;
+        System.out.print("Skriv medlems ID: ");
+        String id = UI.scn.nextLine();
+
+        for (Member m : MemberList.allMembers) {
+            if (m.getMemberID().equals(id)) {
+                System.out.print("Er du sikker på du vil ændre navnet på medlem :" + m.getName() + " [y/n] : ");
+                svar = UI.scn.nextLine();
+                if (svar.equalsIgnoreCase("y")) {
+                    while (setName) {
+                        System.out.print("Skriv det ønskede navn: ");
+                        nytNavn = UI.scn.nextLine();
+                        nytNavn = nytNavn.trim();
+                        if (MemberList.isName(nytNavn)) {
+                            System.out.println("Du har ændret "+m.getName()+" til "+nytNavn);
+                            m.setName(nytNavn);
+                            setName = false;
+                        } else {
+                            System.out.println("Ikke et gyldigt navn.");
+                            System.out.print("Prøv igen: ");
+                        }
+                    }
+                }
+                else break;
+            }
+        }
+    }
 }
