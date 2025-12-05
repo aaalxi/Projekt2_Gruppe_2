@@ -64,7 +64,6 @@ public class MemberAdministration {
             c.setTrainer(newTrainer);
         }
         System.out.println(newTrainer+" er nu tilknyttet alle konkurrencesvømmere i denne aldersgruppe.");
-        MemberFileHandling.saveMembers("Members.txt");
     }
 
     static boolean validateUserID(String id){

@@ -220,6 +220,7 @@ public class UI {
 
     public void trainerChange(){
         MemberAdministration.addTrainer();
+        MemberFileHandling.saveMembers("Members.txt");
     }
 
     public void addDiscipline(){
