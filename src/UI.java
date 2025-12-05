@@ -28,13 +28,31 @@ public class UI {
 
             switch (valg) {
                 case "1":
-                    showChairmanMenu();
+                    if(chairmanPass){
+                        showChairmanMenu();
+                    } else {
+                        if(UiService.chairmanPass()){
+                            showChairmanMenu();
+                        }
+                    }
                     break;
                 case "2":
-                    showTrainerMenu();
+                    if(trainerPass) {
+                        showTrainerMenu();
+                    } else {
+                        if(UiService.trainerPass()){
+                            showTrainerMenu();
+                        }
+                    }
                     break;
                 case "3":
-                    showCashierMenu();
+                    if(cashierPass) {
+                        showCashierMenu();
+                    } else {
+                        if(UiService.cashierPass()){
+                            showCashierMenu();
+                        }
+                    }
                     break;
                 case "0":
                     running = false;
