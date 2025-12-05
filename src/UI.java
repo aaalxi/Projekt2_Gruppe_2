@@ -133,11 +133,13 @@ public class UI {
     public void showChairmanMenu() {
         boolean running = true;
         while (running) {
-            System.out.println("--- Formand Menu ---\n"+
-            "1. Opret Medlem\n"+
-            "2. Tilknyt ny træner til hold\n"+
-            "0. Tilbage til Hovedmenu\n"+
-            "Vælg: ");
+            System.out.println("""
+                    --- Formand Menu ---
+                    1. Opret medlem
+                    2. Fjern medlem
+                    3. Tilknyt ny træner til hold
+                    0. Tilbage til Hovedmenu
+                    Vælg:\s""");
             String valg = scn.nextLine();
 
             switch (valg) {
@@ -145,6 +147,13 @@ public class UI {
                     createMember();
                     break;
                 case "2":
+                    System.out.println("Hvad er medlemmens ID?");
+                    String ID = UI.scn.nextLine();
+                    if(MemberAdministration.disintegrateSwimmer(ID)){
+                        MemberFileHandling.removeMember("Members.txt", ID);
+                    }
+                    break;
+                case "3":
                     trainerChange();
                     break;
                 case "0":

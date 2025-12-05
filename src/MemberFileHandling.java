@@ -100,9 +100,4 @@ public class MemberFileHandling {
             throw new RuntimeException(e);
         }
     }
-
-    public static void main(String[] args) {
-        loadMembers("test");
-        System.out.println(MemberList.allMembers);
-    }
 } //memberfilehandling
