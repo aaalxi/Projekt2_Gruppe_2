@@ -153,12 +153,10 @@ public class MemberAdministration {
                 case "1":
                     loop = false;
                     addSwimmer(true);
-                    MemberFileHandling.saveMembers("src//Database//Members.txt");
                     break;
                 case "2":
                     loop = false;
                     addSwimmer(false);
-                    MemberFileHandling.saveMembers("src//Database//Members.txt");
                     break;
                 case "0":
                     loop = false;

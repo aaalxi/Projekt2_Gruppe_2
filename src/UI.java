@@ -150,6 +150,7 @@ public class UI {
             switch (valg) {
                 case "1":
                     MemberAdministration.createMember();
+                    MemberFileHandling.saveMembers(membersFilnavn);
                     break;
                 case "2":
                     System.out.println("Hvad er medlemmens ID?");
