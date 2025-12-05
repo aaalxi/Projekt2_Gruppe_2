@@ -47,6 +47,7 @@ public class MemberList {
         }
     }
 
+
     public static void searchMemberName(ArrayList<Member> liste) {
         boolean running = false;
         String memberSearch = "";

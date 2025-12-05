@@ -1,4 +1,4 @@
-import Result.CompetitionHandling;
+import Result.Administration;
 import java.util.Scanner;
 
 public class UI {
@@ -54,7 +54,7 @@ public class UI {
                     "3. Tilknyt disciplin til en konkurrencesvømmer\n" +
                     "4. Fjern disciplin fra medlem\n" +
                     "5. Søg på medlem via navn.\n" +
-                    "6. vis stævnemenu.\n" +
+                    "6. Vis stævnemenu.\n" +
                     "0. Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
             String valg = scn.nextLine();
@@ -71,11 +71,11 @@ public class UI {
                     running = false;
                     break;
                 case "3":
-                    addDiscipline();
+                    TrainerAdmin.addDiscipline();
                     MemberFileHandling.saveMembers(membersFilnavn);
                     break;
                 case "4":
-                    MemberAdministration.removeDiscipline();
+                    TrainerAdmin.removeDiscipline();
                     MemberFileHandling.saveMembers(membersFilnavn);
                     break;
                 case "5":
@@ -181,7 +181,7 @@ public class UI {
      * lader træner oprette og slette stævnedata
      */
     public void competitionMenu() {
-        CompetitionHandling competitionHandling = new CompetitionHandling();
+        Administration competitionHandling = new Administration();
         boolean running = true;
         while (running) {
             System.out.println("--- StævneMenu ---\n" +
@@ -198,7 +198,7 @@ public class UI {
                     running = false;
                     break;
                 case "1":
-                    competitionHandling.addResults();
+              //      competitionHandling.addResults();
                     break;
                 case "2":
                     break;
@@ -213,6 +213,7 @@ public class UI {
 
         }
     }
+
 
     public void createMember() {
         boolean loop = true;
@@ -242,18 +243,4 @@ public class UI {
         }
     }
 
-    public void addDiscipline() {
-        System.out.print("Skriv medlems ID: ");
-        String id = scn.nextLine();
-
-        System.out.print("Vælg disciplin (BUTTERFLY/BACKSTROKE/BREASTSTROKE/FREESTYLE): ");
-        String d = scn.nextLine().toUpperCase();
-
-        try {
-            Discipline discipline = Discipline.valueOf(d);
-            MemberAdministration.addDisciplineToCompetitive(id, discipline);
-        } catch (IllegalArgumentException e) {
-            System.out.println("Ugyldig disciplin.");
-        }
-    }
 }

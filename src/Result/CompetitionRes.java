@@ -1,0 +1,63 @@
+package Result;
+
+public class CompetitionRes extends Result{
+
+    private int placement;
+    private String tournament;
+
+
+    public CompetitionRes (String tournament, String name, String category, String discipline, int distance,
+                           double time, int placement) {
+
+        super(true, name, category, discipline, distance, time);
+        this.placement=placement;
+        this.tournament=tournament;
+    }
+
+
+    public int getPlacement () {
+        return placement;
+    }
+
+    public void setPlacement (int placement) {
+        this.placement = placement;
+    }
+
+    public String getTournament () {
+        return tournament;
+    }
+
+    public void setTournament (String tournament) {
+        this.tournament = tournament;
+    }
+    public String toString () {
+        return name +
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public static void main(String[] args) {
+
+    }
+}

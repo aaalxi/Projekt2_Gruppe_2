@@ -14,7 +14,6 @@ public class MemberAdministration {
             System.out.println("Der blev ikke lavet et id til brugeren. Prøv igen.");
             return;
         }
-
         System.out.println("Hvad er fødselsdatoen?");
         LocalDate birthday = LocalDate.parse(UI.scn.nextLine());
 
@@ -27,6 +26,7 @@ public class MemberAdministration {
         MemberList.addMembersToTeamList();
         System.out.println("Bruger lavet for "+name+": "+birthday);
     }
+
 
     public static boolean disintegrateSwimmer(String ID){
         boolean removedFromAll = MemberList.allMembers.removeIf(a -> a.getMemberID().equals(ID));
@@ -48,9 +48,9 @@ public class MemberAdministration {
         if(!removedFromOver && !removedFromUnder && !removedFromAll){
             System.out.println(ID+" er ikke et id i databasen.");
         }
-
         return removedFromAll || removedFromOver || removedFromUnder;
     }
+
 
     public static void addTrainer(){
         ArrayList<Member> valgtListe = null;
@@ -93,6 +93,7 @@ public class MemberAdministration {
         return id.matches("^[a-z]{4}[0-9]{4}$");
     }
 
+
     static String createUserID(String name){
         int space = name.indexOf(" ");
         String firstTwo = name.substring(0, 2).toLowerCase();
@@ -111,63 +112,6 @@ public class MemberAdministration {
         }
     }
 
-    static void addDisciplineToCompetitive(String memberID, Discipline discipline){
-
-        Member fundet = null;
-        for(Member m : MemberList.allMembers){
-            if (m.getMemberID().equals(memberID)){
-                fundet = m;
-                break;
-            }
-        }
-
-        if (fundet == null){
-            System.out.println("Medlem ikke fundet.");
-            return;
-        }
-
-        if (!(fundet instanceof Competitive)){
-            System.out.println("Medlemmet er ikke konkurrencesvømmer.");
-            return;
-        }
-
-        Competitive comp = (Competitive) fundet;
-        comp.addDiscipline(discipline);
-    }
-
-    static void removeDiscipline(){
-        String ID;
-        Discipline discipline;
-        System.out.println("Skriv medlems ID:");
-        ID = UI.scn.nextLine();
-        while (true){ // loop of doom and despair
-            System.out.println("Vælg disciplin (BUTTERFLY/BACKSTROKE/BREASTSTROKE/FREESTYLE): ");
-            String d = UI.scn.nextLine().toUpperCase();
-
-            try{
-                discipline = Discipline.valueOf(d);
-                break;
-            } catch (IllegalArgumentException e){
-                System.out.println("Ugyldig disciplin.");
-                return;
-            }
-        }
-        Member fundet = null;
-        for(Member m : MemberList.allMembers){
-            if (m.getMemberID().equals(ID)){
-                fundet = m;
-                break;
-            }
-        }
-
-        if (fundet == null){
-            System.out.println("Medlem ikke fundet.");
-            return;
-        }
-
-        Competitive comp = (Competitive) fundet;
-        comp.removeDiscipline(discipline);
-    }
 
     static void editMemberName() {
         boolean setName = true;
