@@ -74,7 +74,7 @@ public class UI {
                     MemberFileHandling.saveMembers("Members.txt");
                     break;
                 case "4":
-                    removeDiscipline();
+                    MemberAdministration.removeDiscipline();
                     MemberFileHandling.saveMembers("Members.txt");
                     break;
                 case "5":
@@ -158,7 +158,8 @@ public class UI {
                     }
                     break;
                 case "3":
-                    trainerChange();
+                    MemberAdministration.addTrainer();
+                    MemberFileHandling.saveMembers("Members.txt");
                     break;
                 case "4":
                     MemberAdministration.editMemberName();
@@ -240,11 +241,6 @@ public class UI {
         }
     }
 
-    public void trainerChange() {
-        MemberAdministration.addTrainer();
-        MemberFileHandling.saveMembers("Members.txt");
-    }
-
     public void addDiscipline() {
         System.out.print("Skriv medlems ID: ");
         String id = scn.nextLine();
@@ -258,9 +254,5 @@ public class UI {
         } catch (IllegalArgumentException e) {
             System.out.println("Ugyldig disciplin.");
         }
-    }
-
-    public void removeDiscipline() {
-        MemberAdministration.removeDiscipline();
     }
 }
