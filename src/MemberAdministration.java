@@ -28,6 +28,30 @@ public class MemberAdministration {
         System.out.println("Bruger lavet for "+name+": "+birthday);
     }
 
+    public static boolean disintegrateSwimmer(String ID){
+        boolean removedFromAll = MemberList.allMembers.removeIf(a -> a.getMemberID().equals(ID));
+        boolean removedFromUnder = MemberList.under18.removeIf(a -> a.getMemberID().equals(ID));
+        boolean removedFromOver = MemberList.over18.removeIf(a -> a.getMemberID().equals(ID));
+
+        if (removedFromOver){
+            System.out.println("Fjernede "+ID+" fra Over18 listen og fra AllMembers listen.");
+        }
+
+        if (removedFromUnder){
+            System.out.println("Fjernede "+ID+" fra Under18 listen og fra AllMembers listen.");
+        }
+
+        if (removedFromAll && !removedFromOver && !removedFromUnder){
+            System.out.println("Fjernede "+ID+" fra AllMembers listen.");
+        }
+
+        if(!removedFromOver && !removedFromUnder && !removedFromAll){
+            System.out.println(ID+" er ikke et id i databasen.");
+        }
+
+        return removedFromAll || removedFromOver || removedFromUnder;
+    }
+
     public static void addTrainer(){
         ArrayList<Member> valgtListe = null;
 

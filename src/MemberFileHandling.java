@@ -1,5 +1,6 @@
 import java.io.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class MemberFileHandling {
 
@@ -73,6 +74,30 @@ public class MemberFileHandling {
             }
         } catch (IOException e) {
             System.out.println("Fejl ved læsning: " + e.getMessage());
+        }
+    }
+
+    public static void removeMember(String fileName, String ID){
+        try {
+            ArrayList<String> lines = new ArrayList<>();
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+
+            String line = reader.readLine();
+            while (line != null){
+                lines.add(line);
+                line = reader.readLine();
+            }
+            lines.removeIf(l -> l.contains(ID));
+            reader.close();
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+            for (String s : lines){
+                writer.write(s);
+                writer.newLine();
+            }
+            writer.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 } //memberfilehandling
