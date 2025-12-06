@@ -21,9 +21,8 @@ public class UI {
                     "1. Formand-menu\n" +
                     "2. Træner-menu\n" +
                     "3. Kasserer-menu\n" +
-                    "0. Afslut\n" +
-                    "Vælg et punkt: ");
-
+                    "0. Afslut");
+            System.out.print("Vælg et punkt: ");
             String valg = scn.nextLine();
 
             switch (valg) {
@@ -124,8 +123,8 @@ public class UI {
                     "2. Søg efter en medlem i restance\n" +
                     "3. Ændring af restance\n" +
                     "4. Total restance\n" +
-                    "0. Tilbage til Hovedmenu\n" +
-                    "Vælg: ");
+                    "0. Tilbage til Hovedmenu");
+            System.out.print("Vælg: ");
             String valg = scn.nextLine();
 
             switch (valg) {
@@ -161,8 +160,8 @@ public class UI {
                     2. Fjern medlem
                     3. Tilknyt ny træner til hold
                     4. Rediger medlems navn
-                    0. Tilbage til Hovedmenu
-                    Vælg:\s""");
+                    0. Tilbage til Hovedmenu\s""");
+            System.out.print("Vælg:");
             String valg = scn.nextLine();
 
             switch (valg) {
@@ -171,7 +170,7 @@ public class UI {
                     MemberFileHandling.saveMembers(membersFilnavn);
                     break;
                 case "2":
-                    System.out.println("Hvad er medlemmens ID?");
+                    System.out.print("Skriv medlemmens ID: ");
                     String ID = UI.scn.nextLine();
                     if(MemberAdministration.disintegrateSwimmer(ID)){
                         MemberFileHandling.removeMember(membersFilnavn, ID);
@@ -227,7 +226,7 @@ public class UI {
                 case "4":
                     break;
                 default:
-                    System.out.println("Ugyldigt valg");
+                    System.out.println("Ugyldigt valg.");
             }
 
         }
