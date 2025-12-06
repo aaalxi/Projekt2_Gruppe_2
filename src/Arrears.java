@@ -33,7 +33,7 @@ public class Arrears {
     }
 
     public void addPayment() {
-        System.out.println("Medlemmets fulde navn: ");
+        System.out.print("Medlemmets fulde navn: ");
         String name = UI.scn.nextLine();
         Member member = null;
 
@@ -52,7 +52,7 @@ public class Arrears {
 
         System.out.println(name + ", Restance: " + member.getTotalArrears() + " kr");
 
-        System.out.println("Indtast det indbetalte beløb: ");
+        System.out.print("Indtast det indbetalte beløb: ");
         double payment = UI.scn.nextDouble();
         UI.scn.nextLine();
 
@@ -86,7 +86,7 @@ public class Arrears {
     }
 
     public void printMember() {
-        System.out.println("Medlemmets fulde navn: ");
+        System.out.print("Medlemmets fulde navn: ");
         String name = UI.scn.nextLine();
         boolean found = false;
 

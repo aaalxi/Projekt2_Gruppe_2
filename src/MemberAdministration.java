@@ -15,7 +15,7 @@ public class MemberAdministration {
             return;
         }
 
-        System.out.println("Hvad er fødselsdatoen?");
+        System.out.println("Hvad er fødselsdatoen? yyyy-mm-dd");
         LocalDate birthday = LocalDate.parse(UI.scn.nextLine());
 
         if (isCompetitive){
@@ -55,17 +55,17 @@ public class MemberAdministration {
     public static void addTrainer(){
         ArrayList<Member> valgtListe = null;
 
-        System.out.println("Hvad hedder træneren?");
+        System.out.print("Skriv trænerens navn: ");
         String newTrainer = UI.scn.nextLine();
 
         System.out.println("Vælg aldersgruppe træneren skal knyttes til:");
         System.out.println("1. Under 18");
         System.out.println("2. Over 18");
         System.out.println("0. Gå tilbage");
-        String valg = "";
+        System.out.print("Valg: ");
         boolean running = true;
         while(running){
-            valg = UI.scn.nextLine();
+            String valg = UI.scn.nextLine();
             switch (valg){
                 case "1":
                     valgtListe = MemberList.under18;
@@ -89,10 +89,6 @@ public class MemberAdministration {
         System.out.println(newTrainer+" er nu tilknyttet alle konkurrencesvømmere i denne aldersgruppe.");
     }
 
-    static boolean validateUserID(String id){
-        return id.matches("^[a-z]{4}[0-9]{4}$");
-    }
-
     static String createUserID(String name){
         int space = name.indexOf(" ");
         String firstTwo = name.substring(0, 2).toLowerCase();
@@ -103,7 +99,7 @@ public class MemberAdministration {
             lastTwo = name.substring(space+1, space+3).toLowerCase();
         }
         String newUserID = firstTwo + lastTwo + gen.nextInt(10) + gen.nextInt(10) + gen.nextInt(10) + gen.nextInt(10);
-        if (validateUserID(newUserID)){
+        if (InputValidering.validateUserID(newUserID)){
             return newUserID;
         } else {
             System.out.println("Kunne ikke laver ID til brugeren.");
@@ -126,7 +122,7 @@ public class MemberAdministration {
                         System.out.print("Skriv det ønskede navn: ");
                         nytNavn = UI.scn.nextLine();
                         nytNavn = nytNavn.trim();
-                        if (MemberList.isName(nytNavn)) {
+                        if (InputValidering.isName(nytNavn)) {
                             System.out.println("Du har ændret "+m.getName()+" til "+nytNavn);
                             m.setName(nytNavn);
                             setName = false;
@@ -148,6 +144,7 @@ public class MemberAdministration {
                     "1. Konkurrencesvømmer\n"+
                     "2. Motionist\n"+
                     "0. Gå tilbage");
+            System.out.print("Valg: ");
             String valg = UI.scn.nextLine();
             switch (valg) {
                 case "1":

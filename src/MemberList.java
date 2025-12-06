@@ -59,7 +59,7 @@ public class MemberList {
         while (!running) {
             System.out.print("Skriv medlemmets navn: ");
             memberSearchTest = UI.scn.next();
-            if (isName(memberSearchTest)) {
+            if (InputValidering.isName(memberSearchTest)) {
                 memberSearch = memberSearchTest;
                 running = true;
             } else {
@@ -78,16 +78,4 @@ public class MemberList {
             System.out.println(fm.getName() + " : " + fm.getMemberID());
         }
     }
-
-    /**
-     * Denne metode tjekker om en String er et gyldigt navn.
-     * Ved at se om det indeholder a-z stor og småt samt æøå - og mellemrum og min 1 tegn.
-     *
-     * @param s
-     * @return true hvis ikke s er tom og indeholder kravne.
-     */
-    public static boolean isName(String s) {
-        return s != null && s.matches("[a-zA-ZæøåÆØÅ\\- ]+");
-    }
-
 }
