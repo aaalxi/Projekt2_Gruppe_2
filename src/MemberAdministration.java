@@ -141,33 +141,35 @@ public class MemberAdministration {
         String svar, statusSvar;
         System.out.print("Skriv medlems ID: ");
         String id = UI.scn.nextLine();
+        if (InputValidering.validateUserID(id)) {
 
-        for (Member m : MemberList.allMembers) {
-            if (m.getMemberID().equals(id)) {
-                System.out.print("Er du sikker på du vil ændre aktivitets status på medlem :" + m.getName() + " [y/n] : ");
-                svar = UI.scn.nextLine();
-                if (svar.equalsIgnoreCase("y")) {
-                    while (setActivity) {
-                        System.out.println("Hvilken aktivitets status skal: "+m.getName()+" tildeles.");
-                        System.out.println("1: Aktiv\n2: Passiv");
-                        System.out.print("Vælg:");
-                        statusSvar = UI.scn.nextLine();
-                        if (statusSvar.equals("1")) {
-                            m.setActivityStatus(true);
-                            System.out.println("Du har ændret "+m.getName()+"'s Aktivitetsform til at være aktiv");
-                            setActivity=false;
-                        } else if (statusSvar.equals("2")) {
-                            m.setActivityStatus(false);
-                            System.out.println("Du har ændret "+m.getName()+"'s Aktivitetsform til at være passiv");
-                            setActivity=false;
-                        }else{
-                            System.out.println("Ikke et gyldigt valg.");
-                            System.out.print("Prøv igen: ");}
-                    }
+            for (Member m : MemberList.allMembers) {
+                if (m.getMemberID().equals(id)) {
+                    System.out.print("Er du sikker på du vil ændre aktivitets status på medlem :" + m.getName() + " [y/n] : ");
+                    svar = UI.scn.nextLine();
+                    if (svar.equalsIgnoreCase("y")) {
+                        while (setActivity) {
+                            System.out.println("Hvilken aktivitets status skal: " + m.getName() + " tildeles.");
+                            System.out.println("1: Aktiv\n2: Passiv");
+                            System.out.print("Vælg:");
+                            statusSvar = UI.scn.nextLine();
+                            if (statusSvar.equals("1")) {
+                                m.setActivityStatus(true);
+                                System.out.println("Du har ændret " + m.getName() + "'s Aktivitetsform til at være aktiv");
+                                setActivity = false;
+                            } else if (statusSvar.equals("2")) {
+                                m.setActivityStatus(false);
+                                System.out.println("Du har ændret " + m.getName() + "'s Aktivitetsform til at være passiv");
+                                setActivity = false;
+                            } else {
+                                System.out.println("Ikke et gyldigt valg.");
+                                System.out.print("Prøv igen: ");
+                            }
+                        }
+                    } else break;
                 }
-                else break;
             }
-        }
+        } else System.out.println("ugyldigt id, prøv igen");
     }
     public static void createMember() {
         boolean loop = true;
