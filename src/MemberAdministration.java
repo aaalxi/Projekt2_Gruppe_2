@@ -145,23 +145,23 @@ public class MemberAdministration {
             }
         }
     }
-    static void editActivityStatus() {
+    static void editActivityStatus(MemberList memberList, Scanner scn) {
         boolean setActivity = true;
         String svar, statusSvar;
         System.out.print("Skriv medlems ID: ");
-        String id = UI.scn.nextLine();
+        String id = scn.nextLine();
         if (InputValidering.validateUserID(id)) {
 
-            for (Member m : MemberList.allMembers) {
+            for (Member m : memberList.getAllMembers()) {
                 if (m.getMemberID().equals(id)) {
                     System.out.print("Er du sikker på du vil ændre aktivitets status på medlem :" + m.getName() + " [y/n] : ");
-                    svar = UI.scn.nextLine();
+                    svar = scn.nextLine();
                     if (svar.equalsIgnoreCase("y")) {
                         while (setActivity) {
                             System.out.println("Hvilken aktivitets status skal: " + m.getName() + " tildeles.");
                             System.out.println("1: Aktiv\n2: Passiv\n3. tilbage til start");
                             System.out.print("Vælg:");
-                            statusSvar = UI.scn.nextLine();
+                            statusSvar = scn.nextLine();
                             if (statusSvar.equals("1")) {
                                 m.setActivityStatus(true);
                                 System.out.println("Du har ændret " + m.getName() + "'s Aktivitetsform til at være aktiv");
@@ -182,32 +182,6 @@ public class MemberAdministration {
             }
         } else if(!InputValidering.validateUserID(id)){
         System.out.println("ugyldigt id, prøv igen");}
-    }
-    public static void createMember() {
-        boolean loop = true;
-        while(loop){
-            System.out.println("Er den nye medlem konkurrencesvømmer eller motionist?\n"+
-                    "1. Konkurrencesvømmer\n"+
-                    "2. Motionist\n"+
-                    "0. Gå tilbage");
-            System.out.print("Valg: ");
-            String valg = UI.scn.nextLine();
-            switch (valg) {
-                case "1":
-                    loop = false;
-                    addSwimmer(true);
-                    break;
-                case "2":
-                    loop = false;
-                    addSwimmer(false);
-                    break;
-                case "0":
-                    loop = false;
-                    break;
-                default:
-                    System.out.println("Ikke et valg, prøv igen.");
-            }
-        }
     }
 
     static String createUserID(String name) {

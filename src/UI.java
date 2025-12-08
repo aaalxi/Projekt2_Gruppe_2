@@ -144,8 +144,8 @@ public class UI {
                     arrears.sumArrears();
                     break;
                 case "5":
-                    MemberAdministration.editActivityStatus();
-                    MemberFileHandling.saveMembers(membersFilnavn);
+                    MemberAdministration.editActivityStatus(memberList, scn);
+                    MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "0":
                     running = false;
