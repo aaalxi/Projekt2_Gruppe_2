@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class UiService {
+public class UIService {
     public static boolean chairmanPass(Scanner scn) {
         System.out.print("indtast Password: ");
         String login = scn.nextLine();

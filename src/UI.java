@@ -36,7 +36,7 @@ public class UI {
                     if(chairmanPass){
                         showChairmanMenu();
                     } else {
-                        if(UiService.chairmanPass(scn)){
+                        if(UIService.chairmanPass(scn)){
                             showChairmanMenu();
                         }
                     }
@@ -45,7 +45,7 @@ public class UI {
                     if(trainerPass) {
                         showTrainerMenu();
                     } else {
-                        if(UiService.trainerPass(scn)){
+                        if(UIService.trainerPass(scn)){
                             showTrainerMenu();
                         }
                     }
@@ -54,7 +54,7 @@ public class UI {
                     if(cashierPass) {
                         showCashierMenu();
                     } else {
-                        if(UiService.cashierPass(scn)){
+                        if(UIService.cashierPass(scn)){
                             showCashierMenu();
                         }
                     }
