@@ -11,10 +11,7 @@ public class Administration {
         return resultater;
     }
 
-    /**
-     * Metode opretter et objekt Resultat
-     * og tilføjer det til en arraylist Resultater.
-     */
+
     public void addCompetitiveResult(Scanner scanner) {
         System.out.println("Stævne: ");
         String tournament = scanner.nextLine();
@@ -44,8 +41,7 @@ public class Administration {
         resultater.add(r);
         System.out.println("Resultat tilføjet til kategorien: " + category + "!");
     }
-//CompetitionRes (String tournament, String name, String category, LocalDate date, String discipline,
-//                           int distance, double time, int placement)
+
 
     public void addTrainingResult(Scanner scanner) {
         System.out.println("Navn: ");
@@ -107,14 +103,12 @@ public class Administration {
             }
         }
         filteredList.sort(new ResultComparitor());
-        {
-        }
         return filteredList;
     }
 
 
     public void topFive(Scanner scanner) {
-        ArrayList<Result> listResults = new ArrayList<>();
+        ArrayList<Result> listResults;
 
         System.out.println("Hvilken kategori? (U18/O18): ");
         String category = scanner.nextLine().toUpperCase();

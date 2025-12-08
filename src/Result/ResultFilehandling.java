@@ -6,12 +6,9 @@ import java.util.ArrayList;
 
 public class ResultFilehandling {
 
-    // public TrainingRes (String name, String category, LocalDate date, String discipline, int distance, double time) {
-    //   super(false, name, category, date, discipline, distance, time);            //isCompetitve = false
-
 
     public static void saveResult(ArrayList<Result> results) {
-//skal ikke lukke writer når det står med resources
+//skal ikke lukke writer når try + resources
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src//Database//CompetitionResults.txt"))) {
             for (Result r : results) {
 
@@ -31,6 +28,7 @@ public class ResultFilehandling {
         }
     }
 
+
     public static void loadResult(ArrayList<Result> results) {
         results.clear();          //behøver ikke appende writer, loader fra txt
         try (BufferedReader reader = new BufferedReader(new FileReader("src//Database//CompetitionResults.txt"))) {
@@ -45,7 +43,6 @@ public class ResultFilehandling {
                 double time = Double.parseDouble(data[5]);
                 boolean isCompetitive = Boolean.parseBoolean(data[6]);
 
-
                 if (isCompetitive) {
                     String tournament = data[7];
                     int placement = Integer.parseInt(data[8].toUpperCase());
@@ -56,7 +53,7 @@ public class ResultFilehandling {
                     TrainingRes r = new TrainingRes(name, category, date, discipline, distance, time);
                     results.add(r);
                 }
-                line = reader.readLine();  //ny linje
+                line = reader.readLine();  //læs ny linje
             }
 
         } catch (IOException e) {

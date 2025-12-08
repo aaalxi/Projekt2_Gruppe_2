@@ -68,6 +68,4 @@ abstract class Result {    //klasse til at skabe resultat objekter
         return "Er konkurrence: " + isCompetitive + " | Dato: " + date + " | " + name + " | " + category + " | "
                 + discipline + " | " + distance + " m | " + time + " mm.ss";
     }
-
-
 }

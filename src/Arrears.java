@@ -13,6 +13,7 @@ public class Arrears {
         this.membersArrears = new ArrayList<>();
     }
 
+
     public void updateArrears() {
         for (Member m : members) {
 
@@ -32,6 +33,7 @@ public class Arrears {
             }
         }
     }
+
 
     public void addPayment(Scanner scn) {
         System.out.print("Medlemmets fulde navn: ");
@@ -67,6 +69,7 @@ public class Arrears {
         System.out.println("Indbetalingen er registreret!");
     }
 
+
     public void sumArrears() {
         updateArrears();
         double sum = 0;
@@ -86,6 +89,7 @@ public class Arrears {
         }
     }
 
+
     public void printMember(Scanner scn) {
         System.out.print("Medlemmets fulde navn: ");
         String name = scn.nextLine();
@@ -102,6 +106,7 @@ public class Arrears {
             System.out.println("Kunne ikke finde medlemmet i restance!");
         }
     }
+
 
     public double getYearlyQuota(Member member){
         switch (member.getSubscriptionType()){
