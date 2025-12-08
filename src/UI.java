@@ -178,11 +178,11 @@ public class UI {
                     }
                     break;
                 case "3":
-                    MemberAdministration.addTrainer(memberList);
+                    MemberAdministration.addTrainer(memberList, scn);
                     MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "4":
-                    MemberAdministration.editMemberName(memberList);
+                    MemberAdministration.editMemberName(memberList, scn);
                     MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "0":
