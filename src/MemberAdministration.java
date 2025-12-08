@@ -160,11 +160,9 @@ public class MemberAdministration {
                             m.setActivityStatus(false);
                             System.out.println("Du har ændret "+m.getName()+"'s Aktivitetsform til at være passiv");
                             setActivity=false;
-                        }
-                        {
+                        }else{
                             System.out.println("Ikke et gyldigt valg.");
-                            System.out.print("Prøv igen: ");
-                        }
+                            System.out.print("Prøv igen: ");}
                     }
                 }
                 else break;

@@ -144,6 +144,7 @@ public class UI {
                     break;
                 case "5":
                     MemberAdministration.editActivityStatus();
+                    MemberFileHandling.saveMembers(membersFilnavn);
                 case "0":
                     running = false;
                     break;
