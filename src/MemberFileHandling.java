@@ -17,7 +17,7 @@ public class MemberFileHandling {
 // Her laves der en string som er en samling af de relevante data fra m og printet ind i en textfil
                 String linje = m.getMemberID() + ";" + m.getName() + ";" + m.getDateOfBirth() +
                         ";" + m.getIsCompetitive() + ";" + m.getTotalArrears() + ";" + trainer + ";"
-                        + disciplinesString + ";" + m.getCreateDate() + ";" + m.getNextPayment();
+                        + disciplinesString + ";" + m.getCreateDate() + ";" + m.getNextPayment() +";"+ m.getIsActive();
                 pw.println(linje);
 
             }
