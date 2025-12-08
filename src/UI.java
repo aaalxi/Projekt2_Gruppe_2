@@ -7,6 +7,7 @@ public class UI {
     static Scanner scn = new Scanner(System.in);
     private final MemberList memberList = new MemberList();
     Arrears arrears = new Arrears(memberList.getAllMembers());
+    Administration results = new Administration();
     private final String membersFilnavn = "src//Database//Members.txt";
     static boolean chairmanPass = false;
     static boolean trainerPass = false;
@@ -17,7 +18,7 @@ public class UI {
         MemberFileHandling.loadMembers(membersFilnavn, memberList.getAllMembers());
         memberList.addMembersToTeamList();
         arrears.updateArrears();
-        ResultFilehandling.loadResult();
+        ResultFilehandling.loadResult(results.getResultater());
         boolean running = true;
         AsciiArt.printDelfin1();
         while (running) {
@@ -208,7 +209,6 @@ public class UI {
      * lader træner oprette og slette stævnedata
      */
     public void competitionMenu() {
-        Administration results = new Administration();
         boolean running = true;
         while (running) {
             System.out.println("--- StævneMenu ---\n" +
@@ -225,11 +225,11 @@ public class UI {
             switch (valg) {
                 case "1":
                     results.addCompetitiveResult(scn);
-                    ResultFilehandling.saveResult();
+                    ResultFilehandling.saveResult(results.getResultater());
                     break;
                 case "2":
                     results.addTrainingResult(scn);
-                    ResultFilehandling.saveResult();
+                    ResultFilehandling.saveResult(results.getResultater());
                     break;
                 case "3":
                     results.printCompetitive();

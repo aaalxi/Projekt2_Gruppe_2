@@ -3,12 +3,14 @@ package Result;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Scanner;
 
 public class Administration {
-    static ArrayList<Result> resultater = new ArrayList<>();
+    private final ArrayList<Result> resultater = new ArrayList<>();
 
+    public ArrayList<Result> getResultater(){
+        return resultater;
+    }
 
     /**
      * Metode opretter et objekt Resultat
@@ -72,7 +74,7 @@ public class Administration {
 
 
     public void printCompetitive() {
-        ResultFilehandling.loadResult();
+        ResultFilehandling.loadResult(resultater);
         for (Result r : resultater) {
             if (r instanceof CompetitionRes)
                 System.out.println(r);
@@ -81,7 +83,7 @@ public class Administration {
 
 
     public void printTraining() {
-        ResultFilehandling.loadResult();
+        ResultFilehandling.loadResult(resultater);
         for (Result r : resultater) {
             if (r instanceof TrainingRes) {
                 System.out.println(r);
@@ -98,6 +100,7 @@ public class Administration {
 
         System.out.println("Hvilken distance? (m):");
         int distance = scanner.nextInt();
+        scanner.nextLine();
 
         for (Result r : resultater) {
             if (r.getCategory().equalsIgnoreCase(category)
@@ -106,7 +109,7 @@ public class Administration {
                 filteredList.add(r);
             }
         }
-        Collections.sort(filteredList, new ResultComparitor());
+        filteredList.sort(new ResultComparitor());
         {
         }
         return filteredList;

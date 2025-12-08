@@ -2,6 +2,7 @@ package Result;
 
 import java.io.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class ResultFilehandling {
 
@@ -9,10 +10,10 @@ public class ResultFilehandling {
      //   super(false, name, category, date, discipline, distance, time);            //isCompetitve = false
 
 
-    public static void saveResult() {
+    public static void saveResult(ArrayList<Result> results) {
 //skal ikke lukke writer når det står med resources
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("src//Database//CompetitionResults.txt"))) {
-            for (Result r : Administration.resultater) {
+            for (Result r : results) {
 
                 String line = r.getDate() + ";" + r.getName() + ";" + r.getCategory() + ";" + r.getDiscipline() + ";"
                         + r.getDistance() + ";" + r.getTime() + ";" + r.getIsCompetitive();
@@ -30,8 +31,8 @@ public class ResultFilehandling {
         }
     }
 
-    public static void loadResult() {
-        Administration.resultater.clear();          //behøver ikke appende writer, loader fra txt
+    public static void loadResult(ArrayList<Result> results) {
+        results.clear();          //behøver ikke appende writer, loader fra txt
         try (BufferedReader reader = new BufferedReader(new FileReader("src//Database//CompetitionResults.txt"))) {
             String line = reader.readLine();
             while (line != null) {
@@ -50,11 +51,11 @@ public class ResultFilehandling {
                     int placement = Integer.parseInt(data[8].toUpperCase());
                     CompetitionRes r = new CompetitionRes(tournament, name, category, date, discipline, distance,
                             time, placement);
-                    Administration.resultater.add(r);
+                    results.add(r);
                 }
                 else {
                     TrainingRes r = new TrainingRes(name, category, date, discipline, distance, time);
-                    Administration.resultater.add(r);
+                    results.add(r);
                 }
                 line = reader.readLine();  //ny linje
             }
