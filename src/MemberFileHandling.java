@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class MemberFileHandling {
 
-    public static void saveMembers(String fileName) {
+    public static void saveMembers(String fileName, ArrayList<Member> members) {
 
         try (PrintWriter pw = new PrintWriter(new FileWriter(fileName))) {
-            for (Member m : MemberList.allMembers) {
+            for (Member m : members) {
                 String trainer = "";
                 String disciplinesString = "";
                 if (m instanceof Competitive comp) { // hvis m er Competitive, castes den automatisk til comp så man ikke behøver skrive (Competitive)m
@@ -27,8 +27,8 @@ public class MemberFileHandling {
         }
     }
 
-    public static void loadMembers(String fileName) {
-        MemberList.allMembers.clear(); //clear for at være sikker på der ikke bliver gemt dups og at arraylisten allMembers er tom.
+    public static void loadMembers(String fileName, ArrayList<Member> members) {
+        members.clear(); //clear for at være sikker på der ikke bliver gemt dups og at arraylisten allMembers er tom.
 
 
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
@@ -45,7 +45,6 @@ public class MemberFileHandling {
 
                 if (comp.equals("true")) {
                     Competitive m = new Competitive(id, name, dateBirth, totalArrears);
-                    MemberList.allMembers.add(m);
 
                     String trainer = data.length > 5 ? data[5] : "";
                     m.setTrainer(trainer);
@@ -56,20 +55,21 @@ public class MemberFileHandling {
 
                     if (!disciplineString.isEmpty()) {
                         String[] discipliner = disciplineString.split(", ");
-
                         for (String d : discipliner) {
                             if (!d.isEmpty()) {
                                 m.addDiscipline(Discipline.valueOf(d));
                             }
                         }
-                    } m.setCreateDate(createDate);
+                    }
+                    m.setCreateDate(createDate);
                     m.setNextPayment(nextPayment);
+                    members.add(m);
                 }
                 if (comp.equals("false")) {
                     Member m = new Casual(id, name, dateBirth, totalArrears);
                     m.setCreateDate(createDate);
                     m.setNextPayment(nextPayment);
-                    MemberList.allMembers.add(m);
+                    members.add(m);
                 }
             }
         } catch (IOException e) {

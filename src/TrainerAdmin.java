@@ -1,5 +1,5 @@
 public class TrainerAdmin {
-    public static void addDiscipline() {
+    public static void addDiscipline(MemberList memberList) {
         System.out.print("Skriv medlems ID: ");
         String id = UI.scn.nextLine();
 
@@ -8,16 +8,16 @@ public class TrainerAdmin {
 
         try {
             Discipline discipline = Discipline.valueOf(d);
-            addDisciplineToCompetitive(id, discipline);
+            addDisciplineToCompetitive(memberList, id, discipline);
         } catch (IllegalArgumentException e) {
             System.out.println("Ugyldig disciplin.");
         }
     }
 
-    static void addDisciplineToCompetitive(String memberID, Discipline discipline){
+    static void addDisciplineToCompetitive(MemberList memberList, String memberID, Discipline discipline){
 
         Member fundet = null;
-        for(Member m : MemberList.allMembers){
+        for(Member m : memberList.getAllMembers()){
             if (m.getMemberID().equals(memberID)){
                 fundet = m;
                 break;
@@ -38,7 +38,7 @@ public class TrainerAdmin {
         comp.addDiscipline(discipline);
     }
 
-    static void removeDiscipline(){
+   public static void removeDiscipline(MemberList memberList){
         String ID;
         Discipline discipline;
         System.out.println("Skriv medlems ID:");
@@ -56,7 +56,7 @@ public class TrainerAdmin {
             }
         }
         Member fundet = null;
-        for(Member m : MemberList.allMembers){
+        for(Member m : memberList.getAllMembers()){
             if (m.getMemberID().equals(ID)){
                 fundet = m;
                 break;
@@ -70,5 +70,7 @@ public class TrainerAdmin {
 
         Competitive comp = (Competitive) fundet;
         comp.removeDiscipline(discipline);
+
+        memberList.addMembersToTeamList();
     }
 }

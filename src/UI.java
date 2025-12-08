@@ -3,16 +3,17 @@ import java.util.Scanner;
 
 public class UI {
     static Scanner scn = new Scanner(System.in);
-    Arrears arrears = new Arrears(MemberList.allMembers);
-    String membersFilnavn = "src//Database//Members.txt";
+    private final MemberList memberList = new MemberList();
+    Arrears arrears = new Arrears(memberList.getAllMembers());
+    private final String membersFilnavn = "src//Database//Members.txt";
     static boolean chairmanPass = false;
     static boolean trainerPass = false;
     static boolean cashierPass = false;
 
 
     public void showMainMenu() {
-        MemberFileHandling.loadMembers(membersFilnavn);
-        MemberList.addMembersToTeamList();
+        MemberFileHandling.loadMembers(membersFilnavn, memberList.getAllMembers());
+        memberList.addMembersToTeamList();
         arrears.updateArrears();
         boolean running = true;
         AsciiArt.printDelfin1();
@@ -81,24 +82,24 @@ public class UI {
             switch (valg) {
                 case "1":
                     System.out.println("--- Liste med konkurrencemedlemmer under 18 ---");
-                    MemberList.printCompetitive(MemberList.under18);
+                    memberList.printCompetitive(memberList.getUnder18());
                     running = false;
                     break;
                 case "2":
                     System.out.println("--- Liste med konkurrencemedlemmer over 18 ---");
-                    MemberList.printCompetitive(MemberList.over18);
+                    memberList.printCompetitive(memberList.getOver18());
                     running = false;
                     break;
                 case "3":
-                    TrainerAdmin.addDiscipline();
-                    MemberFileHandling.saveMembers(membersFilnavn);
+                    TrainerAdmin.addDiscipline(memberList);
+                    MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "4":
-                    TrainerAdmin.removeDiscipline();
-                    MemberFileHandling.saveMembers(membersFilnavn);
+                    TrainerAdmin.removeDiscipline(memberList);
+                    MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "5":
-                    MemberList.searchMemberName(MemberList.allMembers);
+                    memberList.searchMemberName(memberList.getAllMembers());
                     scn.nextLine();
                     System.out.println();
                     break;
@@ -136,7 +137,7 @@ public class UI {
                     break;
                 case "3":
                     arrears.addPayment();
-                    MemberFileHandling.saveMembers(membersFilnavn);
+                    MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "4":
                     arrears.sumArrears();
@@ -166,23 +167,23 @@ public class UI {
 
             switch (valg) {
                 case "1":
-                    MemberAdministration.createMember();
-                    MemberFileHandling.saveMembers(membersFilnavn);
+                    MemberAdministration.createMember(memberList);
+                    MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "2":
                     System.out.print("Skriv medlemmens ID: ");
                     String ID = UI.scn.nextLine();
-                    if(MemberAdministration.disintegrateSwimmer(ID)){
+                    if(MemberAdministration.disintegrateSwimmer(ID, memberList)){
                         MemberFileHandling.removeMember(membersFilnavn, ID);
                     }
                     break;
                 case "3":
-                    MemberAdministration.addTrainer();
-                    MemberFileHandling.saveMembers(membersFilnavn);
+                    MemberAdministration.addTrainer(memberList);
+                    MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "4":
-                    MemberAdministration.editMemberName();
-                    MemberFileHandling.saveMembers(membersFilnavn);
+                    MemberAdministration.editMemberName(memberList);
+                    MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "0":
                     running = false;
