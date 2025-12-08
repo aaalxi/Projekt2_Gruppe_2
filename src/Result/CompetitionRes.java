@@ -1,17 +1,19 @@
 package Result;
 
+import java.time.LocalDate;
+
 public class CompetitionRes extends Result{
 
     private int placement;
     private String tournament;
 
 
-    public CompetitionRes (String tournament, String name, String category, String discipline, int distance,
-                           double time, int placement) {
+    public CompetitionRes (String tournament, String name, String category, LocalDate date, String discipline,
+                           int distance, double time, int placement) {
 
-        super(true, name, category, discipline, distance, time);
+        super(true, name, category, date, discipline, distance, time);
         this.placement=placement;
-        this.tournament=tournament;
+        this.tournament=tournament.toUpperCase();
     }
 
 
@@ -29,5 +31,9 @@ public class CompetitionRes extends Result{
 
     public void setTournament (String tournament) {
         this.tournament = tournament;
+    }
+
+    public String toString () {
+        return super.toString() + " | " + tournament + " | Placering: " + placement;
     }
 }

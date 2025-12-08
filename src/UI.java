@@ -1,4 +1,6 @@
 import Result.Administration;
+import Result.ResultFilehandling;
+
 import java.util.Scanner;
 
 public class UI {
@@ -15,13 +17,15 @@ public class UI {
         MemberFileHandling.loadMembers(membersFilnavn, memberList.getAllMembers());
         memberList.addMembersToTeamList();
         arrears.updateArrears();
+        ResultFilehandling.loadResult();
         boolean running = true;
         AsciiArt.printDelfin1();
         while (running) {
             System.out.println("=== Hovedmenu ===\n" +
-                    "1. Formand-menu\n" +
-                    "2. Træner-menu\n" +
-                    "3. Kasserer-menu\n" +
+                    "1. Formand menu\n"+
+                    "2. Træner menu\n"+
+                    "3. Kasserer menu\n"+
+                    "4. Stævne menu\n"+
                     "0. Afslut");
             System.out.print("Vælg et punkt: ");
             String valg = scn.nextLine();
@@ -54,6 +58,9 @@ public class UI {
                         }
                     }
                     break;
+                case "4":
+                    competitionMenu();
+                    break;
                 case "0":
                     running = false;
                     System.out.println("Programmet afsluttes.");
@@ -74,7 +81,6 @@ public class UI {
                     "3. Tilknyt disciplin til en konkurrencesvømmer\n" +
                     "4. Fjern disciplin fra medlem\n" +
                     "5. Søg på medlem via navn.\n" +
-                    "6. Vis stævnemenu.\n" +
                     "0. Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
             String valg = scn.nextLine();
@@ -102,9 +108,6 @@ public class UI {
                     memberList.searchMemberName(memberList.getAllMembers(),scn);
                     scn.nextLine();
                     System.out.println();
-                    break;
-                case "6":
-                    competitionMenu();
                     break;
                 case "0":
                     running = false;
@@ -205,31 +208,43 @@ public class UI {
      * lader træner oprette og slette stævnedata
      */
     public void competitionMenu() {
-        Administration competitionHandling = new Administration();
+        Administration results = new Administration();
         boolean running = true;
         while (running) {
             System.out.println("--- StævneMenu ---\n" +
-                    "1. Indtast ny stævnedata.\n" +
-                    "2. Se stævnedata\n" +
-                    "3. Slet stævnedata\n" +
-                    "4. maybe funktion, maybe not funktion\n" +
+                    "1. Ny stævnedata\n" +
+                    "2. Ny Træningsdata\n" +
+                    "3. Se Stævnedata\n" +
+                    "4: Se Træningsdata\n"+
+                    "5: Se top 5 i Kategori\n"+
+                    "6. Slet stævnedata\n" +
                     "0. Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
             String valg = scn.nextLine();
 
             switch (valg) {
-                case "0":
-                    running = false;
-                    break;
                 case "1":
-              //      competitionHandling.addResults();
+                    results.addCompetitiveResult(scn);
+                    ResultFilehandling.saveResult();
                     break;
                 case "2":
+                    results.addTrainingResult(scn);
+                    ResultFilehandling.saveResult();
                     break;
                 case "3":
-                    competitionHandling.deleteResults();
+                    results.printCompetitive();
                     break;
                 case "4":
+                    results.printTraining();
+                    break;
+                case "5":
+                    results.topFive(scn);
+                    break;
+                case "6":
+                    results.deleteResults(scn);
+                    break;
+                case "0":
+                    running = false;
                     break;
                 default:
                     System.out.println("Ugyldigt valg.");
