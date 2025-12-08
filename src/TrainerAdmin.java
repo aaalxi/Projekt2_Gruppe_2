@@ -1,10 +1,12 @@
+import java.util.Scanner;
+
 public class TrainerAdmin {
-    public static void addDiscipline(MemberList memberList) {
+    public static void addDiscipline(MemberList memberList, Scanner scn) {
         System.out.print("Skriv medlems ID: ");
-        String id = UI.scn.nextLine();
+        String id = scn.nextLine();
 
         System.out.print("Vælg disciplin (BUTTERFLY/BACKSTROKE/BREASTSTROKE/FREESTYLE): ");
-        String d = UI.scn.nextLine().toUpperCase();
+        String d = scn.nextLine().toUpperCase();
 
         try {
             Discipline discipline = Discipline.valueOf(d);
@@ -29,23 +31,23 @@ public class TrainerAdmin {
             return;
         }
 
-        if (!(fundet instanceof Competitive)){
+        if (!(fundet instanceof Competitive comp)){
             System.out.println("Medlemmet er ikke konkurrencesvømmer.");
             return;
         }
 
-        Competitive comp = (Competitive) fundet;
         comp.addDiscipline(discipline);
+        memberList.addMembersToTeamList();
     }
 
-   public static void removeDiscipline(MemberList memberList){
+   public static void removeDiscipline(MemberList memberList, Scanner scn){
         String ID;
         Discipline discipline;
         System.out.println("Skriv medlems ID:");
-        ID = UI.scn.nextLine();
+        ID = scn.nextLine();
         while (true){ // loop of doom and despair
             System.out.println("Vælg disciplin (BUTTERFLY/BACKSTROKE/BREASTSTROKE/FREESTYLE): ");
-            String d = UI.scn.nextLine().toUpperCase();
+            String d = scn.nextLine().toUpperCase();
 
             try{
                 discipline = Discipline.valueOf(d);

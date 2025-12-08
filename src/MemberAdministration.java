@@ -1,11 +1,12 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class MemberAdministration {
     private static final Random gen = new Random();
 
-    public static void createMember(MemberList memberList) {
+    public static void createMember(MemberList memberList, Scanner scn) {
         boolean loop = true;
 
         while (loop) {
@@ -20,11 +21,11 @@ public class MemberAdministration {
 
             switch (valg) {
                 case "1" -> {
-                    addSwimmer(true, memberList);
+                    addSwimmer(true, memberList,scn);
                     loop = false;
                 }
                 case "2" -> {
-                    addSwimmer(false, memberList);
+                    addSwimmer(false, memberList, scn);
                     loop = false;
                 }
                 case "0" -> loop = false;
@@ -33,9 +34,9 @@ public class MemberAdministration {
         }
     }
 
-    public static void addSwimmer(boolean isCompetitive, MemberList memberList) {
+    public static void addSwimmer(boolean isCompetitive, MemberList memberList, Scanner scn) {
         System.out.println("Hvad er navnet?");
-        String name = UI.scn.nextLine();
+        String name = scn.nextLine();
 
         String userID = createUserID(name);
         if (userID.isEmpty()) {

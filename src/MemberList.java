@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class MemberList {
     private final ArrayList<Member> allMembers = new ArrayList<>();
@@ -37,7 +38,7 @@ public class MemberList {
         }
     }
 
-    public void searchMemberName(ArrayList<Member> liste) {
+    public void searchMemberName(ArrayList<Member> liste, Scanner scn) {
         boolean running = false;
         String memberSearch = "";
         String memberSearchTest;
@@ -47,7 +48,7 @@ public class MemberList {
 
         while (!running) {
             System.out.print("Skriv medlemmets navn: ");
-            memberSearchTest = UI.scn.next();
+            memberSearchTest = scn.next();
             if (InputValidering.isName(memberSearchTest)) {
                 memberSearch = memberSearchTest;
                 running = true;

@@ -31,7 +31,7 @@ public class UI {
                     if(chairmanPass){
                         showChairmanMenu();
                     } else {
-                        if(UiService.chairmanPass()){
+                        if(UiService.chairmanPass(scn)){
                             showChairmanMenu();
                         }
                     }
@@ -40,7 +40,7 @@ public class UI {
                     if(trainerPass) {
                         showTrainerMenu();
                     } else {
-                        if(UiService.trainerPass()){
+                        if(UiService.trainerPass(scn)){
                             showTrainerMenu();
                         }
                     }
@@ -49,7 +49,7 @@ public class UI {
                     if(cashierPass) {
                         showCashierMenu();
                     } else {
-                        if(UiService.cashierPass()){
+                        if(UiService.cashierPass(scn)){
                             showCashierMenu();
                         }
                     }
@@ -91,15 +91,15 @@ public class UI {
                     running = false;
                     break;
                 case "3":
-                    TrainerAdmin.addDiscipline(memberList);
+                    TrainerAdmin.addDiscipline(memberList,scn);
                     MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "4":
-                    TrainerAdmin.removeDiscipline(memberList);
+                    TrainerAdmin.removeDiscipline(memberList,scn);
                     MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "5":
-                    memberList.searchMemberName(memberList.getAllMembers());
+                    memberList.searchMemberName(memberList.getAllMembers(),scn);
                     scn.nextLine();
                     System.out.println();
                     break;
@@ -133,10 +133,10 @@ public class UI {
                     arrears.printAll();
                     break;
                 case "2":
-                    arrears.printMember();
+                    arrears.printMember(scn);
                     break;
                 case "3":
-                    arrears.addPayment();
+                    arrears.addPayment(scn);
                     MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "4":
@@ -167,12 +167,12 @@ public class UI {
 
             switch (valg) {
                 case "1":
-                    MemberAdministration.createMember(memberList);
+                    MemberAdministration.createMember(memberList,scn);
                     MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "2":
                     System.out.print("Skriv medlemmens ID: ");
-                    String ID = UI.scn.nextLine();
+                    String ID = scn.nextLine();
                     if(MemberAdministration.disintegrateSwimmer(ID, memberList)){
                         MemberFileHandling.removeMember(membersFilnavn, ID);
                     }

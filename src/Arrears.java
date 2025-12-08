@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Arrears {
     private LocalDate today = LocalDate.now();
@@ -32,9 +33,9 @@ public class Arrears {
         }
     }
 
-    public void addPayment() {
+    public void addPayment(Scanner scn) {
         System.out.print("Medlemmets fulde navn: ");
-        String name = UI.scn.nextLine();
+        String name = scn.nextLine();
         Member member = null;
 
         for (Member m : membersArrears) {
@@ -53,8 +54,8 @@ public class Arrears {
         System.out.println(name + ", Restance: " + member.getTotalArrears() + " kr");
 
         System.out.print("Indtast det indbetalte beløb: ");
-        double payment = UI.scn.nextDouble();
-        UI.scn.nextLine();
+        double payment = scn.nextDouble();
+        scn.nextLine();
 
         member.setTotalArrears(member.getTotalArrears() - payment);
 
@@ -85,9 +86,9 @@ public class Arrears {
         }
     }
 
-    public void printMember() {
+    public void printMember(Scanner scn) {
         System.out.print("Medlemmets fulde navn: ");
-        String name = UI.scn.nextLine();
+        String name = scn.nextLine();
         boolean found = false;
 
         for (Member m : membersArrears) {
