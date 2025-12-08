@@ -6,7 +6,7 @@ abstract class Result {    //klasse til at skabe resultat objekter
     private boolean isCompetitive;
     private String name;
     private String category;
-    LocalDate date;
+    private LocalDate date;
     private String discipline;           //enum i stedet
     private int distance;
     private double time;

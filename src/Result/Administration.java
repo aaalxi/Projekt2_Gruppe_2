@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Administration {
     private final ArrayList<Result> resultater = new ArrayList<>();
 
-    public ArrayList<Result> getResultater(){
+    public ArrayList<Result> getResultater() {
         return resultater;
     }
 
@@ -71,18 +71,16 @@ public class Administration {
         System.out.println("Resultat tilføjet til kategorien: " + category + "!");
     }
 
-
+    //Hvis fucked tilføj load metode igen
     public void printCompetitive() {
-        ResultFilehandling.loadResult(resultater);
         for (Result r : resultater) {
             if (r instanceof CompetitionRes)
                 System.out.println(r);
         }
     }
 
-
+//Hvis fucked tilføj load metode igen
     public void printTraining() {
-        ResultFilehandling.loadResult(resultater);
         for (Result r : resultater) {
             if (r instanceof TrainingRes) {
                 System.out.println(r);

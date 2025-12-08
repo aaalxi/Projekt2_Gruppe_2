@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class ResultFilehandling {
 
-   // public TrainingRes (String name, String category, LocalDate date, String discipline, int distance, double time) {
-     //   super(false, name, category, date, discipline, distance, time);            //isCompetitve = false
+    // public TrainingRes (String name, String category, LocalDate date, String discipline, int distance, double time) {
+    //   super(false, name, category, date, discipline, distance, time);            //isCompetitve = false
 
 
     public static void saveResult(ArrayList<Result> results) {
@@ -39,7 +39,7 @@ public class ResultFilehandling {
                 String[] data = line.split(";");
                 LocalDate date = LocalDate.parse(data[0]);
                 String name = data[1];
-                String category = data [2].toUpperCase();
+                String category = data[2].toUpperCase();
                 String discipline = data[3].toUpperCase();
                 int distance = Integer.parseInt(data[4]);
                 double time = Double.parseDouble(data[5]);
@@ -47,13 +47,12 @@ public class ResultFilehandling {
 
 
                 if (isCompetitive) {
-                    String tournament = data [7];
+                    String tournament = data[7];
                     int placement = Integer.parseInt(data[8].toUpperCase());
                     CompetitionRes r = new CompetitionRes(tournament, name, category, date, discipline, distance,
                             time, placement);
                     results.add(r);
-                }
-                else {
+                } else {
                     TrainingRes r = new TrainingRes(name, category, date, discipline, distance, time);
                     results.add(r);
                 }
@@ -64,8 +63,4 @@ public class ResultFilehandling {
             System.out.println("Kunne ikke indlæse resultater fra fil!" + e.getMessage());
         }
     }
-
-
-
-
 }

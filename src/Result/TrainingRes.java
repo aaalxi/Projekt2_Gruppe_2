@@ -9,7 +9,4 @@ public class TrainingRes extends Result {
         super(false, name, category, date, discipline, distance, time);            //isCompetitve = false
 
     }
-
-
-
 }
