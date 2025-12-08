@@ -123,6 +123,7 @@ public class UI {
                     "2. Søg efter en medlem i restance\n" +
                     "3. Ændring af restance\n" +
                     "4. Total restance\n" +
+                    "5. Ændring af aktivitets status\n" +
                     "0. Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
             String valg = scn.nextLine();
@@ -141,6 +142,8 @@ public class UI {
                 case "4":
                     arrears.sumArrears();
                     break;
+                case "5":
+                    MemberAdministration.editActivityStatus();
                 case "0":
                     running = false;
                     break;

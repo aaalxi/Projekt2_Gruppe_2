@@ -24,10 +24,13 @@ public abstract class Member {
         this.createDate=LocalDate.now();
         this.nextPayment=createDate.plusYears(1);
         this.currentAge=calculateAge();
-        updateAgeStatus();
+        updateSubscriptionType();
     }
 
-    public void updateAgeStatus(){
+    public void updateSubscriptionType(){
+        if(!isActive) {
+            setSubscriptionType(SubscriptionType.Passive);
+        }
         if(isActive){
             if(getCurrentAge() < 18){
                 setSubscriptionType(SubscriptionType.Under18);
@@ -36,8 +39,6 @@ public abstract class Member {
             } else {
                 setSubscriptionType(SubscriptionType.Over60);
             }
-        } else {
-            setSubscriptionType(SubscriptionType.Passive);
         }
 
     }
@@ -119,5 +120,13 @@ public abstract class Member {
 
     public String printArrears () {
         return createDate + ": " + name + " --- MemberID: " + memberID + " --- Restance: " + totalArrears + " kr.";
+    }
+
+    public boolean getActivityStatus(){
+        return isActive;
+    }
+
+    public void setActivityStatus(boolean active){
+        this.isActive=active;
     }
 }
