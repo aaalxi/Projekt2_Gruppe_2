@@ -273,21 +273,22 @@ public class ResAdministration {
      * fjerner derefter objektet fra arraylisten.
      */
     public void deleteResults(Scanner scanner) {
-
         if (resultater.isEmpty()) {
             System.out.println("Der er ingen resultater at slette!");
             return;
         }
 
-        System.out.println("Hvilket resultat?");
+        System.out.println("Hvilket resultat vil du slette?");
         for (int i = 0; i < resultater.size(); i++) {
             Result r = resultater.get(i);
-
-            if (r instanceof CompetitionRes) {
-                //tostring
+            System.out.print(i+1 +": \t");
+            System.out.println(r);
+        }
+         //   if (r instanceof CompetitionRes) {
+                //System.out.println(r);
             }
         }
-
+/*
 
         System.out.println("Indtast nummeret på resultatet");
         String valg = scanner.nextLine();
@@ -311,5 +312,5 @@ public class ResAdministration {
         } catch (NumberFormatException e) {
             System.out.println("Indtast et tal");
         }
-    }
-}
+    }*/
+//}

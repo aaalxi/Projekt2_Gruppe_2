@@ -67,7 +67,6 @@ public class UI {
                     System.out.println("Ugyldigt valg, prøv igen.");
             }
         }//while running loop
-
     }
 
     public void showTrainerMenu() {

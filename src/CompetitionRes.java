@@ -14,13 +14,12 @@ public class CompetitionRes extends Result{
         this.tournament=tournament.toUpperCase();
     }
 
+    public void setPlacement (int placement) {
+        this.placement = placement;
+    }
 
     public int getPlacement () {
         return placement;
-    }
-
-    public void setPlacement (int placement) {
-        this.placement = placement;
     }
 
     public String getTournament () {
