@@ -1,5 +1,5 @@
 jezz3357;Rune;2010-12-25;true;0.0;Bo;[BUTTERFLY, BACKSTROKE, BREASTSTROKE];2023-11-11;2027-11-11;true
-bozz6515;Bo;1992-05-06;true;3200.0;Einstein;[BACKSTROKE];2025-11-11;2027-11-11;true
+bozz6515;Bo;1992-05-06;true;0.0;Einstein;[BACKSTROKE];2025-11-11;2027-11-11;true
 aval5317;Ava Ali;1992-11-11;true;0.0;Einstein;[];2024-12-03;2026-12-04;true
 haer5808;Hans Erik;1994-12-10;false;0.0;;;2025-12-05;2026-12-05;true
 dezz1136;Dennis;1992-07-17;true;0.0;Einstein;[];2025-12-05;2026-12-05;true
