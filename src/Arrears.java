@@ -35,9 +35,9 @@ public class Arrears {
     }
 
 
-    public void addPayment(Scanner scn) {
+    public void addPayment(Scanner scanner) {
         System.out.print("Medlemmets fulde navn: ");
-        String name = scn.nextLine();
+        String name = scanner.nextLine();
         Member member = null;
 
         for (Member m : membersArrears) {
@@ -52,12 +52,12 @@ public class Arrears {
             System.out.println("Medlem ikke fundet!");
             return;
         }
+        double arrears = member.getTotalArrears();
+        System.out.println(name + ", Restance: " + arrears + " kr");
 
-        System.out.println(name + ", Restance: " + member.getTotalArrears() + " kr");
 
         System.out.print("Indtast det indbetalte beløb: ");
-        double payment = scn.nextDouble();
-        scn.nextLine();
+        double payment = InputValidering.doubleInRange(scanner,arrears);  //payment between 0 and total arrears
 
         member.setTotalArrears(member.getTotalArrears() - payment);
 
@@ -65,6 +65,7 @@ public class Arrears {
             member.setTotalArrears(0);
             member.setIsArrears(false);
             membersArrears.remove(member);
+            System.out.println(member.getName() + " er fjernet fra restance!");
         }
         System.out.println("Indbetalingen er registreret!");
     }
@@ -86,6 +87,9 @@ public class Arrears {
         System.out.println("--- RESTANCER ---");
         for (Member m : membersArrears) {
             System.out.println(m.printArrears());
+        }
+        if (membersArrears.isEmpty()) {
+            System.out.println("Listen er tom!");
         }
     }
 
