@@ -4,5 +4,5 @@
 2023-08-08;Hans;O18;butterfly;100;1.5;false
 2025-11-11;rune;O18;BUTTERFLY;100;5.2;false
 2025-10-10;Maja;O18;BUTTERFLY;100;1.1;false
-2025-09-09;Ole;O18;BUTTERFLY;100;2.3;true;MYY;2
-2023-08-08;Hans;O18;butterfly;100;0.9;f
+2025-09-09;Ole;u18;BUTTERFLY;100;2.3;true;MYY;2
+2023-08-08;Hans;u18;butterfly;100;0.9;f

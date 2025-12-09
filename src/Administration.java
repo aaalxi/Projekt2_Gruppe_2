@@ -1,5 +1,3 @@
-package Result;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -75,7 +73,7 @@ public class Administration {
         }
     }
 
-//Hvis fucked tilføj load metode igen
+    //Hvis fucked tilføj load metode igen
     public void printTraining() {
         for (Result r : resultater) {
             if (r instanceof TrainingRes) {
@@ -115,9 +113,17 @@ public class Administration {
 
         listResults = sortList(scanner, category);
 
-        for (int i = 0; i <= 4; i++) {
-            Result r = listResults.get(i);
-            System.out.println(r.toString());
+        if(listResults.size() >= 5){
+            for (int i = 0; i <= 4; i++) {
+                Result r = listResults.get(i);
+                System.out.println(r.toString());
+            }
+        }
+        else{
+            for (int i = 0; i < listResults.size(); i++){
+                Result r = listResults.get(i);
+                System.out.println(r.toString());
+            }
         }
     }
 
