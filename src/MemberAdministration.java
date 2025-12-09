@@ -37,6 +37,10 @@ public class MemberAdministration {
     public static void addSwimmer(boolean isCompetitive, MemberList memberList, Scanner scn) {
         System.out.println("Hvad er navnet?");
         String name = scn.nextLine();
+        if (!InputValidering.isName(name)){
+            System.out.println("Ugyldige tegn brugt. Prøv igen.");
+            return;
+        }
 
         String userID = createUserID(name);
         if (userID.isEmpty()) {
@@ -44,8 +48,16 @@ public class MemberAdministration {
             return;
         }
 
-        System.out.println("Hvad er fødselsdatoen? yyyy-mm-dd");
-        LocalDate birthday = LocalDate.parse(scn.nextLine());
+        LocalDate birthday;
+        while (true) {
+            System.out.println("Hvad er fødselsdatoen? yyyy-mm-dd");
+            LocalDate date = InputValidering.localDateCheck(scn.nextLine());
+            if(date != null){
+                birthday = date;
+                break;
+            }
+        }
+
 
         if (isCompetitive) {
             memberList.getAllMembers().add(new Competitive(userID, name, birthday, 0));

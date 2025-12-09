@@ -1,3 +1,7 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.util.Scanner;
+
 public class InputValidering {
 
     static boolean validateUserID(String id){
@@ -13,5 +17,14 @@ public class InputValidering {
      */
     public static boolean isName(String s) {
         return s != null && s.matches("[a-zA-ZæøåÆØÅ\\- ]+");
+    }
+
+    public static LocalDate localDateCheck(String s){
+        try{
+            return LocalDate.parse(s);
+        } catch (DateTimeParseException e){
+            System.out.println("Dato ikke skrevet korrekt. Prøv Igen");
+        }
+        return null;
     }
 }
