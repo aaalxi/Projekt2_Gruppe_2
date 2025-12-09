@@ -256,7 +256,7 @@ public class UI {
         String login = scn.nextLine();
         if (!login.equalsIgnoreCase("formand")) {
             System.out.println();
-            System.out.println("Hej formand!\nDu har skrevet et forkert password!.\nPrøv venligst igen.");
+            System.out.println("Du har skrevet et forkert password!.\nPrøv venligst igen.");
             return false;
         } else {
             System.out.println("Du er logget ind.");
@@ -270,7 +270,7 @@ public class UI {
         String login = scn.nextLine();
         if (!login.equalsIgnoreCase("kasser")) {
             System.out.println();
-            System.out.println("Hej kasser!\nDu har skrevet et forkert password!.\nPrøv venligst igen.");
+            System.out.println("Du har skrevet et forkert password!.\nPrøv venligst igen.");
             return false;
         } else {
             System.out.println("Du er logget ind.");
@@ -284,7 +284,7 @@ public class UI {
         String login = scn.nextLine();
         if (!login.equalsIgnoreCase("træner")) {
             System.out.println();
-            System.out.println("Hej træner!\nDu har skrevet et forkert password.\nPrøv venligst igen.");
+            System.out.println("Du har skrevet et forkert password.\nPrøv venligst igen.");
             return false;
         } else {
             System.out.println("Du er logget ind.");
