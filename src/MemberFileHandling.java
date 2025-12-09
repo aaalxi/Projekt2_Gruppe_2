@@ -38,7 +38,6 @@ public class MemberFileHandling {
             System.out.println("Fejl ved gemning: " + e.getMessage());
         }
     }
-
     public static void loadMembers(String fileName, ArrayList<Member> members) {
         members.clear(); //clear for at være sikker på der ikke bliver gemt dups og at arraylisten allMembers er tom.
 
@@ -62,7 +61,7 @@ public class MemberFileHandling {
                 if (linje.isBlank()) { //springer tomme linjer over i filen. Så hvis der er en tom linje crasher vi ikke systemet eller skaber out of bounds exseption.
                     continue;
                 }
-                String[] data = linje.split(";", -1);
+                String[] data = linje.split(";");
 
                 if (data.length < 9) {
                     System.out.println("Fejl i linje (for få felter): " + linje);
