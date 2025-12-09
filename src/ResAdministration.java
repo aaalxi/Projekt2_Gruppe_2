@@ -150,11 +150,11 @@ public class ResAdministration {
         String d = scanner.nextLine().toUpperCase();
 
         try {
-           Discipline discipline = Discipline.valueOf(d);
-           d = discipline.toString();
+            Discipline discipline = Discipline.valueOf(d);
+            d = discipline.toString();
 
         } catch (IllegalArgumentException e) {
-            System.out.println("Ugyldig disciplin.");
+            System.out.println("Ugyldig disciplin!");
             return;
         }
 
@@ -164,7 +164,7 @@ public class ResAdministration {
                 "3. 300 m");
         int distance = 0;
         valg = scanner.nextLine();
-        switch(valg){
+        switch (valg) {
             case "1" -> distance = 100;
             case "2" -> distance = 200;
             case "3" -> distance = 300;
@@ -174,8 +174,8 @@ public class ResAdministration {
         System.out.println("Tid (mm.ss): ");
         double time;
 
-        while(true){
-            try{
+        while (true) {
+            try {
                 System.out.println("Minutter: ");
                 int minutter = Integer.parseInt(scanner.nextLine().trim());
                 System.out.print("Sekunder (0-59): ");
@@ -194,7 +194,7 @@ public class ResAdministration {
                 time = Double.parseDouble(tidStr);
 
                 break;
-            }catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 System.out.println("Ugyldigt input. Indtast kun hele tal.");
             }
         }
@@ -251,14 +251,13 @@ public class ResAdministration {
 
         listResults = sortList(scanner, category);
 
-        if(listResults.size() >= 5){
+        if (listResults.size() >= 5) {
             for (int i = 0; i <= 4; i++) {
                 Result r = listResults.get(i);
                 System.out.println(r.toString());
             }
-        }
-        else{
-            for (int i = 0; i < listResults.size(); i++){
+        } else {
+            for (int i = 0; i < listResults.size(); i++) {
                 Result r = listResults.get(i);
                 System.out.println(r.toString());
             }
@@ -273,44 +272,56 @@ public class ResAdministration {
      * fjerner derefter objektet fra arraylisten.
      */
     public void deleteResults(Scanner scanner) {
+        String red = "\u001B[31m", reset = "\u001B[0m";
+
         if (resultater.isEmpty()) {
             System.out.println("Der er ingen resultater at slette!");
             return;
         }
+        while (true) {
+            System.out.println("Hvilket resultat vil du slette? (Tast 0 for tilbage til menu): ");
 
-        System.out.println("Hvilket resultat vil du slette?");
-        for (int i = 0; i < resultater.size(); i++) {
-            Result r = resultater.get(i);
-            System.out.print(i+1 +": \t");
-            System.out.println(r);
+            for (int i = 0; i < resultater.size(); i++) {
+                System.out.println(i + 1 + ": " + resultater.get(i));   //numerating results r
+            }
+
+            try {
+                int index = Integer.parseInt(scanner.nextLine());
+
+                if (index == 0) {
+                    return;
+                }
+
+                if (index < 1 || index > resultater.size()) {
+                    System.out.println("Resultat findes ikke. Prøv igen! (Tast 0 for menu)");
+                    continue;
+                }
+
+                Result chooseDelete = resultater.get(index - 1);
+                System.out.println(red + "Tast \"bekræft\" for at fjerne resultat for: " + chooseDelete.getName() + reset);
+                try {
+                    if (scanner.nextLine().equalsIgnoreCase("bekræft")) {
+                    //    resultater.remove(chooseDelete);
+                        System.out.println("redResultat " + index + " for " + chooseDelete.getName() +
+                                " er nu fjernet fra listen! reset");
+                    }
+                    return;
+
+                } catch (Exception e) {
+                    System.out.println("Nice try guys ;D");
+                }
+            } catch (Exception e) {
+                System.out.println("Nice try guys");
+
+
+            }
+
         }
-         //   if (r instanceof CompetitionRes) {
-                //System.out.println(r);
-            }
-        }
-/*
+    }
+}
 
-        System.out.println("Indtast nummeret på resultatet");
-        String valg = scanner.nextLine();
-
-        try {
-            int index = Integer.parseInt(valg);
-
-            if (index < 0) {
-                System.out.println("Ugyldigt nummer, prøv igen");
-                return;
-            }
-            if (index > resultater.size()) {
-                System.out.println("Ugyldigt nummer, prøv igen");
-                return;
-            }
-
-            Result removed = resultater.remove(index);
+      //      Result removed = resultater.remove(index);
             //  System.out.println("Resultat fjernet for " + removed.name);
 
 
-        } catch (NumberFormatException e) {
-            System.out.println("Indtast et tal");
-        }
-    }*/
-//}
+       // } catch (NumberFormatException e)
