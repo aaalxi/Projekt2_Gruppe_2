@@ -4,7 +4,7 @@ public class UI {
     static Scanner scn = new Scanner(System.in);
     private final MemberList memberList = new MemberList();
     Arrears arrears = new Arrears(memberList.getAllMembers());
-    Administration results = new Administration();
+    ResAdministration results = new ResAdministration();
     private final String membersFilnavn = "src//Database//Members.txt";
     static boolean chairman = false;
     static boolean trainer = false;

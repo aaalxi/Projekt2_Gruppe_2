@@ -3,7 +3,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Administration {
+public class ResAdministration {
     private final ArrayList<Result> resultater = new ArrayList<>();
 
     public ArrayList<Result> getResultater() {
