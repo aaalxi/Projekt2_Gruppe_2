@@ -8,9 +8,9 @@ public class UI {
     Arrears arrears = new Arrears(memberList.getAllMembers());
     Administration results = new Administration();
     private final String membersFilnavn = "src//Database//Members.txt";
-    static boolean chairmanPass = false;
-    static boolean trainerPass = false;
-    static boolean cashierPass = false;
+    static boolean chairman = false;
+    static boolean trainer = false;
+    static boolean cashier = false;
 
 
     public void showMainMenu() {
@@ -32,28 +32,28 @@ public class UI {
 
             switch (valg) {
                 case "1":
-                    if(chairmanPass){
+                    if(chairman){
                         showChairmanMenu();
                     } else {
-                        if(UIService.chairmanPass(scn)){
+                        if(chairmanPass(scn)){
                             showChairmanMenu();
                         }
                     }
                     break;
                 case "2":
-                    if(trainerPass) {
+                    if(trainer) {
                         showTrainerMenu();
                     } else {
-                        if(UIService.trainerPass(scn)){
+                        if(trainerPass(scn)){
                             showTrainerMenu();
                         }
                     }
                     break;
                 case "3":
-                    if(cashierPass) {
+                    if(cashier) {
                         showCashierMenu();
                     } else {
-                        if(UIService.cashierPass(scn)){
+                        if(cashierPass(scn)){
                             showCashierMenu();
                         }
                     }
@@ -248,7 +248,48 @@ public class UI {
                 default:
                     System.out.println("Ugyldigt valg.");
             }
+        }
+    }
 
+    boolean chairmanPass(Scanner scn) {
+        System.out.print("Indtast Password: ");
+        String login = scn.nextLine();
+        if (!login.equalsIgnoreCase("formand")) {
+            System.out.println();
+            System.out.println("Hej formand!\nDu har skrevet et forkert password!.\nPrøv venligst igen.");
+            return false;
+        } else {
+            System.out.println("Du er logget ind.");
+            chairman = true;
+            return true;
+        }
+    }
+
+    boolean cashierPass(Scanner scn) {
+        System.out.print("Indtast Password: ");
+        String login = scn.nextLine();
+        if (!login.equalsIgnoreCase("kasser")) {
+            System.out.println();
+            System.out.println("Hej kasser!\nDu har skrevet et forkert password!.\nPrøv venligst igen.");
+            return false;
+        } else {
+            System.out.println("Du er logget ind.");
+            cashier = true;
+            return true;
+        }
+    }
+
+    boolean trainerPass(Scanner scn) {
+        System.out.print("Indtast Password: ");
+        String login = scn.nextLine();
+        if (!login.equalsIgnoreCase("træner")) {
+            System.out.println();
+            System.out.println("Hej træner!\nDu har skrevet et forkert password.\nPrøv venligst igen.");
+            return false;
+        } else {
+            System.out.println("Du er logget ind.");
+            trainer = true;
+            return true;
         }
     }
 }
