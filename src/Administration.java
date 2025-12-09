@@ -12,31 +12,104 @@ public class Administration {
 
 
     public void addCompetitiveResult(Scanner scanner) {
+        String category, valg;
         System.out.println("Stævne: ");
         String tournament = scanner.nextLine();
 
         System.out.println("Navn: ");
         String name = scanner.nextLine();
+        if (!InputValidering.isName(name)) {
+            System.out.println("Ikke et gyldigt navn.");
+            return;
+        }
 
-        System.out.println("Kategori (U18/O18): ");
-        String category = scanner.nextLine().toUpperCase();
+        System.out.println("Vælg en katogori\n" +
+                "1. U18\n" +
+                "2. O18");
+        System.out.print("Valg: ");
+        valg = scanner.nextLine();
+        switch (valg) {
+            case "1" -> category = "U18";
+            case "2" -> category = "O18";
+            default -> {
+                System.out.println("Ikke et gyldigt valg.");
+                return;
+            }
+        }
 
         System.out.println("Dato for stævne (yyyy-MM-dd):");
-        LocalDate date = LocalDate.parse(scanner.nextLine());
+        LocalDate date;
+        try {
+            date = LocalDate.parse(scanner.nextLine());
+        } catch (DateTimeParseException e) {
+            System.out.print("Ugyldig dato: ");
+            return;
+        }
 
-        System.out.println("Disciplin (BUTTERFLY/BACKSTROKE/BREASTSTROKE/FREESTYLE): ");
-        String discipline = scanner.nextLine().toUpperCase();
+        System.out.print("Vælg disciplin (BUTTERFLY/BACKSTROKE/BREASTSTROKE/FREESTYLE): ");
+        String d = scanner.nextLine().toUpperCase();
+        try {
+            Discipline discipline = Discipline.valueOf(d);
+            d = discipline.toString();
 
-        System.out.println("Distance (m): ");
-        int distance = Integer.parseInt(scanner.nextLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Ugyldig disciplin.");
+            return;
+        }
+
+        System.out.println("Distance (m)\n" +
+                "1. 100 m\n" +
+                "2. 200 m\n" +
+                "3. 300 m");
+        int distance = 0;
+        valg = scanner.nextLine();
+        switch (valg) {
+            case "1" -> distance = 100;
+            case "2" -> distance = 200;
+            case "3" -> distance = 300;
+            default -> System.out.println("Ikke et gyldigt valg");
+        }
 
         System.out.println("Tid (mm.ss): ");
-        double time = Double.parseDouble(scanner.nextLine());
+        double time;
+
+        while (true) {
+            try {
+                System.out.println("Minutter: ");
+                int minutter = Integer.parseInt(scanner.nextLine().trim());
+                System.out.print("Sekunder (0-59): ");
+                int sekunder = Integer.parseInt(scanner.nextLine().trim());
+
+                if (minutter < 0) {
+                    System.out.println("Minutter kan ikke være negative.");
+                    continue;
+                }
+                if (sekunder < 0 || sekunder > 59) {
+                    System.out.println("Sekunder skal være mellem 0 og 59.");
+                    continue;
+                }
+
+                String tidStr = minutter + "." + String.format("%02d", sekunder);
+                time = Double.parseDouble(tidStr);
+
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Ugyldigt input. Indtast kun hele tal.");
+            }
+        }
 
         System.out.println("Placering: ");
-        int placement = Integer.parseInt(scanner.nextLine());
+        String input = scanner.nextLine();
 
-        CompetitionRes r = new CompetitionRes(tournament, name, category, date, discipline, distance, time, placement);
+        int placement;
+        try {
+            placement = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            System.out.println("Ugyldigt input.");
+            return;
+        }
+
+        CompetitionRes r = new CompetitionRes(tournament, name, category, date, d, distance, time, placement);
         resultater.add(r);
         System.out.println("Resultat tilføjet til kategorien: " + category + "!");
     }
@@ -44,7 +117,7 @@ public class Administration {
 
     public void addTrainingResult(Scanner scanner) {
         String valg;
-        String category = "";
+        String category;
         System.out.println("Navn: ");
         String name = scanner.nextLine();
         if (!InputValidering.isName(name)) {
@@ -58,15 +131,19 @@ public class Administration {
         switch (valg) {
             case "1" -> category = "U18";
             case "2" -> category = "O18";
-            default -> System.out.println("Ikke et gyldigt valg.");
+            default -> {
+                System.out.println("Ikke et gyldigt valg.");
+                return;
+            }
         }
 
         System.out.println("Dato for stævne (yyyy-MM-dd):");
-        LocalDate date = null;
+        LocalDate date;
         try {
             date = LocalDate.parse(scanner.nextLine());
         } catch (DateTimeParseException e) {
             System.out.print("Ugyldig dato: ");
+            return;
         }
 
         System.out.print("Vælg disciplin (BUTTERFLY/BACKSTROKE/BREASTSTROKE/FREESTYLE): ");
@@ -78,14 +155,49 @@ public class Administration {
 
         } catch (IllegalArgumentException e) {
             System.out.println("Ugyldig disciplin.");
+            return;
         }
 
-        System.out.println("Distance (m): ");
-        int distance = Integer.parseInt(scanner.nextLine());
+        System.out.println("Distance (m)\n" +
+                "1. 100 m\n" +
+                "2. 200 m\n" +
+                "3. 300 m");
+        int distance = 0;
+        valg = scanner.nextLine();
+        switch(valg){
+            case "1" -> distance = 100;
+            case "2" -> distance = 200;
+            case "3" -> distance = 300;
+            default -> System.out.println("Ikke et gyldigt valg");
+        }
 
         System.out.println("Tid (mm.ss): ");
-        double time = Double.parseDouble(scanner.nextLine());
+        double time;
 
+        while(true){
+            try{
+                System.out.println("Minutter: ");
+                int minutter = Integer.parseInt(scanner.nextLine().trim());
+                System.out.print("Sekunder (0-59): ");
+                int sekunder = Integer.parseInt(scanner.nextLine().trim());
+
+                if (minutter < 0) {
+                    System.out.println("Minutter kan ikke være negative.");
+                    continue;
+                }
+                if (sekunder < 0 || sekunder > 59) {
+                    System.out.println("Sekunder skal være mellem 0 og 59.");
+                    continue;
+                }
+
+                String tidStr = minutter + "." + String.format("%02d", sekunder);
+                time = Double.parseDouble(tidStr);
+
+                break;
+            }catch (NumberFormatException e){
+                System.out.println("Ugyldigt input. Indtast kun hele tal.");
+            }
+        }
         TrainingRes r = new TrainingRes(name, category, date, d, distance, time);
         resultater.add(r);
         System.out.println("Resultat tilføjet til kategorien: " + category + "!");
