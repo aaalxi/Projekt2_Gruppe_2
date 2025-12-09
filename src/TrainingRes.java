@@ -1,5 +1,3 @@
-package Result;
-
 import java.time.LocalDate;
 
 public class TrainingRes extends Result {

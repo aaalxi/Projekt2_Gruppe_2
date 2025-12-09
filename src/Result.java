@@ -1,5 +1,3 @@
-package Result;
-
 import java.time.LocalDate;
 
 abstract class Result {    //klasse til at skabe resultat objekter

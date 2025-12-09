@@ -1,5 +1,3 @@
-import Result.Administration;
-import Result.ResultFilehandling;
 import java.util.Scanner;
 
 public class UI {
