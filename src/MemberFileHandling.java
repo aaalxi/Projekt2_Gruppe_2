@@ -1,10 +1,22 @@
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class MemberFileHandling {
 
     public static void saveMembers(String fileName, ArrayList<Member> members) {
+
+        if(fileName == null || fileName.isBlank()){
+            System.out.println("Ugyldigt filnavn");
+            return;
+        }
+
+        if(members == null){
+            System.out.println("Ingen medlemmer at gemme.");
+            return;
+        }
 
         try (PrintWriter pw = new PrintWriter(new FileWriter(fileName))) {
             for (Member m : members) {
@@ -17,7 +29,7 @@ public class MemberFileHandling {
 // Her laves der en string som er en samling af de relevante data fra m og printet ind i en textfil
                 String linje = m.getMemberID() + ";" + m.getName() + ";" + m.getDateOfBirth() +
                         ";" + m.getIsCompetitive() + ";" + m.getTotalArrears() + ";" + trainer + ";"
-                        + disciplinesString + ";" + m.getCreateDate() + ";" + m.getNextPayment() +";"+ m.getIsActive();
+                        + disciplinesString + ";" + m.getCreateDate() + ";" + m.getNextPayment() + ";" + m.getIsActive();
                 pw.println(linje);
 
             }
@@ -30,46 +42,77 @@ public class MemberFileHandling {
     public static void loadMembers(String fileName, ArrayList<Member> members) {
         members.clear(); //clear for at være sikker på der ikke bliver gemt dups og at arraylisten allMembers er tom.
 
+        Path path = Path.of(fileName);
+        if(!Files.exists(path)){
+            System.out.println("Filen findes ikke: "+fileName);
+        }
+
+        if(!Files.isRegularFile(path)){
+            System.out.println("Stien er ikke en fil: "+fileName);
+        }
+
+        if(!Files.isReadable(path)){
+            System.out.println("Filen kan ikke læses: "+fileName);
+        }
 
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String linje;
             while ((linje = br.readLine()) != null) {
-                String[] data = linje.split(";");
-                String id = data[0];
-                String name = data[1];
-                LocalDate dateBirth = LocalDate.parse(data[2]);
-                String comp = data[3];
-                double totalArrears = Double.parseDouble(data[4]);
-                LocalDate createDate = LocalDate.parse(data[7]);
-                LocalDate nextPayment = LocalDate.parse(data[8]);
 
-                if (comp.equals("true")) {
-                    Competitive m = new Competitive(id, name, dateBirth, totalArrears);
+                if (linje.isBlank()) { //springer tomme linjer over i filen. Så hvis der er en tom linje crasher vi ikke systemet eller skaber out of bounds exseption.
+                    continue;
+                }
+                String[] data = linje.split(";", -1);
 
+                if (data.length < 9) {
+                    System.out.println("Fejl i linje (for få felter): " + linje);
+                    continue;
+                }
+                try {
+                    String id = data[0];
+                    String name = data[1];
+                    LocalDate dateBirth = LocalDate.parse(data[2]);
+                    boolean isComp = Boolean.parseBoolean(data[3]);
+                    double totalArrears = Double.parseDouble(data[4]);
                     String trainer = data.length > 5 ? data[5] : "";
-                    m.setTrainer(trainer);
 
+                    //data.length >6 bruges for at sikre at data[6] findes. Hvis den ikke findes erstat med "". Da filformatet kan være ældre eller data kan være ufuldstændigt.
+                    String disciplineString = data.length > 6 ? data[6] : "";
+                    LocalDate createDate = LocalDate.parse(data[7]);
+                    LocalDate nextPayment = LocalDate.parse(data[8]);
 
-                    String disciplineString = data.length > 6 ? data[6] : ""; //Da træner og discipline er "valgfrit" tjekker vi om det data findes og hvis det ikke gør så skrives der ""
-                    disciplineString = disciplineString.replace("[", "").replace("]", "").trim();
+                    //Læser isActive fra filen kun hvis feltet findes. data.length>9 sikre at data[9] eksistere så vi undgår IndexOutOfBoundsException.
+                    // Hvis feltet mangler (ældre/ufuldstændigt filformat), bliver isActive automatisk false.
+                    boolean isActive = data.length > 9 && Boolean.parseBoolean(data[9]);
 
-                    if (!disciplineString.isEmpty()) {
-                        String[] discipliner = disciplineString.split(", ");
-                        for (String d : discipliner) {
-                            if (!d.isEmpty()) {
-                                m.addDiscipline(Discipline.valueOf(d));
+                    Member m;
+
+                    if (isComp) {
+                        Competitive c = new Competitive(id, name, dateBirth, totalArrears);
+                        c.setTrainer(trainer);
+
+                        disciplineString = disciplineString.replace("[", "").replace("]", "").trim();
+                        if (!disciplineString.isEmpty()) {
+                            String[] discipliner = disciplineString.split(", ");
+                            for (String d : discipliner) {
+                                if (!d.isEmpty()) {
+                                    c.addDiscipline(Discipline.valueOf(d));
+                                }
                             }
                         }
+                        m = c;
+                    } else {
+                        m = new Casual(id, name, dateBirth, totalArrears);
                     }
                     m.setCreateDate(createDate);
                     m.setNextPayment(nextPayment);
+                    if (data.length > 9) {
+                        m.setActivityStatus(isActive);
+                    }
+                    m.updateSubscriptionType();
                     members.add(m);
-                }
-                if (comp.equals("false")) {
-                    Member m = new Casual(id, name, dateBirth, totalArrears);
-                    m.setCreateDate(createDate);
-                    m.setNextPayment(nextPayment);
-                    members.add(m);
+                } catch (Exception e) {
+                    System.out.println("Kunne ikke loade medlem, dårlig data: " + linje);
                 }
             }
         } catch (IOException e) {
@@ -77,13 +120,22 @@ public class MemberFileHandling {
         }
     }
 
-    public static void removeMember(String fileName, String ID){
+    public static void removeMember(String fileName, String ID) {
+        if (!InputValidering.validateUserID(ID)) {
+            System.out.println("Ugyldigt ID.");
+            return;
+        }
+        File file = new File(fileName);
+        if (!file.exists() || !file.isFile()){
+            System.out.println("Filen finde ikke: "+ fileName);
+            return;
+        }
         try {
             ArrayList<String> lines = new ArrayList<>();
             BufferedReader reader = new BufferedReader(new FileReader(fileName));
 
             String line = reader.readLine();
-            while (line != null){
+            while (line != null) {
                 lines.add(line);
                 line = reader.readLine();
             }
@@ -91,7 +143,7 @@ public class MemberFileHandling {
             reader.close();
 
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-            for (String s : lines){
+            for (String s : lines) {
                 writer.write(s);
                 writer.newLine();
             }
