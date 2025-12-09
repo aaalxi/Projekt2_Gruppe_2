@@ -20,34 +20,34 @@ public class InputValidering {
         return s != null && s.matches("[a-zA-ZæøåÆØÅ\\- ]+");
     }
 
-    public static LocalDate localDateCheck(String s){
-        try{
+
+    public static LocalDate localDateCheck(String s) {
+        try {
             return LocalDate.parse(s);
-        } catch (DateTimeParseException e){
+        } catch (DateTimeParseException e) {
             System.out.println("Dato ikke skrevet korrekt. Prøv Igen");
         }
         return null;
     }
-}
 
 
-    public static double doubleInRange (Scanner scanner, double maxValue) {
+    public static double doubleInRange(Scanner scanner, double maxValue) {
         double value;
 
         while (true) {
-           if (!scanner.hasNextDouble()) {
-               System.out.println("Indtast et gyldigt beløb!");
-               scanner.nextLine();
-               continue;       //forsætter loop, men springer resten i iterationen over (tomt)
-           }
-           value = scanner.nextDouble();
-           scanner.nextLine();
+            if (!scanner.hasNextDouble()) {
+                System.out.println("Indtast et gyldigt beløb!");
+                scanner.nextLine();
+                continue;       //forsætter loop, men springer resten i iterationen over (tomt)
+            }
+            value = scanner.nextDouble();
+            scanner.nextLine();
 
-           if (value < 0 || value > maxValue) {
-               System.out.println("Beløbet skal være mellem 0 og " + maxValue);
-               continue;
-           }
-           return value;
+            if (value < 0 || value > maxValue) {
+                System.out.println("Beløbet skal være mellem 0 og " + maxValue);
+                continue;
+            }
+            return value;
         }
     }
 }
