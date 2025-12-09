@@ -1,5 +1,3 @@
-package Result;
-
 import java.util.Comparator;
 
 public class ResultComparitor implements Comparator <Result> {
