@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -42,17 +43,42 @@ public class Administration {
 
 
     public void addTrainingResult(Scanner scanner) {
+        String valg;
+        String category = "";
         System.out.println("Navn: ");
         String name = scanner.nextLine();
-
-        System.out.println("Kategori (U18/O18): ");
-        String category = scanner.nextLine().toUpperCase();
+        if (!InputValidering.isName(name)) {
+            System.out.println("Ikke et gyldigt navn.");
+            return;
+        }
+        System.out.println("Vælg en katogori\n" +
+                "1. U18\n" +
+                "2. O18");
+        valg = scanner.nextLine();
+        switch (valg) {
+            case "1" -> category = "U18";
+            case "2" -> category = "O18";
+            default -> System.out.println("Ikke et gyldigt valg.");
+        }
 
         System.out.println("Dato for stævne (yyyy-MM-dd):");
-        LocalDate date = LocalDate.parse(scanner.nextLine());
+        LocalDate date = null;
+        try {
+            date = LocalDate.parse(scanner.nextLine());
+        } catch (DateTimeParseException e) {
+            System.out.print("Ugyldig dato: ");
+        }
 
-        System.out.println("Disciplin (BUTTERFLY/BACKSTROKE/BREASTSTROKE/FREESTYLE): ");
-        String discipline = scanner.nextLine().toUpperCase();
+        System.out.print("Vælg disciplin (BUTTERFLY/BACKSTROKE/BREASTSTROKE/FREESTYLE): ");
+        String d = scanner.nextLine().toUpperCase();
+
+        try {
+           Discipline discipline = Discipline.valueOf(d);
+           d = discipline.toString();
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("Ugyldig disciplin.");
+        }
 
         System.out.println("Distance (m): ");
         int distance = Integer.parseInt(scanner.nextLine());
@@ -60,7 +86,7 @@ public class Administration {
         System.out.println("Tid (mm.ss): ");
         double time = Double.parseDouble(scanner.nextLine());
 
-        TrainingRes r = new TrainingRes(name, category, date, discipline, distance, time);
+        TrainingRes r = new TrainingRes(name, category, date, d, distance, time);
         resultater.add(r);
         System.out.println("Resultat tilføjet til kategorien: " + category + "!");
     }
