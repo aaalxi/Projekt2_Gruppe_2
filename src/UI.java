@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
 public class UI {
-    static Scanner scn = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
     private final MemberList memberList = new MemberList();
     Arrears arrears = new Arrears(memberList.getAllMembers());
-    ResAdministration results = new ResAdministration();
+    ResultAdministration results = new ResultAdministration();
     private final String membersFilnavn = "src//Database//Members.txt";
     static boolean chairman = false;
     static boolean trainer = false;
@@ -26,14 +26,14 @@ public class UI {
                     "4. Stævne menu\n"+
                     "0. Afslut");
             System.out.print("Vælg et punkt: ");
-            String valg = scn.nextLine();
+            String valg = scanner.nextLine();
 
             switch (valg) {
                 case "1":
                     if(chairman){
                         showChairmanMenu();
                     } else {
-                        if(chairmanPass(scn)){
+                        if(chairmanPass(scanner)){
                             showChairmanMenu();
                         }
                     }
@@ -42,7 +42,7 @@ public class UI {
                     if(trainer) {
                         showTrainerMenu();
                     } else {
-                        if(trainerPass(scn)){
+                        if(trainerPass(scanner)){
                             showTrainerMenu();
                         }
                     }
@@ -51,7 +51,7 @@ public class UI {
                     if(cashier) {
                         showCashierMenu();
                     } else {
-                        if(cashierPass(scn)){
+                        if(cashierPass(scanner)){
                             showCashierMenu();
                         }
                     }
@@ -80,7 +80,7 @@ public class UI {
                     "5. Søg på medlem via navn.\n" +
                     "0. Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
-            String valg = scn.nextLine();
+            String valg = scanner.nextLine();
 
             switch (valg) {
                 case "1":
@@ -94,16 +94,16 @@ public class UI {
                     running = false;
                     break;
                 case "3":
-                    TrainerAdmin.addDiscipline(memberList,scn);
+                    TrainerAdmin.addDiscipline(memberList, scanner);
                     MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "4":
-                    TrainerAdmin.removeDiscipline(memberList,scn);
+                    TrainerAdmin.removeDiscipline(memberList, scanner);
                     MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "5":
-                    memberList.searchMemberName(memberList.getAllMembers(),scn);
-                    scn.nextLine();
+                    memberList.searchMemberName(memberList.getAllMembers(), scanner);
+                    scanner.nextLine();
                     System.out.println();
                     break;
                 case "0":
@@ -127,24 +127,24 @@ public class UI {
                     "5. Ændring af aktivitets status\n" +
                     "0. Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
-            String valg = scn.nextLine();
+            String valg = scanner.nextLine();
 
             switch (valg) {
                 case "1":
                     arrears.printAll();
                     break;
                 case "2":
-                    arrears.printMember(scn);
+                    arrears.printMember(scanner);
                     break;
                 case "3":
-                    arrears.addPayment(scn);
+                    arrears.addPayment(scanner);
                     MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "4":
                     arrears.sumArrears();
                     break;
                 case "5":
-                    MemberAdministration.editActivityStatus(memberList, scn);
+                    MemberAdministration.editActivityStatus(memberList, scanner);
                     MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "0":
@@ -168,26 +168,26 @@ public class UI {
                     4. Rediger medlems navn
                     0. Tilbage til Hovedmenu\s""");
             System.out.print("Vælg:");
-            String valg = scn.nextLine();
+            String valg = scanner.nextLine();
 
             switch (valg) {
                 case "1":
-                    MemberAdministration.createMember(memberList,scn);
+                    MemberAdministration.createMember(memberList, scanner);
                     MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "2":
                     System.out.print("Skriv medlemmens ID: ");
-                    String ID = scn.nextLine();
+                    String ID = scanner.nextLine();
                     if(MemberAdministration.disintegrateSwimmer(ID, memberList)){
                         MemberFileHandling.removeMember(membersFilnavn, ID);
                     }
                     break;
                 case "3":
-                    MemberAdministration.addTrainer(memberList, scn);
+                    MemberAdministration.addTrainer(memberList, scanner);
                     MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "4":
-                    MemberAdministration.editMemberName(memberList, scn);
+                    MemberAdministration.editMemberName(memberList, scanner);
                     MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "0":
@@ -216,15 +216,15 @@ public class UI {
                     "6. Slet stævnedata\n" +
                     "0. Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
-            String valg = scn.nextLine();
+            String valg = scanner.nextLine();
 
             switch (valg) {
                 case "1":
-                    results.addCompetitiveResult(scn);
+                    results.addCompetitiveResult(scanner);
                     ResultFilehandling.saveResult(results.getResultater());
                     break;
                 case "2":
-                    results.addTrainingResult(scn);
+                    results.addTrainingResult(scanner);
                     ResultFilehandling.saveResult(results.getResultater());
                     break;
                 case "3":
@@ -234,10 +234,11 @@ public class UI {
                     results.printTraining();
                     break;
                 case "5":
-                    results.topFive(scn);
+                    results.topFive(scanner);
                     break;
                 case "6":
-                    results.deleteResults(scn);
+                    results.deleteResults(scanner);
+                    ResultFilehandling.saveResult(results.getResultater());
                     break;
                 case "0":
                     running = false;

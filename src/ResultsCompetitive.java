@@ -1,13 +1,13 @@
 import java.time.LocalDate;
 
-public class CompetitionRes extends Result{
+public class ResultsCompetitive extends Result{
 
     private int placement;
     private String tournament;
 
 
-    public CompetitionRes (String tournament, String name, String category, LocalDate date, String discipline,
-                           int distance, double time, int placement) {
+    public ResultsCompetitive(String tournament, String name, String category, LocalDate date, String discipline,
+                              int distance, double time, int placement) {
 
         super(true, name, category, date, discipline, distance, time);
         this.placement=placement;
