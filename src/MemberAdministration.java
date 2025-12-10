@@ -242,17 +242,29 @@ public class MemberAdministration {
         LocalDate nextPayment = memberToChange.getNextPayment();
         boolean isActive = memberToChange.getIsActive();
 
-        Member newMember;
+        Member newMember=null;
 
         if (memberToChange instanceof Competitive) {
+            System.out.println("vil du gerne ændre " + name + " til at være Motionist svømmer?\n[y/n]");
+            String yn = UI.scn.nextLine();
             // Skift fra Competitive til Casual
+            if(yn.equalsIgnoreCase("y")){
             newMember = new Casual(id, name, dateBirth, totalArrears);
-            System.out.println(name + " ændret fra Konkurrence til Motionist");
+            System.out.println(name + " ændret fra Konkurrence til Motionist");}
+            else if(yn.equalsIgnoreCase("n")){
+                return;
+            }
 
         } else if (memberToChange instanceof Casual) {
+            System.out.println("vil du gerne ændre " + name + " til at være Konkurrence svømmer?\n[y/n]");
+            String yn = UI.scn.nextLine();
             // Skift fra Casual til Competitive
+            if (yn.equalsIgnoreCase("y")){
             newMember = new Competitive(id, name, dateBirth, totalArrears);
-            System.out.println(name + " ændret fra Motionist til Konkurrence");
+            System.out.println(name + " ændret fra Motionist til Konkurrence");}
+            else if(yn.equalsIgnoreCase("n")){
+                return;
+            }
 
         } else {
             System.out.println("Ugyldig medlemstype");

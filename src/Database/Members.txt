@@ -7,5 +7,5 @@ gufr8039;Gustav Frei;2004-09-12;false;0.0;;;2025-12-05;2026-12-05;true
 peby6658;Per Bymand;1990-06-12;false;0.0;;;2025-12-05;2026-12-05;true
 sezz8142;sebastian;1111-11-11;true;0.0;null;[];2025-12-08;2026-12-08;true
 dezz6953;Dennis;1992-12-11;true;0.0;null;[];2025-12-09;2026-12-09;true
-nizz9322;Niller;2025-05-10;true;0.0;null;[];2025-12-09;2026-12-09;true
+nizz9322;Niller;2025-05-10;false;0.0;;;2025-12-09;2026-12-09;true
 nipe8253;Niels Petersen Petermand;1970-07-18;true;0.0;null;[];2025-12-09;2026-12-09;true
