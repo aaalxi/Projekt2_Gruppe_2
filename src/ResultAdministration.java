@@ -47,13 +47,13 @@ public class ResultAdministration {
     }
 
 
-    public Double confirmTime(Scanner scanner) {
-        System.out.print("Indtast \"back\" for menu. Eller tryk enter for at fortsætte: ");
+    public Double confirmTime(Scanner scanner) {  //could be better
         while (true) {
-            String input = scanner.nextLine();
+           /* System.out.print("Indtast \"back\" for menu. Tryk enter eller indtast andet for at fortsætte: ");
+            String input = scanner.nextLine().trim();
             if (input.equalsIgnoreCase("back")) {
-                return null;
-            }
+           */     //return null;
+
             try {
                 System.out.print("Indtast minutter (0-59): ");
                 int minutter = Integer.parseInt(scanner.nextLine().trim());
@@ -78,13 +78,13 @@ public class ResultAdministration {
     }
 
 
-    public int confirmPlacement(Scanner scanner) {
+    public Integer confirmPlacement(Scanner scanner) {
         while (true) {
             System.out.println("Indtast placering (Tast 0 for menu): ");
             String input = scanner.nextLine();
 
             if (input.equals("0")) {
-                continue;
+                return null;
             }
             if (!InputValidering.confirmMumber(input)) {
                 System.out.println("Ugyldigt valg, prøv igen!");
@@ -149,10 +149,8 @@ public class ResultAdministration {
                 break;
             }
             System.out.println("---**********---");
-            double time = confirmTime(scanner);
-            if (time == 0) {
-                break;
-            }
+            Double time = confirmTime(scanner);
+
             if (!isCompetitive) {
                 ResultsTraining r = new ResultsTraining(name, category, date, discipline, distance, time);
                 resultater.add(r);
@@ -166,7 +164,10 @@ public class ResultAdministration {
                 if (tournament == null) {
                     break;
                 }
-                int placement = confirmPlacement(scanner);
+                Integer placement = confirmPlacement(scanner);
+                if (placement == null) {
+                    break;
+                }
                 ResultsCompetitive r = new ResultsCompetitive(tournament, name, category, date, discipline, distance, time, placement);
                 resultater.add(r);
                 System.out.println("Resultat tilføjet til kategorien: " + category + "!");
