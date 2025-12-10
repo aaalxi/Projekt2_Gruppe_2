@@ -125,6 +125,7 @@ public class UI {
                     "3. Ændring af restance\n" +
                     "4. Total restance\n" +
                     "5. Ændring af aktivitets status\n" +
+                    "6. Ændring af medlemstype\n" +
                     "0. Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
             String valg = scn.nextLine();
@@ -147,6 +148,9 @@ public class UI {
                     MemberAdministration.editActivityStatus(memberList, scn);
                     MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
+                case "6":
+                    MemberAdministration.changeMemberType(memberList.getAllMembers());
+                    MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                 case "0":
                     running = false;
                     break;

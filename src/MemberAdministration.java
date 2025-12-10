@@ -157,6 +157,7 @@ public class MemberAdministration {
             }
         }
     }
+
     static void editActivityStatus(MemberList memberList, Scanner scn) {
         boolean setActivity = true;
         String svar, statusSvar;
@@ -209,6 +210,72 @@ public class MemberAdministration {
         } else {
             System.out.println("Kunne ikke laver ID til brugeren.");
             return "";
+        }
+    }
+
+    public static void changeMemberType(ArrayList<Member> allMembers) {
+        if (allMembers == null){
+            System.out.println("Listen er tom!");
+            return;
+        }
+        // 2. Find medlem i listen
+        System.out.print("Indtast medlems ID: ");
+        String id = UI.scn.nextLine().trim();
+
+        // Find medlem manuelt i listen
+        Member memberToChange = FileService.findByID(id,allMembers);
+        if (memberToChange == null) {
+            return;
+        }
+        // Gem nuværende data
+        String name = memberToChange.getName();
+        LocalDate dateBirth = memberToChange.getDateOfBirth();
+        double totalArrears = memberToChange.getTotalArrears();
+        LocalDate createDate = memberToChange.getCreateDate();
+        LocalDate nextPayment = memberToChange.getNextPayment();
+        boolean isActive = memberToChange.getIsActive();
+
+        Member newMember=null;
+
+        if (memberToChange instanceof Competitive) {
+            System.out.println("vil du gerne ændre " + name + " til at være Motionist svømmer?\n[y/n]");
+            String yn = UI.scn.nextLine().trim();
+            // Skift fra Competitive til Casual
+            if(!yn.equalsIgnoreCase("y")) {
+                System.out.println("Ændring blev annulleret!");
+                return;
+            }
+            newMember = new Casual(id, name, dateBirth, totalArrears);
+            System.out.println(name + " ændret fra Konkurrence til Motionist");
+
+        } else if (memberToChange instanceof Casual) {
+            System.out.println("vil du gerne ændre " + name + " til at være Konkurrence svømmer?\n[y/n]");
+            String yn = UI.scn.nextLine().trim();
+            // Skift fra Casual til Competitive
+            if (!yn.equalsIgnoreCase("y")) {
+                System.out.println("Ændring blev annulleret!");
+                return;
+            }
+            newMember = new Competitive(id, name, dateBirth, totalArrears);
+            System.out.println(name + " ændret fra Motionist til Konkurrence");
+
+        } else {
+            System.out.println("Ugyldig medlemstype");
+            return;
+        }
+
+        // Bevar eksisterende data
+        newMember.setCreateDate(createDate);
+        newMember.setNextPayment(nextPayment);
+        newMember.setActivityStatus(isActive);
+        newMember.updateSubscriptionType();
+
+        // Erstat i listen
+        for (int i = 0; i < allMembers.size(); i++) {
+            if (allMembers.get(i).getMemberID().equals(id)) {
+                allMembers.set(i, newMember);
+                break;
+            }
         }
     }
 }
