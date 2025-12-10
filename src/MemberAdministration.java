@@ -222,7 +222,7 @@ public class MemberAdministration {
         System.out.print("Indtast medlems ID: ");
         String id = UI.scn.nextLine().trim();
 
-        // Find medlem manuelt i listen
+        // Find medlem med findByID metoden
         Member memberToChange = FileService.findByID(id,allMembers);
         if (memberToChange == null) {
             return;
