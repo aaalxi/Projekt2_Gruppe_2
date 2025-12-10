@@ -5,7 +5,8 @@ public class UI {
     static Scanner scn = new Scanner(System.in);
     private final MemberList memberList = new MemberList();
     Arrears arrears = new Arrears(memberList.getAllMembers());
-    ResAdministration results = new ResAdministration();
+    ResultAdministration admin = new ResultAdministration();
+    ResultDelete results = new ResultDelete();
     private final String membersFilnavn = "src//Database//Members.txt";
 
 
@@ -14,7 +15,7 @@ public class UI {
         MemberFileHandling.loadMembers(membersFilnavn, memberList.getAllMembers());
         memberList.addMembersToTeamList();
         arrears.updateArrears();
-        ResultFilehandling.loadResult(results.getResultater());
+        ResultFilehandling.loadResult(admin.getResultater());
         boolean running = true;
         AsciiArt.printDelfin1();
         while (running) {
@@ -79,11 +80,11 @@ public class UI {
                     memberList.printCompetitive(memberList.getOver18());
                     break;
                 case "3":
-                    TrainerAdmin.addDiscipline(memberList,scn);
+                    TrainerAdmin.addDiscipline(memberList, scanner);
                     MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "4":
-                    TrainerAdmin.removeDiscipline(memberList,scn);
+                    TrainerAdmin.removeDiscipline(memberList, scanner);
                     MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "5":
@@ -197,36 +198,32 @@ public class UI {
         boolean running = true;
         while (running) {
             System.out.println("--- StævneMenu ---\n" +
-                    "1. Ny stævnedata\n" +
-                    "2. Ny Træningsdata\n" +
-                    "3. Se Stævnedata\n" +
-                    "4: Se Træningsdata\n"+
-                    "5: Se top 5 i Kategori\n"+
-                    "6. Slet stævnedata\n" +
+                    "1. Indtast ny resultat\n" +
+                    "2. Se Stævnedata\n" +
+                    "3: Se Træningsdata\n"+
+                    "4: Se top 5 i Kategori\n"+
+                    "5. Slet stævnedata\n" +
                     "0. Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
             String valg = scn.nextLine();
 
             switch (valg) {
                 case "1":
-                    results.addCompetitiveResult(scn);
-                    ResultFilehandling.saveResult(results.getResultater());
+                    admin.addResult(scn);
+                    ResultFilehandling.saveResult(admin.getResultater());
                     break;
                 case "2":
-                    results.addTrainingResult(scn);
-                    ResultFilehandling.saveResult(results.getResultater());
+                    admin.printCompetitive();
                     break;
                 case "3":
-                    results.printCompetitive();
+                    admin.printTraining();
                     break;
                 case "4":
-                    results.printTraining();
+                    admin.printTop(scn);
                     break;
                 case "5":
-                    results.topFive(scn);
-                    break;
-                case "6":
-                    results.deleteResults(scn);
+                    results.deleteResults(scn, admin.getResultater());
+                    ResultFilehandling.saveResult(admin.getResultater());
                     break;
                 case "0":
                     running = false;
