@@ -9,9 +9,7 @@ public class UI {
     Arrears arrears = new Arrears(memberList.getAllMembers());
     ResAdministration results = new ResAdministration();
     private final String membersFilnavn = "src//Database//Members.txt";
-    static boolean chairman = false;
-    static boolean trainer = false;
-    static boolean cashier = false;
+
 
 
     public void showMainMenu() {
@@ -33,20 +31,17 @@ public class UI {
 
             switch (valg) {
                 case "1":
-                    if(chairman || login("formand",ActorRole.FORMAND)){
-                        chairman = true;
+                    if(login("formand",ActorRole.FORMAND)){
                         showChairmanMenu();
                     }
                     break;
                 case "2":
-                    if(trainer || login("træner",ActorRole.TRÆNER)) {
-                        trainer = true;
+                    if(login("træner",ActorRole.TRÆNER)) {
                         showTrainerMenu();
                     }
                     break;
                 case "3":
-                    if(cashier || login("kasser",ActorRole.KASSER)) {
-                        cashier = true;
+                    if(login("kasser",ActorRole.KASSER)) {
                         showCashierMenu();
                     }
                     break;
