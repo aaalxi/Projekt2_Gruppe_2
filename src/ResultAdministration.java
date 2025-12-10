@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -29,7 +30,8 @@ public class ResultAdministration {
 
     public LocalDate confirmDate(Scanner scanner) {
         while (true) {
-            System.out.print("Indtast dato for resultatet (yyyy-MM-dd) (Tast 0 for menu):");
+            System.out.println("Indtast dato for resultatet (yyyy-MM-dd) (Tast 0 for menu):"); //format!
+            System.out.print("Vælg: ");
             String dateInput = scanner.nextLine();
 
             if (dateInput.equals("0")) {
@@ -45,12 +47,12 @@ public class ResultAdministration {
     }
 
 
-    public double confirmTime(Scanner scanner) {
+    public Double confirmTime(Scanner scanner) {
+        System.out.print("Indtast \"back\" for menu. Eller tryk enter for at fortsætte: ");
         while (true) {
-            System.out.print("Indtast \"back\" for menu. Eller tryk enter for at fortsætte: ");
             String input = scanner.nextLine();
             if (input.equalsIgnoreCase("back")) {
-                return 0;
+                return null;
             }
             try {
                 System.out.print("Indtast minutter (0-59): ");
@@ -84,34 +86,44 @@ public class ResultAdministration {
             if (input.equals("0")) {
                 continue;
             }
+            if (!InputValidering.confirmMumber(input)) {
+                System.out.println("Ugyldigt valg, prøv igen!");
+            }
             if (InputValidering.confirmMumber(input)) {
                 return Integer.parseInt(input);
             }
         }
     }
 
-    public boolean confirmCompetitive(Scanner scanner) {
-        System.out.println("Hvilket resultat vil du gemme? \n1. Træningsresultat \n2. Stævneresultat \n(Tast 0 for menu)");
-        System.out.print("Vælg: ");
-        String input = scanner.nextLine();
-        switch (input) {
-            case "1":
-                return false;
-            case "2":
-                return true;
-            case "0":
-                break;
-            default:
-                System.out.println("Ugyldigt valg, prøv igen!");
-        } return false;
+    public Boolean confirmCompetitive(Scanner scanner) {
+        while (true) {
+            System.out.println("Hvilket resultat vil du gemme? (Tast 0 for menu): " +
+                    "\n1. Træningsresultat \n2. Stævneresultat");
+            System.out.print("Vælg: ");
+            String input = scanner.nextLine();
+            switch (input) {
+                case "1":
+                    return false;
+                case "2":
+                    return true;
+                case "0":
+                    return null;
+                default:
+                    System.out.println("Ugyldigt valg, prøv igen!");
+            }
+        }
     }
-
 
     public void addResult(Scanner scanner) {         //stævne, placer = comp
         while (true) {
-            boolean isCompetitive = confirmCompetitive(scanner);
-
-            System.out.print("Indtast navn på medlem (Tast 0 for menu):");
+            System.out.println("---**********---");
+            Boolean isCompetitive = confirmCompetitive(scanner);
+            if (isCompetitive == null) {
+                return;
+            }
+            System.out.println("---**********---");
+            System.out.println("Indtast navn på medlem (Tast 0 for menu):");
+            System.out.print("Vælg: ");
             String name = confirmStringInput(scanner);
             if (name == null) {
                 break;
@@ -184,8 +196,8 @@ public class ResultAdministration {
 
     public Discipline confirmDiscipline(Scanner scanner) {     //DONE using in topFive
         while (true) {
-            System.out.print("Vælg disciplin: \n1. BUTTERFLY \n2. BACKSTROKE \n3. BREASTSTROKE \n4. FREESTYLE " +
-                    "\n0. Tilbage til menu ");
+            System.out.println("Vælg disciplin (Tast 0 for menu): \n1. BUTTERFLY \n2. BACKSTROKE " +
+                    "\n3. BREASTSTROKE \n4. FREESTYLE");
             System.out.print("Vælg: ");
             String input = scanner.nextLine().trim();
 
@@ -213,7 +225,7 @@ public class ResultAdministration {
 
     public int confirmDistance(Scanner scanner) {    //DONE using in printTop
         while (true) {
-            System.out.println("Vælg en distance i disciplinen (m): \n1. 100 m \n2. 200 m \n3. 300 m \n0. Tilbage til menu");
+            System.out.println("Vælg en distance i disciplinen (m) (Tast 0 for menu): \n1. 100 m \n2. 200 m \n3. 300 m");
             System.out.print("Vælg: ");
             String valg = scanner.nextLine().trim();
 
@@ -235,7 +247,7 @@ public class ResultAdministration {
 
     public String confirmCategory(Scanner scanner) {        //DONE Using in printTop
         while (true) {
-            System.out.println("Vælg en katogori \n1. U18 \n2. O18 \n0. Tilbage til menu");
+            System.out.println("Vælg en katogori (Tast 0 for menu): \n1. U18 \n2. O18");
             System.out.print("Vælg: ");
             String valg = scanner.nextLine().trim();
 
