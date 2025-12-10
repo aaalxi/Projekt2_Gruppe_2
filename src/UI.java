@@ -80,11 +80,11 @@ public class UI {
                     memberList.printCompetitive(memberList.getOver18());
                     break;
                 case "3":
-                    TrainerAdmin.addDiscipline(memberList, scanner);
+                    TrainerAdmin.addDiscipline(memberList, scn);
                     MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "4":
-                    TrainerAdmin.removeDiscipline(memberList, scanner);
+                    TrainerAdmin.removeDiscipline(memberList, scn);
                     MemberFileHandling.saveMembers(membersFilnavn, memberList.getAllMembers());
                     break;
                 case "5":
