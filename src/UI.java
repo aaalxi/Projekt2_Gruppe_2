@@ -1,9 +1,7 @@
-import java.util.EnumSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class UI {
-    private final Set<ActorRole> loggedInActors = EnumSet.noneOf(ActorRole.class);
+    private final Set<ActorRole> loggedInActors = new HashSet<>();
     static Scanner scn = new Scanner(System.in);
     private final MemberList memberList = new MemberList();
     Arrears arrears = new Arrears(memberList.getAllMembers());
