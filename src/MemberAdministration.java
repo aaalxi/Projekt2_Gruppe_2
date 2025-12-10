@@ -235,7 +235,6 @@ public class MemberAdministration {
 
 
         // Gem nuværende data
-        //String id = memberToChange.getMemberID();
         String name = memberToChange.getName();
         LocalDate dateBirth = memberToChange.getDateOfBirth();
         double totalArrears = memberToChange.getTotalArrears();
@@ -246,12 +245,12 @@ public class MemberAdministration {
         Member newMember;
 
         if (memberToChange instanceof Competitive) {
-            // Skift fra Competitive → Casual
+            // Skift fra Competitive til Casual
             newMember = new Casual(id, name, dateBirth, totalArrears);
             System.out.println(name + " ændret fra Konkurrence til Motionist");
 
         } else if (memberToChange instanceof Casual) {
-            // Skift fra Casual → Competitive
+            // Skift fra Casual til Competitive
             newMember = new Competitive(id, name, dateBirth, totalArrears);
             System.out.println(name + " ændret fra Motionist til Konkurrence");
 
