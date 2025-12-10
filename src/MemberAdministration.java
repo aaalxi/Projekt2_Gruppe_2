@@ -159,44 +159,56 @@ public class MemberAdministration {
     }
 
     static void editActivityStatus(MemberList memberList, Scanner scn) {
-        boolean setActivity = true;
-        String svar, statusSvar;
+        if (memberList == null || memberList.getAllMembers().isEmpty()) {
+            System.out.println("Medlemslisten er tom!");
+            return;
+        }
+
         System.out.print("Skriv medlems ID: ");
         String id = scn.nextLine();
-        if (InputValidering.validateUserID(id)) {
 
-            for (Member m : memberList.getAllMembers()) {
-                if (m.getMemberID().equals(id)) {
-                    System.out.print("Er du sikker på du vil ændre aktivitets status på medlem :" + m.getName() + " [y/n] : ");
-                    svar = scn.nextLine();
-                    if (svar.equalsIgnoreCase("y")) {
-                        while (setActivity) {
-                            System.out.println("Hvilken aktivitets status skal: " + m.getName() + " tildeles.");
-                            System.out.println("1: Aktiv\n2: Passiv\n3. tilbage til start");
-                            System.out.print("Vælg:");
-                            statusSvar = scn.nextLine();
-                            if (statusSvar.equals("1")) {
-                                m.setActivityStatus(true);
-                                System.out.println("Du har ændret " + m.getName() + "'s Aktivitetsform til at være aktiv");
-                                setActivity = false;
-                            } else if (statusSvar.equals("2")) {
-                                m.setActivityStatus(false);
-                                System.out.println("Du har ændret " + m.getName() + "'s Aktivitetsform til at være passiv");
-                                setActivity = false;
-                            } else if(statusSvar.equals("3")){
-                                return;
-                            } else {
-                                System.out.println("Ikke et gyldigt valg.");
-                                System.out.print("Prøv igen: ");
-                            }
-                        }
-                    } else break;
-                }
+
+        if (!InputValidering.validateUserID(id)) {
+            System.out.println("ugyldigt ID, prøv igen.");
+            return;
+        }
+        Member m = FileService.findByID(id, memberList.getAllMembers());
+        if (m == null) {
+            return;
+        }
+
+        System.out.println("er du sikker på at du vil ændre aktivitets status på medlem" + m.getName() + "\n[y/n]");
+        String yn = UI.scn.nextLine().trim();
+        if (!yn.equalsIgnoreCase("y")) {
+            System.out.println("Handlingen blev annulleret!");
+            return;
+        }
+
+        boolean setActivity = true;
+        while (setActivity) {
+            System.out.println("Hvilken aktivitets status skal: " + m.getName() + " tildeles.");
+            System.out.println("1: Aktiv\n2: Passiv\n3. tilbage til start");
+            System.out.print("Vælg:");
+            String statusSvar = UI.scn.nextLine().trim();
+
+            switch (statusSvar) {
+                case "1":
+                    m.setActivityStatus(true);
+                    System.out.println("Du har ændret " + m.getName() + "'s Aktivitetsform til at være aktiv");
+                    setActivity = false;
+                    break;
+                case "2":
+                    m.setActivityStatus(false);
+                    System.out.println("Du har ændret " + m.getName() + "'s Aktivitetsform til at være passiv");
+                    setActivity = false;
+                    break;
+                case "3":
+                    return;
+                default:
+                    System.out.println("ikke et gyldigt valg, prøv igen.");
             }
-        } else if(!InputValidering.validateUserID(id)){
-        System.out.println("ugyldigt id, prøv igen");}
+        }
     }
-
     static String createUserID(String name) {
         int space = name.indexOf(" ");
         String firstTwo = name.substring(0, 2).toLowerCase();
