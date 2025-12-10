@@ -36,7 +36,7 @@ public class ResultFilehandling {
                 LocalDate date = LocalDate.parse(data[0]);
                 String name = data[1];
                 String category = data[2].toUpperCase();
-                String discipline = data[3].toUpperCase();
+                Discipline discipline = Discipline.valueOf(data[3]);
                 int distance = Integer.parseInt(data[4]);
                 double time = Double.parseDouble(data[5]);
                 boolean isCompetitive = Boolean.parseBoolean(data[6]);

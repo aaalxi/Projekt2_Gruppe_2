@@ -4,7 +4,8 @@ public class UI {
     static Scanner scanner = new Scanner(System.in);
     private final MemberList memberList = new MemberList();
     Arrears arrears = new Arrears(memberList.getAllMembers());
-    ResultAdministration results = new ResultAdministration();
+    ResultAdministration admin = new ResultAdministration();
+    ResultDelete results = new ResultDelete();
     private final String membersFilnavn = "src//Database//Members.txt";
     static boolean chairman = false;
     static boolean trainer = false;
@@ -15,7 +16,7 @@ public class UI {
         MemberFileHandling.loadMembers(membersFilnavn, memberList.getAllMembers());
         memberList.addMembersToTeamList();
         arrears.updateArrears();
-        ResultFilehandling.loadResult(results.getResultater());
+        ResultFilehandling.loadResult(admin.getResultater());
         boolean running = true;
         AsciiArt.printDelfin1();
         while (running) {
@@ -220,25 +221,25 @@ public class UI {
 
             switch (valg) {
                 case "1":
-                    results.addCompetitiveResult(scanner);
-                    ResultFilehandling.saveResult(results.getResultater());
+                    admin.addCompetitiveResult(scanner);
+                    ResultFilehandling.saveResult(admin.getResultater());
                     break;
                 case "2":
-                    results.addTrainingResult(scanner);
-                    ResultFilehandling.saveResult(results.getResultater());
+                    admin.addTrainingResult(scanner);
+                    ResultFilehandling.saveResult(admin.getResultater());
                     break;
                 case "3":
-                    results.printCompetitive();
+                    admin.printCompetitive();
                     break;
                 case "4":
-                    results.printTraining();
+                    admin.printTraining();
                     break;
                 case "5":
-                    results.topFive(scanner);
+                    admin.printTop(scanner);
                     break;
                 case "6":
-                    results.deleteResults(scanner);
-                    ResultFilehandling.saveResult(results.getResultater());
+                    results.deleteResults(scanner, admin.getResultater());
+                    ResultFilehandling.saveResult(admin.getResultater());
                     break;
                 case "0":
                     running = false;

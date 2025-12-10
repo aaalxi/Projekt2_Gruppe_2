@@ -6,7 +6,7 @@ public class ResultsCompetitive extends Result{
     private String tournament;
 
 
-    public ResultsCompetitive(String tournament, String name, String category, LocalDate date, String discipline,
+    public ResultsCompetitive(String tournament, String name, String category, LocalDate date, Discipline discipline,
                               int distance, double time, int placement) {
 
         super(true, name, category, date, discipline, distance, time);
