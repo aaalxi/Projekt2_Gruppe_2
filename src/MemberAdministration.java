@@ -223,20 +223,11 @@ public class MemberAdministration {
         String id = UI.scn.nextLine().trim();
 
         // Find medlem manuelt i listen
-        Member memberToChange = null;
-        for (Member m : allMembers) {
-            if (m.getMemberID().equalsIgnoreCase(id)) {
-                memberToChange = m;
-                break;
-            }
-        }
-
+        Member memberToChange = FileService.findByID(id,allMembers);
         if (memberToChange == null) {
             System.out.println("Medlem ikke fundet.");
             return;
         }
-
-
         // Gem nuværende data
         String name = memberToChange.getName();
         LocalDate dateBirth = memberToChange.getDateOfBirth();
