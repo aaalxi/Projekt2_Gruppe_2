@@ -225,7 +225,6 @@ public class MemberAdministration {
         // Find medlem manuelt i listen
         Member memberToChange = FileService.findByID(id,allMembers);
         if (memberToChange == null) {
-            System.out.println("Medlem ikke fundet.");
             return;
         }
         // Gem nuværende data
