@@ -157,6 +157,7 @@ public class MemberAdministration {
             }
         }
     }
+
     static void editActivityStatus(MemberList memberList, Scanner scn) {
         boolean setActivity = true;
         String svar, statusSvar;
@@ -209,6 +210,68 @@ public class MemberAdministration {
         } else {
             System.out.println("Kunne ikke laver ID til brugeren.");
             return "";
+        }
+    }
+
+    public static void changeMemberType(ArrayList<Member> allMembers) {
+        if (allMembers == null || allMembers == null) return;
+        // 2. Find medlem i listen
+        System.out.print("Indtast medlems ID: ");
+        String id = UI.scn.nextLine();
+
+        // Find medlem manuelt i listen
+        Member memberToChange = null;
+        for (Member m : allMembers) {
+            if (m.getMemberID().equals(id)) {
+                memberToChange = m;
+                break;
+            }
+        }
+
+        if (memberToChange == null) {
+            System.out.println("Medlem ikke fundet.");
+            return;
+        }
+
+
+        // Gem nuværende data
+        //String id = memberToChange.getMemberID();
+        String name = memberToChange.getName();
+        LocalDate dateBirth = memberToChange.getDateOfBirth();
+        double totalArrears = memberToChange.getTotalArrears();
+        LocalDate createDate = memberToChange.getCreateDate();
+        LocalDate nextPayment = memberToChange.getNextPayment();
+        boolean isActive = memberToChange.getIsActive();
+
+        Member newMember;
+
+        if (memberToChange instanceof Competitive) {
+            // Skift fra Competitive → Casual
+            newMember = new Casual(id, name, dateBirth, totalArrears);
+            System.out.println(name + " ændret fra Konkurrence til Motionist");
+
+        } else if (memberToChange instanceof Casual) {
+            // Skift fra Casual → Competitive
+            newMember = new Competitive(id, name, dateBirth, totalArrears);
+            System.out.println(name + " ændret fra Motionist til Konkurrence");
+
+        } else {
+            System.out.println("Ugyldig medlemstype");
+            return;
+        }
+
+        // Bevar eksisterende data
+        newMember.setCreateDate(createDate);
+        newMember.setNextPayment(nextPayment);
+        newMember.setActivityStatus(isActive);
+        newMember.updateSubscriptionType();
+
+        // Erstat i listen
+        for (int i = 0; i < allMembers.size(); i++) {
+            if (allMembers.get(i).getMemberID().equals(id)) {
+                allMembers.set(i, newMember);
+                break;
+            }
         }
     }
 }
