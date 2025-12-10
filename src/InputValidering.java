@@ -17,7 +17,7 @@ public class InputValidering {
      * @return true hvis ikke s er tom og indeholder kravne.
      */
     public static boolean isName(String s) {
-        return s != null && s.matches("[a-zA-ZæøåÆØÅ\\- ]+");
+        return s != null && s.matches("[a-zA-ZæøåÆØÅ\\- ]+"); //returns true, if condition meet
     }
 
 
@@ -28,6 +28,17 @@ public class InputValidering {
             System.out.println("Dato ikke skrevet korrekt. Prøv Igen");
         }
         return null;
+    }
+
+
+    public static boolean confirmMumber(String s) {
+        try {
+            Integer.parseInt(s);
+            return true;
+
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
 

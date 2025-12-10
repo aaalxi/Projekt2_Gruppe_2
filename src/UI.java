@@ -209,35 +209,30 @@ public class UI {
         boolean running = true;
         while (running) {
             System.out.println("--- StævneMenu ---\n" +
-                    "1. Ny stævnedata\n" +
-                    "2. Ny Træningsdata\n" +
-                    "3. Se Stævnedata\n" +
-                    "4: Se Træningsdata\n"+
-                    "5: Se top 5 i Kategori\n"+
-                    "6. Slet stævnedata\n" +
+                    "1. Indtast ny resultat\n" +
+                    "2. Se Stævnedata\n" +
+                    "3: Se Træningsdata\n"+
+                    "4: Se top 5 i Kategori\n"+
+                    "5. Slet stævnedata\n" +
                     "0. Tilbage til Hovedmenu");
             System.out.print("Vælg: ");
             String valg = scanner.nextLine();
 
             switch (valg) {
                 case "1":
-                    admin.addCompetitiveResult(scanner);
+                    admin.addResult(scanner);
                     ResultFilehandling.saveResult(admin.getResultater());
                     break;
                 case "2":
-                    admin.addTrainingResult(scanner);
-                    ResultFilehandling.saveResult(admin.getResultater());
-                    break;
-                case "3":
                     admin.printCompetitive();
                     break;
-                case "4":
+                case "3":
                     admin.printTraining();
                     break;
-                case "5":
+                case "4":
                     admin.printTop(scanner);
                     break;
-                case "6":
+                case "5":
                     results.deleteResults(scanner, admin.getResultater());
                     ResultFilehandling.saveResult(admin.getResultater());
                     break;
