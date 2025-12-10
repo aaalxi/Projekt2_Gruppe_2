@@ -214,7 +214,10 @@ public class MemberAdministration {
     }
 
     public static void changeMemberType(ArrayList<Member> allMembers) {
-        if (allMembers == null) return;
+        if (allMembers == null){
+            System.out.println("Listen er tom!");
+            return;
+        }
         // 2. Find medlem i listen
         System.out.print("Indtast medlems ID: ");
         String id = UI.scn.nextLine().trim();
@@ -222,7 +225,7 @@ public class MemberAdministration {
         // Find medlem manuelt i listen
         Member memberToChange = null;
         for (Member m : allMembers) {
-            if (m.getMemberID().equals(id)) {
+            if (m.getMemberID().equalsIgnoreCase(id)) {
                 memberToChange = m;
                 break;
             }
