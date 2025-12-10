@@ -29,7 +29,7 @@ public class ResultAdministration {
 
     public LocalDate confirmDate(Scanner scanner) {
         while (true) {
-            System.out.println("Indtast dato for resultatet (yyyy-MM-dd) (Tast 0 for menu):");
+            System.out.print("Indtast dato for resultatet (yyyy-MM-dd) (Tast 0 for menu):");
             String dateInput = scanner.nextLine();
 
             if (dateInput.equals("0")) {
@@ -47,13 +47,13 @@ public class ResultAdministration {
 
     public double confirmTime(Scanner scanner) {
         while (true) {
-            System.out.println("Indtast \"back\" for menu):");
+            System.out.print("Indtast \"back\" for menu. Eller tryk enter for at fortsætte: ");
             String input = scanner.nextLine();
             if (input.equalsIgnoreCase("back")) {
                 return 0;
             }
             try {
-                System.out.println("Indtast minutter (0-59): ");
+                System.out.print("Indtast minutter (0-59): ");
                 int minutter = Integer.parseInt(scanner.nextLine().trim());
                 System.out.print("Sekunder (0-59): ");
                 int sekunder = Integer.parseInt(scanner.nextLine().trim());
@@ -91,16 +91,14 @@ public class ResultAdministration {
     }
 
     public boolean confirmCompetitive(Scanner scanner) {
-        boolean isCompetitive;
-        System.out.println("Hvilket resultat? \n1. Træningsresultat \n2. Stævneresultat \n(Tast 0 for menu)");
+        System.out.println("Hvilket resultat vil du gemme? \n1. Træningsresultat \n2. Stævneresultat \n(Tast 0 for menu)");
+        System.out.print("Vælg: ");
         String input = scanner.nextLine();
         switch (input) {
             case "1":
-                isCompetitive = false;
-                return isCompetitive;
+                return false;
             case "2":
-                isCompetitive = true;
-                return isCompetitive;
+                return true;
             case "0":
                 break;
             default:
@@ -113,32 +111,32 @@ public class ResultAdministration {
         while (true) {
             boolean isCompetitive = confirmCompetitive(scanner);
 
-            System.out.println("Indtast navn på medlem (Tast 0 for menu):");
+            System.out.print("Indtast navn på medlem (Tast 0 for menu):");
             String name = confirmStringInput(scanner);
             if (name == null) {
                 break;
             }
-            confirmCategory(scanner);
+            System.out.println("---**********---");
             String category = confirmCategory(scanner);
             if (category.isEmpty()) {
                 break;
             }
-            confirmDiscipline(scanner);
+            System.out.println("---**********---");
             Discipline discipline = confirmDiscipline(scanner);
             if (discipline == null) {
                 break;
             }
-
+            System.out.println("---**********---");
             int distance = confirmDistance(scanner);
             if (distance == 0) {
                 break;
             }
-
+            System.out.println("---**********---");
             LocalDate date = confirmDate(scanner);
             if (date == null) {
                 break;
             }
-
+            System.out.println("---**********---");
             double time = confirmTime(scanner);
             if (time == 0) {
                 break;
@@ -147,6 +145,7 @@ public class ResultAdministration {
                 ResultsTraining r = new ResultsTraining(name, category, date, discipline, distance, time);
                 resultater.add(r);
                 System.out.println("Resultat tilføjet til kategorien: " + category + "!");
+                break;
             }
 
             if (isCompetitive) {
@@ -159,9 +158,8 @@ public class ResultAdministration {
                 ResultsCompetitive r = new ResultsCompetitive(tournament, name, category, date, discipline, distance, time, placement);
                 resultater.add(r);
                 System.out.println("Resultat tilføjet til kategorien: " + category + "!");
-
+                break;
             }
-
         }
     }
 
@@ -188,6 +186,7 @@ public class ResultAdministration {
         while (true) {
             System.out.print("Vælg disciplin: \n1. BUTTERFLY \n2. BACKSTROKE \n3. BREASTSTROKE \n4. FREESTYLE " +
                     "\n0. Tilbage til menu ");
+            System.out.print("Vælg: ");
             String input = scanner.nextLine().trim();
 
             try {
@@ -215,6 +214,7 @@ public class ResultAdministration {
     public int confirmDistance(Scanner scanner) {    //DONE using in printTop
         while (true) {
             System.out.println("Vælg en distance i disciplinen (m): \n1. 100 m \n2. 200 m \n3. 300 m \n0. Tilbage til menu");
+            System.out.print("Vælg: ");
             String valg = scanner.nextLine().trim();
 
             switch (valg) {
@@ -236,6 +236,7 @@ public class ResultAdministration {
     public String confirmCategory(Scanner scanner) {        //DONE Using in printTop
         while (true) {
             System.out.println("Vælg en katogori \n1. U18 \n2. O18 \n0. Tilbage til menu");
+            System.out.print("Vælg: ");
             String valg = scanner.nextLine().trim();
 
             switch (valg) {
