@@ -214,10 +214,10 @@ public class MemberAdministration {
     }
 
     public static void changeMemberType(ArrayList<Member> allMembers) {
-        if (allMembers == null || allMembers == null) return;
+        if (allMembers == null) return;
         // 2. Find medlem i listen
         System.out.print("Indtast medlems ID: ");
-        String id = UI.scn.nextLine();
+        String id = UI.scn.nextLine().trim();
 
         // Find medlem manuelt i listen
         Member memberToChange = null;
@@ -246,25 +246,25 @@ public class MemberAdministration {
 
         if (memberToChange instanceof Competitive) {
             System.out.println("vil du gerne ændre " + name + " til at være Motionist svømmer?\n[y/n]");
-            String yn = UI.scn.nextLine();
+            String yn = UI.scn.nextLine().trim();
             // Skift fra Competitive til Casual
-            if(yn.equalsIgnoreCase("y")){
-            newMember = new Casual(id, name, dateBirth, totalArrears);
-            System.out.println(name + " ændret fra Konkurrence til Motionist");}
-            else if(yn.equalsIgnoreCase("n")){
+            if(!yn.equalsIgnoreCase("y")) {
+                System.out.println("Ændring blev annulleret!");
                 return;
             }
+            newMember = new Casual(id, name, dateBirth, totalArrears);
+            System.out.println(name + " ændret fra Konkurrence til Motionist");
 
         } else if (memberToChange instanceof Casual) {
             System.out.println("vil du gerne ændre " + name + " til at være Konkurrence svømmer?\n[y/n]");
-            String yn = UI.scn.nextLine();
+            String yn = UI.scn.nextLine().trim();
             // Skift fra Casual til Competitive
-            if (yn.equalsIgnoreCase("y")){
-            newMember = new Competitive(id, name, dateBirth, totalArrears);
-            System.out.println(name + " ændret fra Motionist til Konkurrence");}
-            else if(yn.equalsIgnoreCase("n")){
+            if (!yn.equalsIgnoreCase("y")) {
+                System.out.println("Ændring blev annulleret!");
                 return;
             }
+            newMember = new Competitive(id, name, dateBirth, totalArrears);
+            System.out.println(name + " ændret fra Motionist til Konkurrence");
 
         } else {
             System.out.println("Ugyldig medlemstype");
