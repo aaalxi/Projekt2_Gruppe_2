@@ -1,14 +1,13 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class UI {
+    private final Set<ActorRole> loggedInActors = new HashSet<>();
     static Scanner scn = new Scanner(System.in);
     private final MemberList memberList = new MemberList();
     Arrears arrears = new Arrears(memberList.getAllMembers());
     ResAdministration results = new ResAdministration();
     private final String membersFilnavn = "src//Database//Members.txt";
-    static boolean chairman = false;
-    static boolean trainer = false;
-    static boolean cashier = false;
+
 
 
     public void showMainMenu() {
@@ -30,34 +29,22 @@ public class UI {
 
             switch (valg) {
                 case "1":
-                    if(chairman){
+                    if(login("formand",ActorRole.FORMAND)){
                         showChairmanMenu();
-                    } else {
-                        if(chairmanPass(scn)){
-                            showChairmanMenu();
-                        }
                     }
                     break;
                 case "2":
-                    if(trainer) {
+                    if(login("træner",ActorRole.TRÆNER)) {
                         showTrainerMenu();
-                    } else {
-                        if(trainerPass(scn)){
-                            showTrainerMenu();
-                        }
                     }
                     break;
                 case "3":
-                    if(cashier) {
+                    if(login("kasser",ActorRole.KASSER)) {
                         showCashierMenu();
-                    } else {
-                        if(cashierPass(scn)){
-                            showCashierMenu();
-                        }
                     }
                     break;
                 case "4":
-                    competitionMenu();
+                    showCompetitionMenu();
                     break;
                 case "0":
                     running = false;
@@ -86,12 +73,10 @@ public class UI {
                 case "1":
                     System.out.println("--- Liste med konkurrencemedlemmer under 18 ---");
                     memberList.printCompetitive(memberList.getUnder18());
-                    running = false;
                     break;
                 case "2":
                     System.out.println("--- Liste med konkurrencemedlemmer over 18 ---");
                     memberList.printCompetitive(memberList.getOver18());
-                    running = false;
                     break;
                 case "3":
                     TrainerAdmin.addDiscipline(memberList,scn);
@@ -208,7 +193,7 @@ public class UI {
      * UI Menu-metode der håndtere stævneInformation
      * lader træner oprette og slette stævnedata
      */
-    public void competitionMenu() {
+    public void showCompetitionMenu() {
         boolean running = true;
         while (running) {
             System.out.println("--- StævneMenu ---\n" +
@@ -252,45 +237,21 @@ public class UI {
         }
     }
 
-    boolean chairmanPass(Scanner scn) {
-        System.out.print("Indtast Password: ");
-        String login = scn.nextLine();
-        if (!login.equalsIgnoreCase("formand")) {
-            System.out.println();
-            System.out.println("Du har skrevet et forkert password!.\nPrøv venligst igen.");
-            return false;
-        } else {
-            System.out.println("Du er logget ind.");
-            chairman = true;
+    private boolean login(String satPassword, ActorRole actorRole){
+        if(loggedInActors.contains(actorRole)){
             return true;
         }
-    }
 
-    boolean cashierPass(Scanner scn) {
         System.out.print("Indtast Password: ");
         String login = scn.nextLine();
-        if (!login.equalsIgnoreCase("kasser")) {
-            System.out.println();
-            System.out.println("Du har skrevet et forkert password!.\nPrøv venligst igen.");
-            return false;
-        } else {
-            System.out.println("Du er logget ind.");
-            cashier = true;
-            return true;
-        }
-    }
 
-    boolean trainerPass(Scanner scn) {
-        System.out.print("Indtast Password: ");
-        String login = scn.nextLine();
-        if (!login.equalsIgnoreCase("træner")) {
-            System.out.println();
+        if(!login.equalsIgnoreCase(satPassword)){
             System.out.println("Du har skrevet et forkert password.\nPrøv venligst igen.");
             return false;
-        } else {
-            System.out.println("Du er logget ind.");
-            trainer = true;
-            return true;
         }
+        loggedInActors.add(actorRole);
+            System.out.println("Du er logget ind som "+ actorRole.name().toLowerCase() +".");
+            return true;
+
     }
 }
