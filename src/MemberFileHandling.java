@@ -33,7 +33,7 @@ public class MemberFileHandling {
                 pw.println(linje);
 
             }
-          //  System.out.println("Filen: (" + fileName + ") er gemt.");
+            System.out.println("Filen: (" + fileName + ") er gemt.");
         } catch (IOException e) {
             System.out.println("Fejl ved gemning: " + e.getMessage());
         }
