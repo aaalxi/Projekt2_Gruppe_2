@@ -13,7 +13,7 @@ public class ResultAdministration {
     }
 
 
-    public String confirmStringInput(Scanner scanner) {        //implementer 0=menu, sout, stævne/navn
+    public String confirmStringInput(Scanner scanner) {        //using in addResult
         while (true) {
             String input = scanner.nextLine().trim();
 
@@ -28,7 +28,7 @@ public class ResultAdministration {
     }
 
 
-    public LocalDate confirmDate(Scanner scanner) {
+    public LocalDate confirmDate(Scanner scanner) {    //using in addResult
         while (true) {
             System.out.println("Indtast dato for resultatet (yyyy-MM-dd) (Tast 0 for menu):"); //format!
             System.out.print("Vælg: ");
@@ -47,8 +47,8 @@ public class ResultAdministration {
     }
 
 
-    public Double confirmTime(Scanner scanner) {
-        System.out.print("Indtast \"back\" for menu. Eller tryk enter for at fortsætte: ");
+    public Double confirmTime(Scanner scanner) {   //using in addResult
+        System.out.print("Indtast \"back\" for menu. Tryk enter eller andet for at fortsætte: ");
         while (true) {
             String input = scanner.nextLine();
             if (input.equalsIgnoreCase("back")) {
@@ -78,13 +78,13 @@ public class ResultAdministration {
     }
 
 
-    public int confirmPlacement(Scanner scanner) {
+    public Integer confirmPlacement(Scanner scanner) {   //using in addResult
         while (true) {
             System.out.println("Indtast placering (Tast 0 for menu): ");
             String input = scanner.nextLine();
 
             if (input.equals("0")) {
-                continue;
+                return null;
             }
             if (!InputValidering.confirmMumber(input)) {
                 System.out.println("Ugyldigt valg, prøv igen!");
@@ -95,7 +95,7 @@ public class ResultAdministration {
         }
     }
 
-    public Boolean confirmCompetitive(Scanner scanner) {
+    public Boolean confirmCompetitive(Scanner scanner) {   //using in addResult
         while (true) {
             System.out.println("Hvilket resultat vil du gemme? (Tast 0 for menu): " +
                     "\n1. Træningsresultat \n2. Stævneresultat");
@@ -114,7 +114,7 @@ public class ResultAdministration {
         }
     }
 
-    public void addResult(Scanner scanner) {         //stævne, placer = comp
+    public void addResult(Scanner scanner) {
         while (true) {
             System.out.println("---**********---");
             Boolean isCompetitive = confirmCompetitive(scanner);
@@ -149,8 +149,8 @@ public class ResultAdministration {
                 break;
             }
             System.out.println("---**********---");
-            double time = confirmTime(scanner);
-            if (time == 0) {
+            Double time = confirmTime(scanner);
+            if (time == null) {
                 break;
             }
             if (!isCompetitive) {
@@ -166,7 +166,10 @@ public class ResultAdministration {
                 if (tournament == null) {
                     break;
                 }
-                int placement = confirmPlacement(scanner);
+                Integer placement = confirmPlacement(scanner);
+                if (placement==null) {
+                    break;
+                }
                 ResultsCompetitive r = new ResultsCompetitive(tournament, name, category, date, discipline, distance, time, placement);
                 resultater.add(r);
                 System.out.println("Resultat tilføjet til kategorien: " + category + "!");
@@ -176,7 +179,6 @@ public class ResultAdministration {
     }
 
 
-    //Hvis fucked tilføj load metode igen
     public void printCompetitive() {
         for (Result r : resultater) {
             if (r instanceof ResultsCompetitive)
@@ -184,7 +186,6 @@ public class ResultAdministration {
         }
     }
 
-    //Hvis fucked tilføj load metode igen
     public void printTraining() {
         for (Result r : resultater) {
             if (r instanceof ResultsTraining) {
@@ -194,7 +195,7 @@ public class ResultAdministration {
     }
 
 
-    public Discipline confirmDiscipline(Scanner scanner) {     //DONE using in topFive
+    public Discipline confirmDiscipline(Scanner scanner) {     //using in topFive
         while (true) {
             System.out.println("Vælg disciplin (Tast 0 for menu): \n1. BUTTERFLY \n2. BACKSTROKE " +
                     "\n3. BREASTSTROKE \n4. FREESTYLE");
@@ -223,7 +224,7 @@ public class ResultAdministration {
     }
 
 
-    public int confirmDistance(Scanner scanner) {    //DONE using in printTop
+    public int confirmDistance(Scanner scanner) {    //using in printTop
         while (true) {
             System.out.println("Vælg en distance i disciplinen (m) (Tast 0 for menu): \n1. 100 m \n2. 200 m \n3. 300 m");
             System.out.print("Vælg: ");
@@ -245,7 +246,7 @@ public class ResultAdministration {
     }
 
 
-    public String confirmCategory(Scanner scanner) {        //DONE Using in printTop
+    public String confirmCategory(Scanner scanner) {        //using in sortedlist and addResult
         while (true) {
             System.out.println("Vælg en katogori (Tast 0 for menu): \n1. U18 \n2. O18");
             System.out.print("Vælg: ");
@@ -300,7 +301,7 @@ public class ResultAdministration {
     }
 
 
-    public void printTop(Scanner scanner) {  //DONE
+    public void printTop(Scanner scanner) {    //prints top 5 at least
         ArrayList<Result> listResults;
         listResults = sortedList(scanner);
 
