@@ -20,7 +20,7 @@ public class ResultFilehandling {
                 writer.write(line);
                 writer.newLine();
             }
-         //   System.out.println("Resultatet er gemt i filen!");
+            System.out.println("Resultatet er gemt i filen!");
         } catch (IOException e) {
             System.out.println("Fejl: Kunne ikke skrive resultatet til fil!");
         }

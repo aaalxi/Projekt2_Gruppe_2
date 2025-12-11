@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class ResultAdministration {
     private final ArrayList<Result> resultater = new ArrayList<>();
-    public static String red = "\u001B[31m", reset = "\u001B[0m";
 
     public ArrayList<Result> getResultater() {
         return resultater;
