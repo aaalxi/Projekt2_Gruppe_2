@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -86,10 +85,10 @@ public class ResultAdministration {
             if (input.equals("0")) {
                 return null;
             }
-            if (!InputValidering.confirmMumber(input)) {
+            if (!InputValidering.confirmNumber(input)) {
                 System.out.println("Ugyldigt valg, prøv igen!");
             }
-            if (InputValidering.confirmMumber(input)) {
+            if (InputValidering.confirmNumber(input)) {
                 return Integer.parseInt(input);
             }
         }
