@@ -172,7 +172,7 @@ public class MemberAdministration {
             System.out.println("ugyldigt ID, prøv igen.");
             return;
         }
-        Member m = FileService.findByID(id, memberList.getAllMembers());
+        Member m = ListService.findByID(id, memberList.getAllMembers());
         if (m == null) {
             return;
         }
@@ -235,7 +235,7 @@ public class MemberAdministration {
         String id = UI.scn.nextLine().trim();
 
         // Find medlem med findByID metoden
-        Member memberToChange = FileService.findByID(id,allMembers);
+        Member memberToChange = ListService.findByID(id,allMembers);
         if (memberToChange == null) {
             return;
         }

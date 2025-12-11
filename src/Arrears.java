@@ -17,7 +17,7 @@ public class Arrears {
     public void updateArrears() {
         for (Member m : members) {
 
-            //hvis paymentDate ligger i fortiden (er overskredet)
+            //hvis paymentDate ligger i fortiden (er overskredet) lig kontigent til
             if (today.isAfter(m.getNextPayment())) {
                 double yearlyFee = getYearlyQuota(m);
                 m.setTotalArrears(m.getTotalArrears() + yearlyFee);

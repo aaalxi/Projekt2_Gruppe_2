@@ -31,7 +31,7 @@ public class InputValidering {
     }
 
 
-    public static boolean confirmMumber(String s) {
+    public static boolean confirmNumber(String s) {
         try {
             Integer.parseInt(s);
             return true;
