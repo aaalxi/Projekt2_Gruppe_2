@@ -47,6 +47,7 @@ public abstract class Member {
         Period currentAge = Period.between(dateOfBirth, LocalDate.now());
         return currentAge.getYears();
     }
+
     public boolean getIsActive(){
         return isActive;
     }

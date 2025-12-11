@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class FileService {
+public class ListService {
     public static Member findByID(String memberID, ArrayList<Member> allMembers) {
         if (memberID == null || memberID.isBlank()) return null;  // tjek input
         for (Member m : allMembers) {
