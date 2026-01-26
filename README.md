@@ -1,3 +1,5 @@
+Projekt lavet i løbet af 1. semester på datamatiker-uddannelsen. 
+
 Members.txt fil indeholder data i følgende ordre: 
 [1] Bruger ID : String
 [2] Navn : String
